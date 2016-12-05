@@ -1,0 +1,32 @@
+<div class="sidebar-panel offscreen-left">
+    <div class="brand">
+        <!-- toggle offscreen menu -->
+        <div class="toggle-offscreen">
+            <a href="javascript:;" class="visible-xs hamburger-icon" data-toggle="offscreen" data-move="ltr">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+        <!-- /toggle offscreen menu -->
+        <!-- logo -->
+        <a class="brand-logo">
+            <span>{{ site_name }}</span>
+        </a>
+        <a href="#" class="small-menu-visible brand-logo"></a>
+        <!-- /logo -->
+    </div>
+    <!-- main navigation -->
+    <nav role="navigation">
+        <ul class="nav">
+            <!-- dashboard -->
+            <li>
+                <a href="{{ path('homepage') }}">
+                    <i class="icon-compass"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /main navigation -->
+</div>
