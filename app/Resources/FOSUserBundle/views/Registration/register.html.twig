@@ -1,0 +1,26 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block fos_user_content %}
+    <div class="page-height-o row-equal align-middle">
+        <div class="column">
+            <div class="card bg-white no-border">
+                <div class="card-block">
+                    {{ form_start(form, {'method': 'post', 'role': 'form', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-layout'}}) }}
+                        <div class="text-center m-b">
+                            <h4 class="text-uppercase">Register Now</h4>
+                        </div>
+                        <div class="form-inputs">
+                            {{ form_row(form.email, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Email address"} }) }}
+                            {{ form_row(form.username, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Username"} }) }}
+                            {{ form_row(form.plainPassword.first, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Password"} }) }}
+                            {{ form_row(form.plainPassword.second, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Confirm password"} }) }}
+                        </div>
+                        <button class="btn btn-primary btn-block btn-lg m-b" type="submit">Create Account</button>
+                        <p class="text-center"><small><em>By clicking Create account you agree to our <a href="#">terms and conditions</a></em></small>
+                        </p>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
