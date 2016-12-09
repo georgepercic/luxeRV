@@ -1,3 +1,19 @@
+invoice_invoice:
+    resource: "@InvoiceBundle/Controller/InvoiceController.php"
+    type:     annotation
+
+bookings_booking:
+    resource: "@BookingsBundle/Controller/BookingController.php"
+    type:     annotation
+
+employee_employee:
+    resource: "@EmployeeBundle/Controller/EmployeeController.php"
+    type:     annotation
+
+vehicle_vehicle:
+    resource: "@VehicleBundle/Controller/VehicleController.php"
+    type:     annotation
+
 user:
     resource: "@UserBundle/Controller/"
     type:     annotation
@@ -7,5 +23,6 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+customer:
+    resource: "@CustomerBundle/Controller/CustomerController.php"
+    type:     annotation

@@ -1,0 +1,84 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="card bg-white">
+        <div class="card-header">
+            Booking edit
+        </div>
+        <div class="card-block">
+            <div class="row m-a-0">
+                <div class="col-lg-12">
+                    {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
+                    <div class="form-group">
+                        {{ form_label(edit_form.pickUpDate, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.pickUpDate, { 'attr': {'class': 'form-control input-lg datepicker', 'data-provide':'datepicker', 'placeholder': "Pick Up Date"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.dropOffDate, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.dropOffDate, { 'attr': {'class': 'form-control input-lg datepicker', 'data-provide':'datepicker', 'placeholder': "Drop Off Date"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.customerId, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.customerId, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Customer"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.vehicleId, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.vehicleId, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Vehicle"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-10">
+                            <input type="submit" class="btn btn-primary" value="Edit"/>
+                        </div>
+                    </div>
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ul>
+        <li>
+            <a href="{{ path('bookings_index') }}">Back to the list</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+{% endblock %}

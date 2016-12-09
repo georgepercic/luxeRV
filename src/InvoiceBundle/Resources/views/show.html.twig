@@ -1,0 +1,52 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Invoice</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ invoice.id }}</td>
+            </tr>
+            <tr>
+                <th>Vehicle rent</th>
+                <td>{{ invoice.vehicleRent }}</td>
+            </tr>
+            <tr>
+                <th>Equipment rent</th>
+                <td>{{ invoice.equipmentRent }}</td>
+            </tr>
+            <tr>
+                <th>Insurance cost</th>
+                <td>{{ invoice.insuranceCost }}</td>
+            </tr>
+            <tr>
+                <th>Service tax</th>
+                <td>{{ invoice.serviceTax }}</td>
+            </tr>
+            <tr>
+                <th>Vat</th>
+                <td>{{ invoice.vat }}</td>
+            </tr>
+            <tr>
+                <th>Total amount paybale</th>
+                <td>{{ invoice.totalAmountPaybale }}</td>
+            </tr>
+            <tr>
+                <th>Discount amount</th>
+                <td>{{ invoice.discountAmount }}</td>
+            </tr>
+            <tr>
+                <th>Net amount payable</th>
+                <td>{{ invoice.netAmountPayable }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('invoices_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

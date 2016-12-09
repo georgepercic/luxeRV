@@ -1,0 +1,68 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Employee</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ employee.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ employee.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ employee.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Dob</th>
+                <td>{% if employee.dob %}{{ employee.dob|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ssn</th>
+                <td>{{ employee.ssn }}</td>
+            </tr>
+            <tr>
+                <th>Addresscity</th>
+                <td>{{ employee.addressCity }}</td>
+            </tr>
+            <tr>
+                <th>Addressstate</th>
+                <td>{{ employee.addressState }}</td>
+            </tr>
+            <tr>
+                <th>Addresszip</th>
+                <td>{{ employee.addressZip }}</td>
+            </tr>
+            <tr>
+                <th>Addressstreet</th>
+                <td>{{ employee.addressStreet }}</td>
+            </tr>
+            <tr>
+                <th>Addresssuiteno</th>
+                <td>{{ employee.addressSuiteNo }}</td>
+            </tr>
+            <tr>
+                <th>Addresscountry</th>
+                <td>{{ employee.addressCountry }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('employees_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('employees_edit', { 'id': employee.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

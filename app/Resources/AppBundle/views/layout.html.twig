@@ -9,6 +9,7 @@
     <!-- page stylesheets -->
     {% block stylesheets %}
         <!-- end page stylesheets -->
+        <link rel="stylesheet" href="{{ asset('assets/vendor/datatables/media/css/dataTables.bootstrap.css') }}">
         <!-- build:css({.tmp,app}) styles/app.min.css -->
         <link rel="stylesheet" href="{{ asset('assets/styles/webfont.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/styles/climacons-font.css') }}">
@@ -19,6 +20,7 @@
         <link rel="stylesheet" href="{{ asset('assets/styles/animate.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/styles/app.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/styles/app.skins.css') }}">
+
         <!-- endbuild -->
     {% endblock %}
 </head>
@@ -34,13 +36,13 @@
 <div class="app layout-fixed-header">
 
     <!-- sidebar panel -->
-    {% include '_siderpanel.html.twig' %}
+    {% include 'AppBundle::_siderpanel.html.twig' %}
     <!-- /sidebar panel -->
 
     <!-- content panel -->
     <div class="main-panel">
         <!-- top header -->
-        {% include '_topheader.html.twig' %}
+        {% include 'AppBundle::_topheader.html.twig' %}
         <!-- /top header -->
         <!-- main area -->
         <div class="main-content">
@@ -53,11 +55,11 @@
     <!-- /content panel -->
     <!-- bottom footer -->
     <footer class="content-footer">
-        {% include '_footer.html.twig' %}
+        {% include 'AppBundle::_footer.html.twig' %}
     </footer>
     <!-- /bottom footer -->
     <!-- chat -->
-    {% include '_chat.html.twig' %}
+    {% include 'AppBundle::_chat.html.twig' %}
     <!-- /chat -->
 </div>
 {% block javascripts %}

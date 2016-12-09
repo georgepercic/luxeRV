@@ -1,0 +1,67 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="card bg-white">
+        <div class="card-header">
+            Invoices list
+        </div>
+        <div class="card-block">
+            <table class="table table-bordered table-condensed datatable m-b-0">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Vehicle rent</th>
+                    <th>Equipment rent</th>
+                    <th>Insurance cost</th>
+                    <th>Service tax</th>
+                    <th>Vat</th>
+                    <th>Total amount paybale</th>
+                    <th>Discount amount</th>
+                    <th>Netamount payable</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for invoice in invoices %}
+                    <tr>
+                        <td><a href="{{ path('invoices_show', { 'id': invoice.id }) }}">{{ invoice.id }}</a></td>
+                        <td>{{ invoice.vehicleRent }}</td>
+                        <td>{{ invoice.equipmentRent }}</td>
+                        <td>{{ invoice.insuranceCost }}</td>
+                        <td>{{ invoice.serviceTax }}</td>
+                        <td>{{ invoice.vat }}</td>
+                        <td>{{ invoice.totalAmountPaybale }}</td>
+                        <td>{{ invoice.discountAmount }}</td>
+                        <td>{{ invoice.netAmountPayable }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('invoices_show', { 'id': invoice.id }) }}">show</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <!-- page scripts -->
+    <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.js') }}"></script>
+    <!-- end page scripts -->
+    <!-- initialize page scripts -->
+    <script src="{{ asset('assets/vendor/datatables/media/js/dataTables.bootstrap.js') }}"></script>
+    <script type="text/javascript">
+        $('.datatable').dataTable();
+    </script>
+    <!-- end initialize page scripts -->
+
+{% endblock %}
+

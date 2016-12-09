@@ -1,0 +1,124 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="card bg-white">
+        <div class="card-header">
+            Customer creation
+        </div>
+        <div class="card-block">
+            <div class="row m-a-0">
+                <div class="col-lg-12">
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                    <div class="form-group">
+                        {{ form_label(form.name, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.name, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Name"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.email, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.email, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Email address"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.phone, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.phone, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Phone"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.aditionalPhone, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.aditionalPhone, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Aditional Phone"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.whatsapp, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.whatsapp, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Whatsapp"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.skype, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.skype, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Skype"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.billing, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.billing, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Billing"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.deliveryAddress, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.deliveryAddress, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Delivery Address"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.pickUpAddress, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.pickUpAddress, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Pickup Address"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.driverLicense, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.driverLicense, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Driver licence"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.passport, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.passport, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Passport"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.insurance, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.insurance, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Insurance"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-10">
+                            <input type="submit" class="btn btn-primary" value="Create" />
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul>
+        <li>
+            <a href="{{ path('customer_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

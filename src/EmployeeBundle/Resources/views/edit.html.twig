@@ -1,0 +1,132 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="card bg-white">
+        <div class="card-header">
+            Employee edit
+        </div>
+        <div class="card-block">
+            <div class="row m-a-0">
+                <div class="col-lg-12">
+                    {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
+                    <div class="form-group">
+                        {{ form_label(edit_form.firstName, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.firstName, { 'attr': {'class': 'form-control input-lg', 'placeholder': "First Name"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.lastName, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.lastName, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Last Name"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.dob, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.dob, { 'attr': {'class': 'form-control input-lg datepicker', 'data-provide':'datepicker', 'placeholder': "Date of Birth"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.ssn, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.ssn, { 'attr': {'class': 'form-control input-lg', 'placeholder': "SSN"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.addressCity, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.addressCity, { 'attr': {'class': 'form-control input-lg', 'placeholder': "City"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.addressState, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.addressState, { 'attr': {'class': 'form-control input-lg', 'placeholder': "State"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.addressZip, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.addressZip, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Zip Code"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.addressStreet, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.addressStreet, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Street"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.addressSuiteNo, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.addressSuiteNo, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Suite Number"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.addressCountry, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.addressCountry, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Country"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-10">
+                            <input type="submit" class="btn btn-primary" value="Edit"/>
+                        </div>
+                    </div>
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ul>
+        <li>
+            <a href="{{ path('employees_index') }}">Back to the list</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+{% endblock %}
