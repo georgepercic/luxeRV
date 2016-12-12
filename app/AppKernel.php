@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new \EmployeeBundle\EmployeeBundle(),
             new \BookingsBundle\BookingsBundle(),
             new \InvoiceBundle\InvoiceBundle(),
+            new \FOS\UserBundle\FOSUserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

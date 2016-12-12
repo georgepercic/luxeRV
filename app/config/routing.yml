@@ -26,3 +26,6 @@ app:
 customer:
     resource: "@CustomerBundle/Controller/CustomerController.php"
     type:     annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

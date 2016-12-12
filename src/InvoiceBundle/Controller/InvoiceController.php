@@ -36,6 +36,9 @@ class InvoiceController extends Controller
      *
      * @Route("/{id}", name="invoices_show")
      * @Method("GET")
+     * @param Invoice $invoice
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Invoice $invoice)
     {

@@ -20,13 +20,7 @@
 </head>
 
 <body class="page-loading">
-<!-- page loading spinner -->
-<div class="pageload">
-    <div class="pageload-inner">
-        <div class="sk-rotating-plane"></div>
-    </div>
-</div>
-<!-- /page loading spinner -->
+
 <div class="app signin usersession">
     {% if app.request.hasPreviousSession %}
         {% for type, messages in app.session.flashbag.all() %}
