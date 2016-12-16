@@ -36,6 +36,9 @@ class BookingController extends Controller
      *
      * @Route("/new", name="bookings_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -60,8 +63,11 @@ class BookingController extends Controller
     /**
      * Finds and displays a booking entity.
      *
-     * @Route("/{id}", name="bookings_show")
+     * @Route("/{id}", name="bookings_show", requirements={"id": "\d+"})
      * @Method("GET")
+     * @param Booking $booking
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Booking $booking)
     {
@@ -78,6 +84,10 @@ class BookingController extends Controller
      *
      * @Route("/{id}/edit", name="bookings_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Booking $booking
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Booking $booking)
     {
@@ -103,6 +113,10 @@ class BookingController extends Controller
      *
      * @Route("/{id}", name="bookings_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Booking $booking
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Booking $booking)
     {
@@ -116,6 +130,23 @@ class BookingController extends Controller
         }
 
         return $this->redirectToRoute('bookings_index');
+    }
+
+    /**
+     * List booking operations
+     *
+     * @Route("/operations", name="booking_operations")
+     * @Method("GET")
+     */
+    public function operations()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $bookings = $em->getRepository('BookingsBundle:Booking')->findAll();
+
+        return $this->render('BookingsBundle::operations.html.twig', array(
+            'bookings' => $bookings,
+        ));
     }
 
     /**
