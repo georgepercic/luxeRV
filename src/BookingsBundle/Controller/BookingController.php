@@ -133,23 +133,6 @@ class BookingController extends Controller
     }
 
     /**
-     * List booking operations
-     *
-     * @Route("/operations", name="booking_operations")
-     * @Method("GET")
-     */
-    public function operations()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $bookings = $em->getRepository('BookingsBundle:Booking')->findAll();
-
-        return $this->render('BookingsBundle::operations.html.twig', array(
-            'bookings' => $bookings,
-        ));
-    }
-
-    /**
      * Creates a form to delete a booking entity.
      *
      * @param Booking $booking The booking entity

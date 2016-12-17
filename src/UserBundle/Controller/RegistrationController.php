@@ -56,7 +56,7 @@ class RegistrationController extends BaseController
                 $userManager->updateUser($user);
 
                 if (null === $response = $event->getResponse()) {
-                    $url = $this->generateUrl('homepage');
+                    $url = $this->generateUrl('booking_operations');
                     $response = new RedirectResponse($url);
                 }
 

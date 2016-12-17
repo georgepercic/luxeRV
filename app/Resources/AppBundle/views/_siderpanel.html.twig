@@ -19,11 +19,18 @@
     <!-- main navigation -->
     <nav role="navigation">
         <ul class="nav">
-            <!-- dashboard -->
+            {#<!-- dashboard -->
             <li>
                 <a href="{{ path('homepage') }}">
                     <i class="icon-compass"></i>
                     <span>Dashboard</span>
+                </a>
+            </li>#}
+            <!-- Booking Operations -->
+            <li>
+                <a href="{{ path('booking_operations') }}">
+                    <i class="icon-notebook"></i>
+                    <span>Booking Dasboard</span>
                 </a>
             </li>
             <!-- Customers -->
@@ -52,13 +59,6 @@
                 <a href="{{ path('bookings_index') }}">
                     <i class="icon-notebook"></i>
                     <span>Bookings</span>
-                </a>
-            </li>
-            <!-- Booking Operations -->
-            <li>
-                <a href="{{ path('booking_operations') }}">
-                    <i class="icon-notebook"></i>
-                    <span>Booking Operations</span>
                 </a>
             </li>
             <!-- Invoices -->
