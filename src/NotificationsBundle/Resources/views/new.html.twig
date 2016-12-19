@@ -1,0 +1,67 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/multiselect/css/multi-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/ui-select/dist/select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/select2/dist/css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/selectize/dist/css/selectize.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="card bg-white">
+        <div class="card-header">
+            Notifications
+        </div>
+        <div class="card-block">
+            <div class="row m-a-0">
+                <div class="col-lg-12">
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                    <div class="form-group">
+                        {{ form_label(form.email, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': "Email"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.phone, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.phone, { 'attr': {'class': 'form-control', 'placeholder': "Phone"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.events, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.events, { 'attr': {'class': 'select2', 'data-placeholder': "Events", 'style': 'width: 100%;'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-10">
+                            <input type="submit" class="btn btn-primary" value="Send"/>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/select2/dist/js/select2.js') }}"></script>
+    <script src="{{ asset('assets/vendor/selectize/dist/js/standalone/selectize.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/multiselect/js/jquery.multi-select.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
+{% endblock %}

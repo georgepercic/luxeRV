@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new \BookingsBundle\BookingsBundle(),
             new \InvoiceBundle\InvoiceBundle(),
             new \FOS\UserBundle\FOSUserBundle(),
+            new NotificationsBundle\NotificationsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -1,3 +1,7 @@
+notifications:
+    resource: "@NotificationsBundle/Controller/NotificationsController.php"
+    type:     annotation
+
 invoice_invoice:
     resource: "@InvoiceBundle/Controller/InvoiceController.php"
     type:     annotation
