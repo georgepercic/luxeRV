@@ -36,6 +36,9 @@ class VehicleController extends Controller
      *
      * @Route("/new", name="vehicles_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -62,6 +65,9 @@ class VehicleController extends Controller
      *
      * @Route("/{id}", name="vehicles_show")
      * @Method("GET")
+     * @param Vehicle $vehicle
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Vehicle $vehicle)
     {
@@ -78,6 +84,10 @@ class VehicleController extends Controller
      *
      * @Route("/{id}/edit", name="vehicles_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Vehicle $vehicle
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Vehicle $vehicle)
     {
@@ -103,6 +113,10 @@ class VehicleController extends Controller
      *
      * @Route("/{id}", name="vehicles_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Vehicle $vehicle
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Vehicle $vehicle)
     {

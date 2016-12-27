@@ -29,18 +29,16 @@ class Vehicle
     private $vin;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="VehicleBundle\Entity\Brand", inversedBy="vehicles")
-     * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
+     * @ORM\Column(name="brand", type="string", length=255)
      */
     private $brand;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="VehicleBundle\Entity\Model", inversedBy="vehicles")
-     * @ORM\JoinColumn(name="model_id", referencedColumnName="id")
+     * @ORM\Column(name="model", type="string", length=255)
      */
     private $model;
 
@@ -103,7 +101,7 @@ class Vehicle
     /**
      * Set brand
      *
-     * @param integer $brand
+     * @param string $brand
      *
      * @return Vehicle
      */
@@ -117,7 +115,7 @@ class Vehicle
     /**
      * Get brand
      *
-     * @return int
+     * @return string
      */
     public function getBrand()
     {
@@ -127,7 +125,7 @@ class Vehicle
     /**
      * Set model
      *
-     * @param integer $model
+     * @param string $model
      *
      * @return Vehicle
      */
@@ -141,7 +139,7 @@ class Vehicle
     /**
      * Get model
      *
-     * @return int
+     * @return string
      */
     public function getModel()
     {
@@ -218,6 +216,11 @@ class Vehicle
     public function getColor()
     {
         return $this->color;
+    }
+
+    public function getVinBrandModel()
+    {
+        return $this->vin . ' ' . $this->brand . ' ' . $this->model;
     }
 }
 

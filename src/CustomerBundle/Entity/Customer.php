@@ -2,10 +2,11 @@
 
 namespace CustomerBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Customer
+ * Customer.
  *
  * @ORM\Table(name="customer")
  * @ORM\Entity(repositoryClass="CustomerBundle\Repository\CustomerRepository")
@@ -105,9 +106,21 @@ class Customer
      */
     private $insurance;
 
+    /**
+     * @ORM\OneToMany(targetEntity="BookingsBundle\Entity\Booking", mappedBy="customer")
+     */
+    private $bookings;
 
     /**
-     * Get id
+     * Customer constructor.
+     */
+    public function __construct()
+    {
+        $this->bookings = new ArrayCollection();
+    }
+
+    /**
+     * Get id.
      *
      * @return int
      */
@@ -117,7 +130,7 @@ class Customer
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -131,7 +144,7 @@ class Customer
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -141,7 +154,7 @@ class Customer
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
      *
@@ -155,7 +168,7 @@ class Customer
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */
@@ -165,7 +178,7 @@ class Customer
     }
 
     /**
-     * Set phone
+     * Set phone.
      *
      * @param string $phone
      *
@@ -179,7 +192,7 @@ class Customer
     }
 
     /**
-     * Get phone
+     * Get phone.
      *
      * @return string
      */
@@ -189,7 +202,7 @@ class Customer
     }
 
     /**
-     * Set aditionalPhone
+     * Set aditionalPhone.
      *
      * @param string $aditionalPhone
      *
@@ -203,7 +216,7 @@ class Customer
     }
 
     /**
-     * Get aditionalPhone
+     * Get aditionalPhone.
      *
      * @return string
      */
@@ -213,7 +226,7 @@ class Customer
     }
 
     /**
-     * Set whatsapp
+     * Set whatsapp.
      *
      * @param string $whatsapp
      *
@@ -227,7 +240,7 @@ class Customer
     }
 
     /**
-     * Get whatsapp
+     * Get whatsapp.
      *
      * @return string
      */
@@ -237,7 +250,7 @@ class Customer
     }
 
     /**
-     * Set skype
+     * Set skype.
      *
      * @param string $skype
      *
@@ -251,7 +264,7 @@ class Customer
     }
 
     /**
-     * Get skype
+     * Get skype.
      *
      * @return string
      */
@@ -261,7 +274,7 @@ class Customer
     }
 
     /**
-     * Set billing
+     * Set billing.
      *
      * @param string $billing
      *
@@ -275,7 +288,7 @@ class Customer
     }
 
     /**
-     * Get billing
+     * Get billing.
      *
      * @return string
      */
@@ -285,7 +298,7 @@ class Customer
     }
 
     /**
-     * Set deliveryAddress
+     * Set deliveryAddress.
      *
      * @param string $deliveryAddress
      *
@@ -299,7 +312,7 @@ class Customer
     }
 
     /**
-     * Get deliveryAddress
+     * Get deliveryAddress.
      *
      * @return string
      */
@@ -309,7 +322,7 @@ class Customer
     }
 
     /**
-     * Set pickUpAddress
+     * Set pickUpAddress.
      *
      * @param string $pickUpAddress
      *
@@ -323,7 +336,7 @@ class Customer
     }
 
     /**
-     * Get pickUpAddress
+     * Get pickUpAddress.
      *
      * @return string
      */
@@ -333,7 +346,7 @@ class Customer
     }
 
     /**
-     * Set driverLicense
+     * Set driverLicense.
      *
      * @param string $driverLicense
      *
@@ -347,7 +360,7 @@ class Customer
     }
 
     /**
-     * Get driverLicense
+     * Get driverLicense.
      *
      * @return string
      */
@@ -357,7 +370,7 @@ class Customer
     }
 
     /**
-     * Set passport
+     * Set passport.
      *
      * @param string $passport
      *
@@ -371,7 +384,7 @@ class Customer
     }
 
     /**
-     * Get passport
+     * Get passport.
      *
      * @return string
      */
@@ -381,7 +394,7 @@ class Customer
     }
 
     /**
-     * Set insurance
+     * Set insurance.
      *
      * @param string $insurance
      *
@@ -395,7 +408,7 @@ class Customer
     }
 
     /**
-     * Get insurance
+     * Get insurance.
      *
      * @return string
      */
@@ -404,4 +417,3 @@ class Customer
         return $this->insurance;
     }
 }
-

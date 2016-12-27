@@ -2,6 +2,7 @@
 
 namespace BookingsBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,8 +18,14 @@ class BookingType extends AbstractType
         $builder
             ->add('pickUpDate', TextType::class)
             ->add('dropOffDate', TextType::class)
-            ->add('customerId')
-            ->add('vehicleId');
+            ->add('customer', EntityType::class, [
+                'class' => 'CustomerBundle\Entity\Customer',
+                'choice_label' => 'name',
+            ])
+            ->add('vehicle', EntityType::class, [
+                'class' => 'VehicleBundle\Entity\Vehicle',
+                'choice_label' => 'vinBrandModel',
+            ]);
     }
 
     /**

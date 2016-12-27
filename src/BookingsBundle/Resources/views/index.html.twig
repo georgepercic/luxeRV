@@ -9,27 +9,22 @@
             <table class="table table-bordered table-condensed datatable m-b-0">
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Pickupdate</th>
-                    <th>Dropoffdate</th>
-                    <th>Customerid</th>
-                    <th>Vehicleid</th>
+                    <th>Pickup date</th>
+                    <th>Dropoff date</th>
+                    <th>Customer</th>
+                    <th>Vehicle</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for booking in bookings %}
                     <tr>
-                        <td><a href="{{ path('bookings_show', { 'id': booking.id }) }}">{{ booking.id }}</a></td>
                         <td>{% if booking.pickUpDate %}{{ booking.pickUpDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>{% if booking.dropOffDate %}{{ booking.dropOffDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{{ booking.customerId }}</td>
-                        <td>{{ booking.vehicleId }}</td>
+                        <td>{{ booking.customer.getName }}</td>
+                        <td>{{ booking.vehicle.getVinBrandModel }}</td>
                         <td>
                             <ul>
-                                <li>
-                                    <a href="{{ path('bookings_show', { 'id': booking.id }) }}">show</a>
-                                </li>
                                 <li>
                                     <a href="{{ path('bookings_edit', { 'id': booking.id }) }}">edit</a>
                                 </li>

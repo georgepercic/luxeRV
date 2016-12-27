@@ -3,6 +3,10 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/multiselect/css/multi-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/ui-select/dist/select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/select2/dist/css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/selectize/dist/css/selectize.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -31,19 +35,19 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ form_label(edit_form.customerId, null, {
+                        {{ form_label(edit_form.customer, null, {
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
                         <div class="col-sm-10">
-                            {{ form_widget(edit_form.customerId, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Customer"} }) }}
+                            {{ form_widget(edit_form.customer, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Customer"} }) }}
                         </div>
                     </div>
                     <div class="form-group">
-                        {{ form_label(edit_form.vehicleId, null, {
+                        {{ form_label(edit_form.vehicle, null, {
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
                         <div class="col-sm-10">
-                            {{ form_widget(edit_form.vehicleId, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Vehicle"} }) }}
+                            {{ form_widget(edit_form.vehicle, { 'attr': {'class': 'select2', 'data-placeholder': "Vehicle", 'style': 'width: 100%;'} }) }}
                         </div>
                     </div>
                     <div class="form-group">
@@ -73,12 +77,17 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('assets/vendor/select2/dist/js/select2.js') }}"></script>
+    <script src="{{ asset('assets/vendor/selectize/dist/js/standalone/selectize.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/multiselect/js/jquery.multi-select.js') }}"></script>
 
     <script>
         $(document).ready(function () {
             $('.datepicker').datepicker({
                 format: 'yyyy-mm-dd'
             });
+
+            $('.select2').select2();
         });
     </script>
 {% endblock %}

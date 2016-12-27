@@ -52,31 +52,12 @@ class BookingController extends Controller
             $em->persist($booking);
             $em->flush($booking);
 
-            return $this->redirectToRoute('bookings_show', array('id' => $booking->getId()));
+            return $this->redirectToRoute('bookings_index', array('id' => $booking->getId()));
         }
 
         return $this->render('BookingsBundle::new.html.twig', array(
             'booking' => $booking,
             'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a booking entity.
-     *
-     * @Route("/{id}", name="bookings_show", requirements={"id": "\d+"})
-     * @Method("GET")
-     * @param Booking $booking
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function showAction(Booking $booking)
-    {
-        $deleteForm = $this->createDeleteForm($booking);
-
-        return $this->render('BookingsBundle::show.html.twig', array(
-            'booking' => $booking,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 

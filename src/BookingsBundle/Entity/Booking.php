@@ -36,19 +36,36 @@ class Booking
     private $dropOffDate;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="customer_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="CustomerBundle\Entity\Customer", inversedBy="bookings")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
-    private $customerId;
+    private $customer;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="vehicle_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="VehicleBundle\Entity\Vehicle")
+     * @ORM\JoinColumn(name="vehicle_id", referencedColumnName="id")
      */
-    private $vehicleId;
+    private $vehicle;
 
+    /**
+     * @return mixed
+     */
+    public function getVehicle()
+    {
+        return $this->vehicle;
+    }
+
+    /**
+     * @param $vehicle
+     *
+     * @return Booking
+     */
+    public function setVehicle($vehicle)
+    {
+        $this->vehicle = $vehicle;
+
+        return $this;
+    }
 
     /**
      * Get id
@@ -81,7 +98,7 @@ class Booking
      */
     public function getPickUpDate()
     {
-        return !empty($this->pickUpDate) ? $this->pickUpDate->format('Y-m-d') : $this->pickUpDate;
+        return !empty($this->pickUpDate) ? $this->pickUpDate->format('Y-m-d H:i') : $this->pickUpDate;
     }
 
     /**
@@ -105,19 +122,19 @@ class Booking
      */
     public function getDropOffDate()
     {
-        return !empty($this->dropOffDate) ? $this->dropOffDate->format('Y-m-d') : $this->dropOffDate;
+        return !empty($this->dropOffDate) ? $this->dropOffDate->format('Y-m-d H:i') : $this->dropOffDate;
     }
 
     /**
      * Set customerId
      *
-     * @param integer $customerId
+     * @param $customer
      *
      * @return Booking
      */
-    public function setCustomerId($customerId)
+    public function setCustomer($customer)
     {
-        $this->customerId = $customerId;
+        $this->customer = $customer;
 
         return $this;
     }
@@ -127,33 +144,9 @@ class Booking
      *
      * @return int
      */
-    public function getCustomerId()
+    public function getCustomer()
     {
-        return $this->customerId;
-    }
-
-    /**
-     * Set vehicleId
-     *
-     * @param integer $vehicleId
-     *
-     * @return Booking
-     */
-    public function setVehicleId($vehicleId)
-    {
-        $this->vehicleId = $vehicleId;
-
-        return $this;
-    }
-
-    /**
-     * Get vehicleId
-     *
-     * @return int
-     */
-    public function getVehicleId()
-    {
-        return $this->vehicleId;
+        return $this->customer;
     }
 }
 
