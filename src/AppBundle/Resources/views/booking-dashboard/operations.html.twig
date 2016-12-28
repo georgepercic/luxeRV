@@ -6,17 +6,8 @@
           type="text/css"/>
 
     <style type="text/css" media="screen">
-        .white_cell{
-            background-color:white;
-        }
-        .green_cell{
-            background-color:#95FF95;
-        }
-        .yellow_cell{
-            background-color:#FFFF79;
-        }
-        .red_cell{
-            background-color:#FF5353;
+        .dhx_cal_event_line{
+            height:98% !important;
         }
     </style>
 {% endblock %}
@@ -60,21 +51,16 @@
             //===============
             //Configuration
             //===============
-            var sections=[
-                {key:1, label:'<img src="{{ asset("assets/images/sedan-512.png") }}" style="width: 30%; height: auto;" /> Audi A4'},
-                {key:2, label:'<img src="{{ asset("assets/images/sedan-512.png") }}" style="width: 30%; height: auto;" /> Mercedes S Classe'},
-                {key:3, label:'<img src="{{ asset("assets/images/sedan-512.png") }}" style="width: 30%; height: auto;" /> BMW 320i'},
-                {key:4, label:'<img src="{{ asset("assets/images/sedan-512.png") }}" style="width: 30%; height: auto;" /> Audi A7'}
-            ];
+            var sections = {{ sections|raw }};
 
             scheduler.createTimelineView({
                 name:	"timeline",
                 x_unit:	"minute",
                 x_date:	"%H:%i",
-                x_step:	30,
+                x_step:	60,
                 x_size: 24,
-                x_start: 16,
-                x_length:	48,
+                x_start: 0,
+                x_length: 24,
                 y_unit:	sections,
                 y_property:	"section_id",
                 render:"bar"
@@ -89,25 +75,8 @@
                 {name:"time", height:72, type:"time", map_to:"auto"}
             ];
 
-            scheduler.init('scheduler_here',new Date(2016,10,30),"timeline");
-            scheduler.parse([
-                { start_date: "2016-11-30 09:00", end_date: "2016-11-30 12:00", text:"Booking 12458", section_id:1},
-                { start_date: "2016-11-30 10:00", end_date: "2016-11-30 16:00", text:"Booking 89411", section_id:1},
-                { start_date: "2016-11-30 10:00", end_date: "2016-11-30 14:00", text:"Booking 64168", section_id:1},
-                { start_date: "2016-11-30 16:00", end_date: "2016-11-30 17:00", text:"Booking 46598", section_id:1},
-
-                { start_date: "2016-11-30 12:00", end_date: "2016-11-30 20:00", text:"Booking B-48865", section_id:2},
-                { start_date: "2016-11-30 14:00", end_date: "2016-11-30 16:00", text:"Booking B-44864", section_id:2},
-                { start_date: "2016-11-30 16:30", end_date: "2016-11-30 18:00", text:"Booking B-46558", section_id:2},
-                { start_date: "2016-11-30 18:30", end_date: "2016-11-30 20:00", text:"Booking B-45564", section_id:2},
-
-                { start_date: "2016-11-30 08:00", end_date: "2016-11-30 12:00", text:"Booking C-32421", section_id:3},
-                { start_date: "2016-11-30 14:30", end_date: "2016-11-30 16:45", text:"Booking C-14244", section_id:3},
-
-                { start_date: "2016-11-30 09:20", end_date: "2016-11-30 12:20", text:"Booking D-52688", section_id:4},
-                { start_date: "2016-11-30 11:40", end_date: "2016-11-30 16:30", text:"Booking D-46588", section_id:4},
-                { start_date: "2016-11-30 12:00", end_date: "2016-11-30 18:00", text:"Booking D-12458", section_id:4}
-            ],"json");
+            scheduler.init('scheduler_here',new Date(),"timeline");
+            scheduler.parse({{ bookings|raw }},"json");
         }
 
         window.onload = init;

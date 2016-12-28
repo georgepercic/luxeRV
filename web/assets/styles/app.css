@@ -12087,3 +12087,13 @@ td.align-middle {
     cursor: s-resize; }
   .location-selector [data-position=bottomRight] div {
     cursor: se-resize; }
+
+
+  .menu-titles {
+    margin-left:10px;
+    float:left;
+  }
+
+  .nav i {
+    float:left;
+  }

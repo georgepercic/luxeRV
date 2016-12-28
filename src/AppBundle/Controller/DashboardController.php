@@ -34,9 +34,36 @@ class DashboardController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $bookings = $em->getRepository('BookingsBundle:Booking')->findAll();
+        $cars = $em->getRepository('VehicleBundle:Vehicle')->findAll();
+        $sections = [];
+        $data = [];
+        if (!empty($cars)) {
+            foreach ($cars as $car) {
+                $sections[] = [
+                    'key' => $car->getId(),
+                    'label' =>  sprintf('<img src="/assets/images/sedan-512.png" style="width: 30%%; height: auto;" /> %s', $car->getVinBrandModel()),
+                ];
+            }
+        }
+
+        if (!empty($bookings)) {
+            foreach ($bookings as $booking) {
+                $data[] = [
+                    'start_date' => $booking->getPickUpDate(),
+                    'end_date' => $booking->getDropOffDate(),
+                    'text' => $booking->getCustomer()->getName(),
+                    'details' => 'blablavbla',
+                    'section_id' => $booking->getVehicle()->getId(),
+                ];
+            }
+        }
+
+        $sections = json_encode($sections, true);
+        $data = json_encode($data, true);
 
         return $this->render('AppBundle:booking-dashboard:operations.html.twig', array(
-            'bookings' => $bookings,
+            'bookings' => $data,
+            'sections' => $sections,
         ));
     }
 

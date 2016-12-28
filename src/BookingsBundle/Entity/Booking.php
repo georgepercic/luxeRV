@@ -2,7 +2,10 @@
 
 namespace BookingsBundle\Entity;
 
+use CustomerBundle\Entity\Customer;
 use Doctrine\ORM\Mapping as ORM;
+use VehicleBundle\Entity\Vehicle;
+use VehicleBundle\VehicleBundle;
 
 /**
  * Booking
@@ -48,7 +51,7 @@ class Booking
     private $vehicle;
 
     /**
-     * @return mixed
+     * @return Vehicle
      */
     public function getVehicle()
     {
@@ -142,7 +145,7 @@ class Booking
     /**
      * Get customerId
      *
-     * @return int
+     * @return Customer
      */
     public function getCustomer()
     {
