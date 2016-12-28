@@ -81,7 +81,7 @@
         </li>
     </ul>
     <ul class="nav navbar-nav navbar-right hidden-xs">
-        <li>
+       {# <li>
             <a href="javascript:;" class="ripple" data-toggle="dropdown">
                 <span>EN</span>
                 <span class="caret"></span>
@@ -100,7 +100,7 @@
                     <a href="javascript:;">Spanish</a>
                 </li>
             </ul>
-        </li>
+        </li>#}
         <li>
             <a href="javascript:;" class="ripple" data-toggle="dropdown">
                 <i class="icon-bell"></i>
@@ -170,8 +170,8 @@
         </li>
         <li>
             <a href="javascript:;" class="ripple" data-toggle="dropdown">
-                <img src="images/avatar.jpg" class="header-avatar img-circle" alt="user" title="user">
-                <span>Sean Carpenter</span>
+                {#<img src="images/avatar.jpg" class="header-avatar img-circle" alt="user" title="user">#}
+                <span>{{ app.user.username }}</span>
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -179,27 +179,23 @@
                     <a href="javascript:;">Settings</a>
                 </li>
                 <li>
-                    <a href="javascript:;">Upgrade</a>
-                </li>
-                <li>
                     <a href="javascript:;">
-                        <span class="label bg-danger pull-right">34</span>
                         <span>Notifications</span>
                     </a>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li>
+                {#<li>
                     <a href="javascript:;">Help</a>
-                </li>
+                </li>#}
                 <li>
                     <a href="{{ path('fos_user_security_logout') }}">Logout</a>
                 </li>
             </ul>
         </li>
-        <li>
+        {#<li>
             <a href="javascript:;" class="ripple" data-toggle="layout-chat-open">
                 <i class="icon-user"></i>
             </a>
-        </li>
+        </li>#}
     </ul>
 </div>
