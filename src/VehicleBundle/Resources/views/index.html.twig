@@ -30,14 +30,7 @@
                         <td>{{ vehicle.mileage }}</td>
                         <td>{{ vehicle.color }}</td>
                         <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('vehicles_show', { 'id': vehicle.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('vehicles_edit', { 'id': vehicle.id }) }}">edit</a>
-                                </li>
-                            </ul>
+                            <a href="{{ path('vehicles_edit', { 'id': vehicle.id }) }}"><span class="fa fa-pencil"></span></a>
                         </td>
                     </tr>
                 {% endfor %}

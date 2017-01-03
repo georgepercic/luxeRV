@@ -10,9 +10,8 @@
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Dob</th>
+                    <th>First name</th>
+                    <th>Last name</th>
                     <th>Ssn</th>
                     <th>City</th>
                     <th>State</th>
@@ -29,7 +28,6 @@
                         <td><a href="{{ path('employees_show', { 'id': employee.id }) }}">{{ employee.id }}</a></td>
                         <td>{{ employee.firstName }}</td>
                         <td>{{ employee.lastName }}</td>
-                        <td>{% if employee.dob %}{{ employee.dob|date('Y-m-d') }}{% endif %}</td>
                         <td>{{ employee.ssn }}</td>
                         <td>{{ employee.addressCity }}</td>
                         <td>{{ employee.addressState }}</td>
@@ -38,14 +36,7 @@
                         <td>{{ employee.addressSuiteNo }}</td>
                         <td>{{ employee.addressCountry }}</td>
                         <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('employees_show', { 'id': employee.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('employees_edit', { 'id': employee.id }) }}">edit</a>
-                                </li>
-                            </ul>
+                            <a href="{{ path('employees_edit', { 'id': employee.id }) }}"><span class="fa fa-pencil"></span></a>
                         </td>
                     </tr>
                 {% endfor %}
