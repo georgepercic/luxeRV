@@ -41,7 +41,7 @@ class DashboardController extends Controller
             foreach ($cars as $car) {
                 $sections[] = [
                     'key' => $car->getId(),
-                    'label' =>  sprintf('<img src="/assets/images/sedan-512.png" style="width: 30%%; height: auto;" /> %s', $car->getVinBrandModel()),
+                    'label' =>  sprintf('<img src="/luxeRV/web/assets/images/sedan-512.png" style="width: 30%%; height: auto;" /> %s', $car->getVinBrandModel()),
                 ];
             }
         }
@@ -52,7 +52,6 @@ class DashboardController extends Controller
                     'start_date' => $booking->getPickUpDate(),
                     'end_date' => $booking->getDropOffDate(),
                     'text' => $booking->getCustomer()->getName(),
-                    'details' => 'blablavbla',
                     'section_id' => $booking->getVehicle()->getId(),
                 ];
             }
