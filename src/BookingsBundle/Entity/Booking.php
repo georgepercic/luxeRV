@@ -46,7 +46,7 @@ class Booking
 
     /**
      * @ORM\ManyToOne(targetEntity="VehicleBundle\Entity\Vehicle")
-     * @ORM\JoinColumn(name="vehicle_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="vehicle_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $vehicle;
 
