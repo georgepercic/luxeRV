@@ -51,7 +51,7 @@ class VehicleController extends Controller
             $em->persist($vehicle);
             $em->flush($vehicle);
 
-            return $this->redirectToRoute('vehicles_show', array('id' => $vehicle->getId()));
+            return $this->redirectToRoute('vehicles_index', array('id' => $vehicle->getId()));
         }
 
         return $this->render('VehicleBundle::new.html.twig', array(

@@ -40,7 +40,7 @@ class Booking
 
     /**
      * @ORM\ManyToOne(targetEntity="CustomerBundle\Entity\Customer", inversedBy="bookings")
-     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $customer;
 

@@ -48,7 +48,7 @@ class CustomerController extends Controller
             $em->persist($customer);
             $em->flush($customer);
 
-            return $this->redirectToRoute('customer_show', array('id' => $customer->getId()));
+            return $this->redirectToRoute('customer_index', array('id' => $customer->getId()));
         }
 
         return $this->render('CustomerBundle::new.html.twig', array(

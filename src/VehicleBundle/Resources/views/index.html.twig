@@ -9,7 +9,6 @@
             <table class="table table-bordered table-condensed datatable m-b-0">
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Vin</th>
                     <th>Brand</th>
                     <th>Model</th>
@@ -22,7 +21,6 @@
                 <tbody>
                 {% for vehicle in vehicles %}
                     <tr>
-                        <td><a href="{{ path('vehicles_show', { 'id': vehicle.id }) }}">{{ vehicle.id }}</a></td>
                         <td>{{ vehicle.vin }}</td>
                         <td>{{ vehicle.brand }}</td>
                         <td>{{ vehicle.model }}</td>
@@ -30,14 +28,7 @@
                         <td>{{ vehicle.mileage }}</td>
                         <td>{{ vehicle.color }}</td>
                         <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('vehicles_show', { 'id': vehicle.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('vehicles_edit', { 'id': vehicle.id }) }}">edit</a>
-                                </li>
-                            </ul>
+                            <a href="{{ path('vehicles_edit', { 'id': vehicle.id }) }}"><span class="fa fa-pencil"></span></a>
                         </td>
                     </tr>
                 {% endfor %}
