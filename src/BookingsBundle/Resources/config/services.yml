@@ -1,5 +1,9 @@
 services:
-    bookings.invoice_listener
+    bookings.invoice_create_listener:
         class: BookingsBundle\EventListener\CreateInvoiceListener
         tags:
-            - { name: doctrine.event_listener, event: onFlush }
+            - { name: doctrine.event_listener, event: postPersist }
+    bookings.invoice_update_listener:
+        class: BookingsBundle\EventListener\CreateInvoiceListener
+        tags:
+            - { name: doctrine.event_listener, event: postUpdate }
