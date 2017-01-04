@@ -12,6 +12,7 @@ use VehicleBundle\VehicleBundle;
  *
  * @ORM\Table(name="booking")
  * @ORM\Entity(repositoryClass="BookingsBundle\Repository\BookingRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Booking
 {
