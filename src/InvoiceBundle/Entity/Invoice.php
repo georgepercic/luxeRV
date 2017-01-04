@@ -2,6 +2,7 @@
 
 namespace InvoiceBundle\Entity;
 
+use BookingsBundle\Entity\Booking;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Invoice
 {
+    const STATUS_NEW = "new";
+    const STATUS_PAID = "paid";
+    const STATUS_PARTIALLY_PAID = "partially paid";
+
     /**
      * @var int
      *
@@ -22,11 +27,10 @@ class Invoice
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="booking_id", type="integer")
+     * @ORM\OneToOne(targetEntity="BookingsBundle\Entity\Booking")
+     * @ORM\JoinColumn(name="booking_id", referencedColumnName="id")
      */
-    private $bookingId;
+    private $booking;
 
     /**
      * @var float
@@ -38,30 +42,30 @@ class Invoice
     /**
      * @var float
      *
-     * @ORM\Column(name="equipment_rent", type="float")
+     * @ORM\Column(name="equipment_rent", type="float", nullable=true)
      */
     private $equipmentRent;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="insurance_cost", type="float")
+     * @ORM\Column(name="insurance_cost", type="float", nullable=true)
      */
     private $insuranceCost;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="service_tax", type="float")
+     * @ORM\Column(name="service_tax", type="float", nullable=true)
      */
     private $serviceTax;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="vat", type="float")
+     * @ORM\Column(name="tax", type="float", nullable=true)
      */
-    private $vat;
+    private $tax;
 
     /**
      * @var float
@@ -84,6 +88,19 @@ class Invoice
      */
     private $netAmountPayable;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string")
+     */
+    private $status = self::STATUS_NEW;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="security_deposit", type="float")
+     */
+    private $security_deposit;
 
     /**
      * Get id
@@ -96,27 +113,27 @@ class Invoice
     }
 
     /**
-     * Set bookingId
+     * Set booking
      *
-     * @param integer $bookingId
+     * @param integer $booking
      *
      * @return Invoice
      */
-    public function setBookingId($bookingId)
+    public function setBooking($booking)
     {
-        $this->bookingId = $bookingId;
+        $this->booking = $booking;
 
         return $this;
     }
 
     /**
-     * Get bookingId
+     * Get booking
      *
-     * @return int
+     * @return Booking
      */
-    public function getBookingId()
+    public function getBooking()
     {
-        return $this->bookingId;
+        return $this->booking;
     }
 
     /**
@@ -216,27 +233,27 @@ class Invoice
     }
 
     /**
-     * Set vat
+     * Set tax
      *
-     * @param float $vat
+     * @param float $tax
      *
      * @return Invoice
      */
-    public function setVat($vat)
+    public function setTax($tax)
     {
-        $this->vat = $vat;
+        $this->tax = $tax;
 
         return $this;
     }
 
     /**
-     * Get vat
+     * Get tax
      *
      * @return float
      */
-    public function getVat()
+    public function getTax()
     {
-        return $this->vat;
+        return $this->tax;
     }
 
     /**
@@ -309,6 +326,44 @@ class Invoice
     public function getNetAmountPayable()
     {
         return $this->netAmountPayable;
+    }
+
+    /**
+     * @param string $status
+     *
+     * @return Invoice
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param float $security_deposit
+     *
+     * @return Invoice
+     */
+    public function setSecurityDeposit($security_deposit)
+    {
+        $this->security_deposit = $security_deposit;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSecurityDeposit()
+    {
+        return $this->security_deposit;
     }
 }
 

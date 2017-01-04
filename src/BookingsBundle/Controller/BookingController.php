@@ -50,7 +50,9 @@ class BookingController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($booking);
-            $em->flush($booking);
+            $em->flush();
+
+            //create invoice
 
             return $this->redirectToRoute('bookings_index', array('id' => $booking->getId()));
         }
