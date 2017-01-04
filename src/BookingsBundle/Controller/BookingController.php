@@ -3,6 +3,7 @@
 namespace BookingsBundle\Controller;
 
 use BookingsBundle\Entity\Booking;
+use InvoiceBundle\Entity\Invoice;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -50,6 +51,20 @@ class BookingController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($booking);
+            $em->flush();
+
+            $dateStart = new \DateTime($booking->getPickUpDate());
+            $dateEnd = new \DateTime($booking->getDropOffDate());
+            $daysNo = $dateEnd->diff($dateStart)->format("%a");
+
+            $invoice = new Invoice();
+            $invoice->setBooking($booking);
+            $invoice->setVehicleRent(150);
+            $invoice->setNetAmountPayable(150*$daysNo);
+            $invoice->setTotalAmountPaybale(150*$daysNo);
+            $invoice->setSecurityDeposit(400);
+
+            $em->persist($invoice);
             $em->flush();
 
             //create invoice

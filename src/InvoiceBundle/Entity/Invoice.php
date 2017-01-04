@@ -115,7 +115,7 @@ class Invoice
     /**
      * Set booking
      *
-     * @param integer $booking
+     * @param Booking
      *
      * @return Invoice
      */
