@@ -11,7 +11,7 @@ class CreateInvoiceListener
     public function onFlush(OnFlushEventArgs $args)
     {
         $entityManager = $args->getEntityManager();
-//        die('ajungeee');
+        die('ajungeee');
 
         $uow = $entityManager->getUnitOfWork();
         foreach ($uow->getScheduledEntityInsertions() as $entity) {
