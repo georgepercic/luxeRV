@@ -2,6 +2,10 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/multiselect/css/multi-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/ui-select/dist/select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/select2/dist/css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/selectize/dist/css/selectize.css') }}">
     <link rel="stylesheet" href="{{ asset("assets/vendor/dhtmlxScheduler/codebase/dhtmlxscheduler.css") }}"
           type="text/css"/>
 
@@ -9,6 +13,15 @@
         .dhx_cal_event_line{
             height:98% !important;
         }
+
+        .dhx_cal_light_wide .dhx_wrap_section {
+            border: none !important;
+        }
+
+        .select2-container{
+            z-index:10002;
+        }
+
     </style>
 {% endblock %}
 
@@ -33,7 +46,9 @@
 {% block javascripts %}
 
     {{ parent() }}
-
+    <script src="{{ asset('assets/vendor/select2/dist/js/select2.js') }}"></script>
+    <script src="{{ asset('assets/vendor/selectize/dist/js/standalone/selectize.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/multiselect/js/jquery.multi-select.js') }}"></script>
     <script type="text/javascript"
             src="{{ asset("assets/vendor/dhtmlxScheduler/codebase/dhtmlxscheduler.js") }}"></script>
     <script type="text/javascript"
@@ -47,6 +62,7 @@
             scheduler.config.details_on_create=true;
             scheduler.config.details_on_dblclick=true;
             scheduler.config.xml_date="%Y-%m-%d %H:%i";
+//            scheduler.config.dblclick_create = false;
 
             //===============
             //Configuration
@@ -69,17 +85,86 @@
             //===============
             //Data loading
             //===============
+            scheduler.locale.labels.section_template = '';
+            scheduler.locale.labels.section_description = 'Customer';
+            scheduler.locale.labels.section_cars = 'Vehicle';
+
+            scheduler.form_blocks["hidden"]={
+                render:function(sns){
+                    return "<div class='dhx_cal_ltext hidden-section' style='height:3px;'><input type='hidden'></div>";
+                },
+                set_value:function(node,value,ev){
+                    node.childNodes[0].value=value||"";
+                },
+                get_value:function(node,ev){
+                    return node.childNodes[0].value;
+                }
+            };
+
+            scheduler.form_blocks["cars"]={
+                render:function(sns){
+                    return "<div class='dhx_cal_ltext hidden-section' style='height:30px;'><select name='cars-select' class='select2-cars' style='width: 100%'></select></div>";
+                },
+                set_value:function(node,value,ev){
+                    node.childNodes[0].value=value||"";
+                },
+                get_value:function(node,ev){
+                    return node.childNodes[0].value;
+                }
+            };
+
+            scheduler.form_blocks["customers"]={
+                render:function(sns){
+                    return "<div class='dhx_cal_ltext hidden-section' style='height:30px;'><select name='customer-select' class='select2-customer' style='width: 100%'></select></div>";
+                },
+                set_value:function(node,value,ev){
+                    node.childNodes[0].value=value||"";
+                },
+                get_value:function(node,ev){
+                    return node.childNodes[0].value;
+                }
+            };
+
             scheduler.config.lightbox.sections=[
-                {name:"description", height:130, map_to:"text", type:"textarea" , focus:true},
-                {name:"custom", height:23, type:"select", options:sections, map_to:"section_id" },
+                {name:"description", height:30, map_to:"customer_id", type:"customers"},
+                {name:"cars", height:23, type:"cars", map_to:"section_id" },
+                {name:"template", type:"hidden", map_to:"booking_id"},
                 {name:"time", height:72, type:"time", map_to:"auto"}
             ];
 
             scheduler.init('scheduler_here',new Date(),"timeline");
             scheduler.parse({{ bookings|raw }},"json");
+
+            scheduler.attachEvent("onLightbox", function (id){
+                var eventObj = scheduler.getEvent(id);
+                $('.select2-cars').select2({
+                    placeholder: "Select a vehicle",
+                    data: {{ selectCars|raw }}
+                }).val(eventObj.section_id).trigger("change");
+
+                $('.select2-customer').select2({
+                    placeholder: "Select a customer",
+                    data: {{ selectCustomers|raw }}
+                }).val(eventObj.customer_id).trigger("change");
+            });
+
+            scheduler.attachEvent("onBeforeEventDelete", function (event_id, ev) {
+                console.log('stergeeeee');
+            });
+
+            scheduler.attachEvent("onEventSave", function (event_id, ev) {
+                console.log(ev);
+                return true;
+            });
+
+            //disable drag and drop
+            scheduler.attachEvent("onBeforeDrag", function(){
+                return false;
+            });
         }
 
         window.onload = init;
+
     </script>
 
 {% endblock %}
