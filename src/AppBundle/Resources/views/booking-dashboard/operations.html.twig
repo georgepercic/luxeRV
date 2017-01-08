@@ -22,6 +22,43 @@
             z-index:10002;
         }
 
+        #day_tab {
+            left: 20px !important;
+        }
+
+        #week_tab {
+            left: 90px !important;
+        }
+
+        #month_tab {
+            left: 160px !important;
+        }
+
+        .custom_dhx_cal_tab.active {
+            background-color: #f0ede7;
+            border: 1px solid #cecece;
+            color: #454544;
+            text-shadow: 0 1px 0 white;
+        }
+
+        .custom_dhx_cal_tab {
+            background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+            border: 1px solid #cecece;
+            height: 30px;
+            line-height: 30px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            width: 59px;
+            padding: 0 5px;
+            color: #747473;
+            font-family: arial;
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
     </style>
 {% endblock %}
 
@@ -33,10 +70,9 @@
                 <div class="dhx_cal_prev_button">&nbsp;</div>
                 <div class="dhx_cal_next_button">&nbsp;</div>
                 <div class="dhx_cal_today_button"></div>
-                <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
-                <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
-                <div class="dhx_cal_tab" name="timeline_tab" style="right:280px;"></div>
-                <div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>
+                <div class="custom_dhx_cal_tab active" id="day_tab" name="custom_day_tab">Day</div>
+                <div class="custom_dhx_cal_tab" id="week_tab" name="custom_week_tab">Week</div>
+                <div class="custom_dhx_cal_tab" id="month_tab" name="custom_month_tab">Month</div>
                 <div class="dhx_cal_date"></div>
             </div>
             <div class="dhx_cal_header">
@@ -59,6 +95,62 @@
     <script type="text/javascript" src="{{ asset("assets/vendor/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_collision.js") }}"></script>
 
     <script type="text/javascript" charset="utf-8">
+        var sections = {{ sections|raw }};
+
+        function setWeek() {
+            //wheek config
+            scheduler.createTimelineView({
+                 name:	"timeline",
+                 x_unit:	"day",
+                 x_date:	"%d.%m",
+                 x_step:	1,
+                 x_size: 7,
+                 x_start: 0,
+                 x_length: 7,
+                 y_unit:	sections,
+                 y_property:	"section_id",
+                 render:"bar"
+            });
+
+            scheduler.init('scheduler',new Date(),"timeline");
+        }
+        
+        function setMonth() {
+            //month config
+            scheduler.createTimelineView({
+                name:	"timeline",
+                x_unit:	"day",
+                x_date:	"%d.%m",
+                x_step:	1,
+                x_size: 28,
+                x_start: 0,
+                x_length: 28,
+                y_unit:	sections,
+                y_property:	"section_id",
+                render:"bar"
+            });
+
+            scheduler.init('scheduler',new Date(),"timeline");
+        }
+        
+        function setDay() {
+            //day config
+            scheduler.createTimelineView({
+                name:	"timeline",
+                x_unit:	"minute",
+                x_date:	"%H:%i",
+                x_step:	60,
+                x_size: 24,
+                x_start: 0,
+                x_length: 24,
+                y_unit:	sections,
+                y_property:	"section_id",
+                render:"bar"
+            });
+
+            scheduler.init('scheduler',new Date(),"timeline");
+        }
+        
         function init() {
 
             //===============
@@ -73,9 +165,6 @@
             scheduler.config.details_on_dblclick = false;
             scheduler.config.collision_limit = 1; //allows creating 1 events per time slot
             scheduler.config.xml_date="%Y-%m-%d %H:%i";
-
-            var sections = {{ sections|raw }};
-            var newEventText = '';
 
             scheduler.createTimelineView({
                 name:	"timeline",
@@ -175,6 +264,23 @@
                 if (!_.isUndefined(ev) && !_.isUndefined(ev.booking_id) && !_.isNull(ev.booking_id)) {
                     $.post( "{{ path('ajax_bookings_edit') }}", ev );
                 }
+            });
+
+            $('.custom_dhx_cal_tab').click(function () {
+                $('.custom_dhx_cal_tab').removeClass('active');
+                $(this).addClass('active');
+            });
+
+            $('#day_tab').click(function () {
+                setDay();
+            });
+
+            $('#week_tab').click(function () {
+                setWeek();
+            });
+
+            $('#month_tab').click(function () {
+                setMonth();
             });
         }
 
