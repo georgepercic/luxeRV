@@ -100,15 +100,15 @@
         function setWeek() {
             //wheek config
             scheduler.createTimelineView({
-                 name:	"timeline",
-                 x_unit:	"day",
-                 x_date:	"%d.%m",
-                 x_step:	1,
+                 name: "timeline",
+                 x_unit: "day",
+                 x_date: "%d.%m",
+                 x_step: 1,
                  x_size: 7,
                  x_start: 0,
                  x_length: 7,
-                 y_unit:	sections,
-                 y_property:	"section_id",
+                 y_unit: sections,
+                 y_property: "section_id",
                  render:"bar"
             });
 
@@ -118,14 +118,14 @@
         function setMonth() {
             //month config
             scheduler.createTimelineView({
-                name:	"timeline",
+                name: "timeline",
                 x_unit:	"day",
                 x_date:	"%d.%m",
                 x_step:	1,
                 x_size: 28,
                 x_start: 0,
                 x_length: 28,
-                y_unit:	sections,
+                y_unit: sections,
                 y_property:	"section_id",
                 render:"bar"
             });
@@ -136,7 +136,7 @@
         function setDay() {
             //day config
             scheduler.createTimelineView({
-                name:	"timeline",
+                name: "timeline",
                 x_unit:	"minute",
                 x_date:	"%H:%i",
                 x_step:	60,
