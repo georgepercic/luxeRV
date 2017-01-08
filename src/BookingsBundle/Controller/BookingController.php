@@ -107,6 +107,10 @@ class BookingController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            //delete invoice
+            $invoice = $em->getRepository('InvoiceBundle:Invoice')->findOneBy(['booking' => $booking->getId()]);
+            $em->remove($invoice);
+            //delete booking
             $em->remove($booking);
             $em->flush($booking);
         }

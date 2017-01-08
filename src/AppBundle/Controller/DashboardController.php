@@ -2,29 +2,17 @@
 
 namespace AppBundle\Controller;
 
+use BookingsBundle\Entity\Booking;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DashboardController extends Controller
 {
     /**
-     * @Route("/dummy", name="homepage")
-     * @param Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-//    public function indexAction(Request $request)
-//    {
-//        // replace this example code with whatever you need
-//        return $this->render('AppBundle::dashboard.html.twig', [
-//            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-//        ]);
-//    }
-
-    /**
-     * List booking operations
+     * List booking operations.
      *
      * @Route("/", name="booking_operations")
      * @Method("GET")
@@ -45,7 +33,7 @@ class DashboardController extends Controller
             foreach ($cars as $car) {
                 $sections[] = [
                     'key' => $car->getId(),
-                    'label' =>  sprintf('<img src="/assets/images/sedan-512.png" style="width: 30%%; height: auto;" /> <br /> %s', $car->getVinBrandModel()),
+                    'label' => sprintf('<img src="/assets/images/sedan-512.png" style="width: 30%%; height: auto;" /> <br /> %s', $car->getVinBrandModel()),
                 ];
 
                 $selectCars[] = [
@@ -90,4 +78,117 @@ class DashboardController extends Controller
         ));
     }
 
+    /**
+     * Creates a new booking entity.
+     *
+     * @Route("/ajax-new-booking", name="ajax_bookings_new")
+     * @Method({"POST"})
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function ajaxCreateBookingAction(Request $request)
+    {
+        $request = $request->request;
+
+        if (!empty($request->get('customer_id')) && !empty($request->get('section_id'))) {
+            $em = $this->getDoctrine()->getManager();
+            $customer = $em->getRepository('CustomerBundle:Customer')->find($request->get('customer_id'));
+            $vehicle = $em->getRepository('VehicleBundle:Vehicle')->find($request->get('section_id'));
+            $pickUpDate = new \DateTime($request->get('start_date'));
+            $dropOffDate = new \DateTime($request->get('end_date'));
+
+            $booking = new Booking();
+            $booking->setCustomer($customer);
+            $booking->setVehicle($vehicle);
+            $booking->setPickUpDate($pickUpDate->format('Y-m-d H:i'));
+            $booking->setDropOffDate($dropOffDate->format('Y-m-d H:i'));
+
+            $em->persist($booking);
+            $em->flush();
+
+            $serializedEntity = $this->get('serializer')->serialize($booking, 'json');
+
+            return new Response($serializedEntity);
+        }
+
+        $response = new Response();
+        $response->setStatusCode(500);
+        return $response;
+    }
+
+    /**
+     * Updates an existing booking entity.
+     *
+     * @Route("/ajax-edit-booking", name="ajax_bookings_edit")
+     * @Method({"POST"})
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function ajaxEditBookingAction(Request $request)
+    {
+        $request = $request->request;
+
+        if (!empty($request->get('customer_id')) && !empty($request->get('section_id')) && !empty($request->get('booking_id'))) {
+            $em = $this->getDoctrine()->getManager();
+            $customer = $em->getRepository('CustomerBundle:Customer')->find($request->get('customer_id'));
+            $vehicle = $em->getRepository('VehicleBundle:Vehicle')->find($request->get('section_id'));
+            $pickUpDate = new \DateTime($request->get('start_date'));
+            $dropOffDate = new \DateTime($request->get('end_date'));
+
+            $booking = $em->getRepository('BookingsBundle:Booking')->find($request->get('booking_id'));
+            if (!empty($booking)) {
+                $booking->setCustomer($customer);
+                $booking->setVehicle($vehicle);
+                $booking->setPickUpDate($pickUpDate->format('Y-m-d H:i'));
+                $booking->setDropOffDate($dropOffDate->format('Y-m-d H:i'));
+
+                $em->persist($booking);
+                $em->flush();
+
+                $serializedEntity = $this->get('serializer')->serialize($booking, 'json');
+
+                return new Response($serializedEntity);
+            }
+        }
+
+        $response = new Response();
+        $response->setStatusCode(500);
+        return $response;
+    }
+
+    /**
+     * Delete an existing booking entity.
+     *
+     * @Route("/ajax-delete-booking", name="ajax_bookings_delete")
+     * @Method({"POST"})
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function ajaxDeleteBooking(Request $request)
+    {
+        $request = $request->request;
+
+        if (!empty($request->get('booking_id'))) {
+            $em = $this->getDoctrine()->getManager();
+            //delete invoice
+            $invoice = $em->getRepository('InvoiceBundle:Invoice')->findOneBy(['booking' => $request->get('booking_id')]);
+            $em->remove($invoice);
+            //delete booking
+            $booking = $em->getRepository('BookingsBundle:Booking')->find($request->get('booking_id'));
+            $em->remove($booking);
+            $em->flush();
+
+            return new Response();
+        }
+
+        $response = new Response();
+        $response->setStatusCode(500);
+        return $response;
+    }
 }

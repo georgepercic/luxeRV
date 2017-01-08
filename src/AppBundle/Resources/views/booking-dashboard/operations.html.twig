@@ -27,12 +27,16 @@
 
 {% block body %}
     <div onload="init();" class="card bg-white">
-        <div id="scheduler_here" class="dhx_cal_container"
+        <div id="scheduler" class="dhx_cal_container"
              style='width: 100%; min-height: 700px;'>
             <div class="dhx_cal_navline">
                 <div class="dhx_cal_prev_button">&nbsp;</div>
                 <div class="dhx_cal_next_button">&nbsp;</div>
                 <div class="dhx_cal_today_button"></div>
+                <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
+                <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+                <div class="dhx_cal_tab" name="timeline_tab" style="right:280px;"></div>
+                <div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>
                 <div class="dhx_cal_date"></div>
             </div>
             <div class="dhx_cal_header">
@@ -46,28 +50,32 @@
 {% block javascripts %}
 
     {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/vendor/lodash/lodash.js') }}"></script>
     <script src="{{ asset('assets/vendor/select2/dist/js/select2.js') }}"></script>
     <script src="{{ asset('assets/vendor/selectize/dist/js/standalone/selectize.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/multiselect/js/jquery.multi-select.js') }}"></script>
-    <script type="text/javascript"
-            src="{{ asset("assets/vendor/dhtmlxScheduler/codebase/dhtmlxscheduler.js") }}"></script>
-    <script type="text/javascript"
-            src="{{ asset("assets/vendor/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_timeline.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("assets/vendor/dhtmlxScheduler/codebase/dhtmlxscheduler.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("assets/vendor/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_timeline.js") }}"></script>
+    <script type="text/javascript" src="{{ asset("assets/vendor/dhtmlxScheduler/codebase/ext/dhtmlxscheduler_collision.js") }}"></script>
 
     <script type="text/javascript" charset="utf-8">
         function init() {
 
-            scheduler.locale.labels.timeline_tab = "Timeline";
-            scheduler.locale.labels.section_custom="Section";
-            scheduler.config.details_on_create=true;
-            scheduler.config.details_on_dblclick=true;
-            scheduler.config.xml_date="%Y-%m-%d %H:%i";
-//            scheduler.config.dblclick_create = false;
-
             //===============
             //Configuration
             //===============
+            scheduler.locale.labels.timeline_tab = "Timeline";
+            scheduler.locale.labels.section_template = '';
+            scheduler.locale.labels.section_description = 'Customer';
+            scheduler.locale.labels.section_cars = 'Vehicle';
+            scheduler.config.show_loading = true;
+            scheduler.config.details_on_create = true;
+            scheduler.config.details_on_dblclick = false;
+            scheduler.config.collision_limit = 1; //allows creating 1 events per time slot
+            scheduler.config.xml_date="%Y-%m-%d %H:%i";
+
             var sections = {{ sections|raw }};
+            var newEventText = '';
 
             scheduler.createTimelineView({
                 name:	"timeline",
@@ -85,10 +93,6 @@
             //===============
             //Data loading
             //===============
-            scheduler.locale.labels.section_template = '';
-            scheduler.locale.labels.section_description = 'Customer';
-            scheduler.locale.labels.section_cars = 'Vehicle';
-
             scheduler.form_blocks["hidden"]={
                 render:function(sns){
                     return "<div class='dhx_cal_ltext hidden-section' style='height:3px;'><input type='hidden'></div>";
@@ -132,11 +136,12 @@
                 {name:"time", height:72, type:"time", map_to:"auto"}
             ];
 
-            scheduler.init('scheduler_here',new Date(),"timeline");
+            scheduler.init('scheduler',new Date(),"timeline");
             scheduler.parse({{ bookings|raw }},"json");
 
             scheduler.attachEvent("onLightbox", function (id){
                 var eventObj = scheduler.getEvent(id);
+                console.log(eventObj);
                 $('.select2-cars').select2({
                     placeholder: "Select a vehicle",
                     data: {{ selectCars|raw }}
@@ -145,21 +150,32 @@
                 $('.select2-customer').select2({
                     placeholder: "Select a customer",
                     data: {{ selectCustomers|raw }}
-                }).val(eventObj.customer_id).trigger("change");
+                })
+                .val(eventObj.customer_id).trigger("change")
+                .on("select2:select", function (e) {
+                    var data = $(this).select2('data');
+                    eventObj.text = data[0].text;
+                });
             });
 
             scheduler.attachEvent("onBeforeEventDelete", function (event_id, ev) {
-                console.log('stergeeeee');
-            });
-
-            scheduler.attachEvent("onEventSave", function (event_id, ev) {
-                console.log(ev);
+                $.post( "{{ path('ajax_bookings_delete') }}", ev );
                 return true;
             });
 
-            //disable drag and drop
-            scheduler.attachEvent("onBeforeDrag", function(){
-                return false;
+            scheduler.attachEvent("onEventSave", function (event_id, ev) {
+                if (_.isEmpty(ev.booking_id)) {
+                    $.post( "{{ path('ajax_bookings_new') }}", ev );
+                } else {
+                    $.post( "{{ path('ajax_bookings_edit') }}", ev );
+                }
+                return true;
+            });
+
+            scheduler.attachEvent("onEventChanged", function(id,ev){
+                if (!_.isUndefined(ev) && !_.isUndefined(ev.booking_id) && !_.isEmpty(ev.booking_id)) {
+                    $.post( "{{ path('ajax_bookings_edit') }}", ev );
+                }
             });
         }
 
