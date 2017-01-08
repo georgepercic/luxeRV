@@ -141,7 +141,6 @@
 
             scheduler.attachEvent("onLightbox", function (id){
                 var eventObj = scheduler.getEvent(id);
-                console.log(eventObj);
                 $('.select2-cars').select2({
                     placeholder: "Select a vehicle",
                     data: {{ selectCars|raw }}
@@ -173,7 +172,7 @@
             });
 
             scheduler.attachEvent("onEventChanged", function(id,ev){
-                if (!_.isUndefined(ev) && !_.isUndefined(ev.booking_id) && !_.isEmpty(ev.booking_id)) {
+                if (!_.isUndefined(ev) && !_.isUndefined(ev.booking_id) && !_.isNull(ev.booking_id)) {
                     $.post( "{{ path('ajax_bookings_edit') }}", ev );
                 }
             });
