@@ -253,8 +253,11 @@
 
             scheduler.attachEvent("onEventSave", function (event_id, ev) {
                 if (_.isEmpty(ev.booking_id)) {
-                    $.post( "{{ path('ajax_bookings_new') }}", ev );
-                    window.location.reload(true);
+                    $.post( "{{ path('ajax_bookings_new') }}", ev ).done(function (data) {
+                        var booking = JSON.parse(data);
+                        var eventObj = scheduler.getEvent(event_id);
+                        eventObj.booking_id = booking.id;
+                    });
                 } else {
                     $.post( "{{ path('ajax_bookings_edit') }}", ev );
                 }
