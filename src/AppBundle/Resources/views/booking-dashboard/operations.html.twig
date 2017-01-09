@@ -254,16 +254,14 @@
             scheduler.attachEvent("onEventSave", function (event_id, ev) {
                 if (_.isEmpty(ev.booking_id)) {
                     $.post( "{{ path('ajax_bookings_new') }}", ev );
-                    window.location.reload(true);
+//                    window.location.reload(true);
                 } else {
-                    console.log(ev);
                     $.post( "{{ path('ajax_bookings_edit') }}", ev );
                 }
                 return true;
             });
 
             scheduler.attachEvent("onEventChanged", function(id,ev){
-                console.log(ev);
                 if (!_.isUndefined(ev) && !_.isUndefined(ev.booking_id) && !_.isNull(ev.booking_id)) {
                     $.post( "{{ path('ajax_bookings_edit') }}", ev );
                 }
