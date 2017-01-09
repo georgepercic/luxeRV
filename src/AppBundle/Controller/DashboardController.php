@@ -102,8 +102,8 @@ class DashboardController extends Controller
             $booking = new Booking();
             $booking->setCustomer($customer);
             $booking->setVehicle($vehicle);
-            $booking->setPickUpDate($pickUpDate->format('Y-m-d H:i'));
-            $booking->setDropOffDate($dropOffDate->format('Y-m-d H:i'));
+            $booking->setPickUpDate($pickUpDate);
+            $booking->setDropOffDate($dropOffDate);
 
             $em->persist($booking);
             $em->flush();
@@ -143,8 +143,8 @@ class DashboardController extends Controller
             if (!empty($booking)) {
                 $booking->setCustomer($customer);
                 $booking->setVehicle($vehicle);
-                $booking->setPickUpDate($pickUpDate->format('Y-m-d H:i'));
-                $booking->setDropOffDate($dropOffDate->format('Y-m-d H:i'));
+                $booking->setPickUpDate($pickUpDate);
+                $booking->setDropOffDate($dropOffDate);
 
                 $em->persist($booking);
                 $em->flush();
