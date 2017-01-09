@@ -33,7 +33,7 @@ class DashboardController extends Controller
             foreach ($cars as $car) {
                 $sections[] = [
                     'key' => $car->getId(),
-                    'label' => sprintf('<img src="/assets/images/sedan-512.png" style="width: 30%%; height: auto;" /> <br /> %s', $car->getVinBrandModel()),
+                    'label' => sprintf('<img src="/luxeRV/web/assets/images/sedan-512.png" style="width: 30%%; height: auto;" /> <br /> %s', $car->getVinBrandModel()),
                 ];
 
                 $selectCars[] = [
