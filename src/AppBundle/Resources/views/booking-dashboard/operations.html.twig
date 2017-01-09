@@ -254,7 +254,7 @@
             scheduler.attachEvent("onEventSave", function (event_id, ev) {
                 if (_.isEmpty(ev.booking_id)) {
                     $.post( "{{ path('ajax_bookings_new') }}", ev );
-//                    window.location.reload(true);
+                    window.location.reload(true);
                 } else {
                     $.post( "{{ path('ajax_bookings_edit') }}", ev );
                 }

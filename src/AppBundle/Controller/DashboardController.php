@@ -96,8 +96,8 @@ class DashboardController extends Controller
             $em = $this->getDoctrine()->getManager();
             $customer = $em->getRepository('CustomerBundle:Customer')->find($request->get('customer_id'));
             $vehicle = $em->getRepository('VehicleBundle:Vehicle')->find($request->get('section_id'));
-            $pickUpDate = new \DateTime($request->get('start_date'));
-            $dropOffDate = new \DateTime($request->get('end_date'));
+            $pickUpDate = $request->get('start_date');
+            $dropOffDate = $request->get('end_date');
 
             $booking = new Booking();
             $booking->setCustomer($customer);
@@ -136,8 +136,8 @@ class DashboardController extends Controller
             $em = $this->getDoctrine()->getManager();
             $customer = $em->getRepository('CustomerBundle:Customer')->find($request->get('customer_id'));
             $vehicle = $em->getRepository('VehicleBundle:Vehicle')->find($request->get('section_id'));
-            $pickUpDate = new \DateTime($request->get('start_date'));
-            $dropOffDate = new \DateTime($request->get('end_date'));
+            $pickUpDate = $request->get('start_date');
+            $dropOffDate = $request->get('end_date');
 
             $booking = $em->getRepository('BookingsBundle:Booking')->find($request->get('booking_id'));
             if (!empty($booking)) {
