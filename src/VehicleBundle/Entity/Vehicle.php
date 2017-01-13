@@ -5,7 +5,7 @@ namespace VehicleBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Vehicle
+ * Vehicle.
  *
  * @ORM\Table(name="vehicle")
  * @ORM\Entity(repositoryClass="VehicleBundle\Repository\VehicleRepository")
@@ -63,9 +63,29 @@ class Vehicle
      */
     private $color;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="week_day_price", type="integer")
+     */
+    private $weekDayPrice;
 
     /**
-     * Get id
+     * @var int
+     *
+     * @ORM\Column(name="week_end_price", type="integer")
+     */
+    private $weekEndPrice;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="photo", type="string", nullable=true)
+     */
+    private $photo;
+
+    /**
+     * Get id.
      *
      * @return int
      */
@@ -75,7 +95,7 @@ class Vehicle
     }
 
     /**
-     * Set vin
+     * Set vin.
      *
      * @param string $vin
      *
@@ -89,7 +109,7 @@ class Vehicle
     }
 
     /**
-     * Get vin
+     * Get vin.
      *
      * @return string
      */
@@ -99,7 +119,7 @@ class Vehicle
     }
 
     /**
-     * Set brand
+     * Set brand.
      *
      * @param string $brand
      *
@@ -113,7 +133,7 @@ class Vehicle
     }
 
     /**
-     * Get brand
+     * Get brand.
      *
      * @return string
      */
@@ -123,7 +143,7 @@ class Vehicle
     }
 
     /**
-     * Set model
+     * Set model.
      *
      * @param string $model
      *
@@ -137,7 +157,7 @@ class Vehicle
     }
 
     /**
-     * Get model
+     * Get model.
      *
      * @return string
      */
@@ -147,9 +167,9 @@ class Vehicle
     }
 
     /**
-     * Set productionYear
+     * Set productionYear.
      *
-     * @param integer $productionYear
+     * @param int $productionYear
      *
      * @return Vehicle
      */
@@ -161,7 +181,7 @@ class Vehicle
     }
 
     /**
-     * Get productionYear
+     * Get productionYear.
      *
      * @return int
      */
@@ -171,9 +191,9 @@ class Vehicle
     }
 
     /**
-     * Set mileage
+     * Set mileage.
      *
-     * @param integer $mileage
+     * @param int $mileage
      *
      * @return Vehicle
      */
@@ -185,7 +205,7 @@ class Vehicle
     }
 
     /**
-     * Get mileage
+     * Get mileage.
      *
      * @return int
      */
@@ -195,7 +215,7 @@ class Vehicle
     }
 
     /**
-     * Set color
+     * Set color.
      *
      * @param string $color
      *
@@ -209,7 +229,7 @@ class Vehicle
     }
 
     /**
-     * Get color
+     * Get color.
      *
      * @return string
      */
@@ -220,7 +240,66 @@ class Vehicle
 
     public function getVinBrandModel()
     {
-        return $this->vin . ' ' . $this->brand . ' ' . $this->model;
+        return $this->vin.' '.$this->brand.' '.$this->model;
+    }
+
+    /**
+     * @param int $weekDayPrice
+     *
+     * @return Vehicle
+     */
+    public function setWeekDayPrice($weekDayPrice)
+    {
+        $this->weekDayPrice = $weekDayPrice;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getWeekDayPrice()
+    {
+        return $this->weekDayPrice;
+    }
+
+    /**
+     * @param int $weekEndPrice
+     *
+     * @return Vehicle
+     */
+    public function setWeekEndPrice($weekEndPrice)
+    {
+        $this->weekEndPrice = $weekEndPrice;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getWeekEndPrice()
+    {
+        return $this->weekEndPrice;
+    }
+
+    /**
+     * @param string $photo
+     *
+     * @return Vehicle
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
     }
 }
-
