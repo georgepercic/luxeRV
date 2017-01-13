@@ -34,18 +34,18 @@ class Settings
     private $dailyMiles = self::DEFAULT_DAILY_MILES;
 
     /**
-     * @var \DateTime
+     * @var int
      *
-     * @ORM\Column(name="default_pick_up_date", type="datetime", nullable=true)
+     * @ORM\Column(name="default_pick_up_time", type="integer", nullable=true)
      */
-    private $defaultPickUpDate;
+    private $defaultPickUpTime;
 
     /**
-     * @var \DateTime
+     * @var int
      *
-     * @ORM\Column(name="default_drop_off_date", type="datetime", nullable=true)
+     * @ORM\Column(name="default_drop_off_time", type="integer", nullable=true)
      */
-    private $defaultDropOffDate;
+    private $defaultDropOffTime;
 
     /**
      * @var int
@@ -104,51 +104,51 @@ class Settings
     }
 
     /**
-     * Set defaultPickUpDate
+     * Set defaultPickUpTime
      *
-     * @param \DateTime $defaultPickUpDate
+     * @param int $defaultPickUpTime
      *
      * @return Settings
      */
-    public function setDefaultPickUpDate($defaultPickUpDate)
+    public function setDefaultPickUpTime($defaultPickUpTime)
     {
-        $this->defaultPickUpDate = $defaultPickUpDate;
+        $this->defaultPickUpTime = $defaultPickUpTime;
 
         return $this;
     }
 
     /**
-     * Get defaultPickUpDate
+     * Get defaultPickUpTime
      *
-     * @return \DateTime
+     * @return int
      */
-    public function getDefaultPickUpDate()
+    public function getDefaultPickUpTime()
     {
-        return $this->defaultPickUpDate;
+        return $this->defaultPickUpTime;
     }
 
     /**
-     * Set defaultDropOffDate
+     * Set defaultDropOffTime
      *
-     * @param \DateTime $defaultDropOffDate
+     * @param int $defaultDropOffTime
      *
      * @return Settings
      */
-    public function setDefaultDropOffDate($defaultDropOffDate)
+    public function setDefaultDropOffDate($defaultDropOffTime)
     {
-        $this->defaultDropOffDate = $defaultDropOffDate;
+        $this->defaultDropOffTime = $defaultDropOffTime;
 
         return $this;
     }
 
     /**
-     * Get defaultDropOffDate
+     * Get defaultDropOffTime
      *
-     * @return \DateTime
+     * @return int
      */
-    public function getDefaultDropOffDate()
+    public function getDefaultDropOffTime()
     {
-        return $this->defaultDropOffDate;
+        return $this->defaultDropOffTime;
     }
 
     /**

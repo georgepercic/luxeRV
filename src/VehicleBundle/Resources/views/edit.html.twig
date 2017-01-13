@@ -58,6 +58,22 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        {{ form_label(edit_form.weekDayPrice, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.weekDayPrice, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Week Day Price"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.weekEndPrice, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.weekEndPrice, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Week End Price"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
                             <input type="submit" class="btn btn-primary" value="Edit" />

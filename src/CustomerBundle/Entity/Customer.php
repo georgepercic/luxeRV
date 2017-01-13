@@ -431,7 +431,7 @@ class Customer
      */
     public function setDrivingLicenceExpirationDate($drivingLicenceExpirationDate)
     {
-        $this->drivingLicenceExpirationDate = $drivingLicenceExpirationDate;
+        $this->drivingLicenceExpirationDate = new \DateTime($drivingLicenceExpirationDate);
 
         return $this;
     }
@@ -441,6 +441,6 @@ class Customer
      */
     public function getDrivingLicenceExpirationDate()
     {
-        return $this->drivingLicenceExpirationDate;
+        return !empty($this->drivingLicenceExpirationDate) ? $this->drivingLicenceExpirationDate->format('Y-m-d H:i') : $this->drivingLicenceExpirationDate;
     }
 }

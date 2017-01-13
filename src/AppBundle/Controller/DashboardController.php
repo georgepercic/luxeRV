@@ -69,13 +69,20 @@ class DashboardController extends Controller
         $data = json_encode($data, true);
         $selectCars = json_encode($selectCars, true);
         $selectCustomers = json_encode($selectCustomers, true);
+        $bookingStatuses = json_encode([
+            Booking::STATUS_ACCEPTED,
+            Booking::STATUS_CLOSED,
+            Booking::STATUS_COMPLETED,
+            Booking::STATUS_RESERVED,
+        ]);
 
-        return $this->render('AppBundle:booking-dashboard:operations.html.twig', array(
+        return $this->render('AppBundle:booking-dashboard:operations.html.twig', [
             'bookings' => $data,
             'sections' => $sections,
             'selectCars' => $selectCars,
             'selectCustomers' => $selectCustomers,
-        ));
+            'bookingStatuses' => $bookingStatuses,
+        ]);
     }
 
     /**
