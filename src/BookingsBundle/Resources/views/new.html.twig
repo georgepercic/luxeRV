@@ -28,22 +28,26 @@
                         {{ form_label(form.pickUpDate, null, {
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
-                        <div class="input-group" id="pick-up-datetimepicker">
-                            {{ form_widget(form.pickUpDate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Pick Up Date"} }) }}
-                            <span class="input-group-addon datetimepicker">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                        <div class="col-sm-10">
+                            <div class="input-group" id="pick-up-datetimepicker">
+                                {{ form_widget(form.pickUpDate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Delivery Date"} }) }}
+                                <span class="input-group-addon datetimepicker">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
                         {{ form_label(form.dropOffDate, null, {
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
-                        <div class="input-group" id="drop-off-datetimepicker">
-                            {{ form_widget(form.dropOffDate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Drop Off Date"} }) }}
-                            <span class="input-group-addon datetimepicker">
+                        <div class="col-sm-10">
+                            <div class="input-group" id="drop-off-datetimepicker">
+                                {{ form_widget(form.dropOffDate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Return Date"} }) }}
+                                <span class="input-group-addon datetimepicker">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
+                            </div>
                         </div>
                     </div>
 
@@ -51,22 +55,16 @@
                         {{ form_label(form.pickUpLocation, null, {
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
-                        <div class="input-group" id="pick-up-location">
-                            {{ form_widget(form.pickUpLocation, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Pick Up Location"} }) }}
-                            <span class="input-group-addon datetimepicker">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                        <div class="col-sm-10"">
+                            {{ form_widget(form.pickUpLocation, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Delivery Location"} }) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ form_label(form.dropOffLocation, null, {
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
-                        <div class="input-group" id="drop-off-location">
-                            {{ form_widget(form.dropOffLocation, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Drop Off Location"} }) }}
-                            <span class="input-group-addon datetimepicker">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.dropOffLocation, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Return Location"} }) }}
                         </div>
                     </div>
 
@@ -74,11 +72,8 @@
                         {{ form_label(form.servicesRequested, null, {
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
-                        <div class="input-group">
+                        <div class="col-sm-10">
                             {{ form_widget(form.servicesRequested, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Services Requested"} }) }}
-                            <span class="input-group-addon datetimepicker">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
                         </div>
                     </div>
 
@@ -86,11 +81,8 @@
                         {{ form_label(form.specialRequirements, null, {
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
-                        <div class="input-group">
+                        <div class="col-sm-10">
                             {{ form_widget(form.specialRequirements, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Special Requirements"} }) }}
-                            <span class="input-group-addon datetimepicker">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
                         </div>
                     </div>
 
@@ -98,11 +90,8 @@
                         {{ form_label(form.unitNumber, null, {
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
-                        <div class="input-group">
-                            {{ form_widget(form.unitNumber, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Unit Number"} }) }}
-                            <span class="input-group-addon datetimepicker">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.unitNumber, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Unit Number", 'style': 'width: 100%;'} }) }}
                         </div>
                     </div>
 
@@ -110,11 +99,8 @@
                         {{ form_label(form.bookingStatus, null, {
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
-                        <div class="input-group">
-                            {{ form_widget(form.bookingStatus, { 'attr': {'class': 'form-control input-lg'} }) }}
-                            <span class="input-group-addon datetimepicker">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.bookingStatus, { 'attr': {'class': 'select2', 'style': 'width: 100%;'} }) }}
                         </div>
                     </div>
 
