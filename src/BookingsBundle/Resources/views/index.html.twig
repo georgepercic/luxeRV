@@ -20,6 +20,7 @@
                     <th>Special Req.</th>
                     <th>Services Req.</th>
                     <th>Customer IP</th>
+                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -37,6 +38,7 @@
                         <td>{{ booking.specialRequirements }}</td>
                         <td>{{ booking.servicesRequested }}</td>
                         <td>{{ booking.customerIpAddress }}</td>
+                        <td>{{ booking.status }}</td>
                         <td>
                             <a href="{{ path('bookings_edit', { 'id': booking.id }) }}"><span class="fa fa-pencil"></span></a>
                         </td>

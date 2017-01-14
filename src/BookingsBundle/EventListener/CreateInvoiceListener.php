@@ -17,8 +17,8 @@ class CreateInvoiceListener
         }
 
         $entityManager = $args->getEntityManager();
-        $dateStart = new \DateTime($entity->getPickUpDate());
-        $dateEnd = new \DateTime($entity->getDropOffDate());
+        $dateStart = $entity->getPickUpDate();
+        $dateEnd = $entity->getDropOffDate();
         $daysNo = $dateEnd->diff($dateStart)->format('%a');
 
         $invoice = new Invoice();
@@ -41,8 +41,8 @@ class CreateInvoiceListener
         }
 
         $entityManager = $args->getEntityManager();
-        $dateStart = new \DateTime($entity->getPickUpDate());
-        $dateEnd = new \DateTime($entity->getDropOffDate());
+        $dateStart = $entity->getPickUpDate();
+        $dateEnd = $entity->getDropOffDate();
         $daysNo = $dateEnd->diff($dateStart)->format('%a');
 
         $invoiceRepository = $entityManager->getRepository('InvoiceBundle:Invoice');
