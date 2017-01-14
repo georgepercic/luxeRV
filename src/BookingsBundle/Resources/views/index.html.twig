@@ -24,11 +24,7 @@
                         <td>{{ booking.customer.getName }}</td>
                         <td>{{ booking.vehicle.getVinBrandModel }}</td>
                         <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('bookings_edit', { 'id': booking.id }) }}">edit</a>
-                                </li>
-                            </ul>
+                            <a href="{{ path('bookings_edit', { 'id': booking.id }) }}"><span class="fa fa-pencil"></span></a>
                         </td>
                     </tr>
                 {% endfor %}

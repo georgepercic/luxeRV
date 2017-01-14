@@ -1,5 +1,16 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
+
+    <style>
+        .datetimepicker {
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <div class="card bg-white">
         <div class="card-header">
@@ -90,6 +101,17 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        {{ form_label(edit_form.drivingLicenceExpirationDate, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="input-group" id="exp-date-datetimepicker">
+                            {{ form_widget(edit_form.drivingLicenceExpirationDate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Driving Licence Expiration Date"} }) }}
+                            <span class="input-group-addon datetimepicker">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         {{ form_label(edit_form.passport, null, {
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
@@ -127,4 +149,20 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/moment/moment.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/transition.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/collapse.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#exp-date-datetimepicker').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm'
+            });
+        });
+    </script>
 {% endblock %}

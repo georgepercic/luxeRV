@@ -2,16 +2,25 @@
 
 namespace BookingsBundle\Entity;
 
+use CustomerBundle\Entity\Customer;
 use Doctrine\ORM\Mapping as ORM;
+use VehicleBundle\Entity\Vehicle;
+use VehicleBundle\VehicleBundle;
 
 /**
- * Booking
+ * Booking.
  *
  * @ORM\Table(name="booking")
  * @ORM\Entity(repositoryClass="BookingsBundle\Repository\BookingRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Booking
 {
+    const STATUS_RESERVED = 'reserved';
+    const STATUS_ACCEPTED = 'accepted';
+    const STATUS_COMPLETED = 'completed';
+    const STATUS_CLOSED = 'closed';
+
     /**
      * @var int
      *
@@ -20,6 +29,13 @@ class Booking
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string")
+     */
+    private $status = self::STATUS_RESERVED;
 
     /**
      * @var \DateTime
@@ -36,19 +52,33 @@ class Booking
     private $dropOffDate;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="pick_up_location", type="string")
+     */
+    private $pickUpLocation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="drop_off_location", type="string")
+     */
+    private $dropOffLocation;
+
+    /**
      * @ORM\ManyToOne(targetEntity="CustomerBundle\Entity\Customer", inversedBy="bookings")
-     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $customer;
 
     /**
      * @ORM\ManyToOne(targetEntity="VehicleBundle\Entity\Vehicle")
-     * @ORM\JoinColumn(name="vehicle_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="vehicle_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $vehicle;
 
     /**
-     * @return mixed
+     * @return Vehicle
      */
     public function getVehicle()
     {
@@ -68,7 +98,7 @@ class Booking
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -78,7 +108,7 @@ class Booking
     }
 
     /**
-     * Set pickUpDate
+     * Set pickUpDate.
      *
      * @param \DateTime $pickUpDate
      *
@@ -92,7 +122,7 @@ class Booking
     }
 
     /**
-     * Get pickUpDate
+     * Get pickUpDate.
      *
      * @return \DateTime
      */
@@ -102,7 +132,7 @@ class Booking
     }
 
     /**
-     * Set dropOffDate
+     * Set dropOffDate.
      *
      * @param \DateTime $dropOffDate
      *
@@ -116,7 +146,7 @@ class Booking
     }
 
     /**
-     * Get dropOffDate
+     * Get dropOffDate.
      *
      * @return \DateTime
      */
@@ -126,7 +156,7 @@ class Booking
     }
 
     /**
-     * Set customerId
+     * Set customerId.
      *
      * @param $customer
      *
@@ -140,13 +170,72 @@ class Booking
     }
 
     /**
-     * Get customerId
+     * Get customerId.
      *
-     * @return int
+     * @return Customer
      */
     public function getCustomer()
     {
         return $this->customer;
     }
-}
 
+    /**
+     * @param string $pickUpLocation
+     *
+     * @return Booking
+     */
+    public function setPickUpLocation($pickUpLocation)
+    {
+        $this->pickUpLocation = $pickUpLocation;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPickUpLocation()
+    {
+        return $this->pickUpLocation;
+    }
+
+    /**
+     * @param string $dropOffLocation
+     *
+     * @return Booking
+     */
+    public function setDropOffLocation($dropOffLocation)
+    {
+        $this->dropOffLocation = $dropOffLocation;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDropOffLocation()
+    {
+        return $this->dropOffLocation;
+    }
+
+    /**
+     * @param string $status
+     *
+     * @return Booking
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+}

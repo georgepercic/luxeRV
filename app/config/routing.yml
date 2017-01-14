@@ -1,3 +1,7 @@
+bookings_settings:
+    resource: "@BookingsBundle/Controller/SettingsController.php"
+    type:     annotation
+
 notifications:
     resource: "@NotificationsBundle/Controller/NotificationsController.php"
     type:     annotation

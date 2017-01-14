@@ -93,6 +93,13 @@ class Customer
     private $driverLicense;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="driving_licence_expiration_date", type="datetime")
+     */
+    private $drivingLicenceExpirationDate;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="passport", type="string", length=100)
@@ -415,5 +422,25 @@ class Customer
     public function getInsurance()
     {
         return $this->insurance;
+    }
+
+    /**
+     * @param \DateTime $drivingLicenceExpirationDate
+     *
+     * @return Customer
+     */
+    public function setDrivingLicenceExpirationDate($drivingLicenceExpirationDate)
+    {
+        $this->drivingLicenceExpirationDate = new \DateTime($drivingLicenceExpirationDate);
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDrivingLicenceExpirationDate()
+    {
+        return !empty($this->drivingLicenceExpirationDate) ? $this->drivingLicenceExpirationDate->format('Y-m-d H:i') : $this->drivingLicenceExpirationDate;
     }
 }

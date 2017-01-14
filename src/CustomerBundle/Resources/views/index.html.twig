@@ -9,7 +9,6 @@
             <table class="table table-bordered table-condensed datatable m-b-0">
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
@@ -23,7 +22,6 @@
                 <tbody>
                 {% for customer in customers %}
                     <tr>
-                        <td><a href="{{ path('customer_show', { 'id': customer.id }) }}">{{ customer.id }}</a></td>
                         <td>{{ customer.name }}</td>
                         <td>{{ customer.email }}</td>
                         <td>{{ customer.phone }}</td>
@@ -32,14 +30,7 @@
                         <td>{{ customer.skype }}</td>
                         <td>{{ customer.billing }}</td>
                         <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('customer_show', { 'id': customer.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('customer_edit', { 'id': customer.id }) }}">edit</a>
-                                </li>
-                            </ul>
+                            <a href="{{ path('customer_edit', { 'id': customer.id }) }}"><span class="fa fa-pencil"></span></a>
                         </td>
                     </tr>
                 {% endfor %}

@@ -50,7 +50,7 @@ class BookingController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($booking);
-            $em->flush($booking);
+            $em->flush();
 
             return $this->redirectToRoute('bookings_index', array('id' => $booking->getId()));
         }
@@ -107,6 +107,10 @@ class BookingController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            //delete invoice
+            $invoice = $em->getRepository('InvoiceBundle:Invoice')->findOneBy(['booking' => $booking->getId()]);
+            $em->remove($invoice);
+            //delete booking
             $em->remove($booking);
             $em->flush($booking);
         }

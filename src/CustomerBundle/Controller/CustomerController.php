@@ -48,7 +48,7 @@ class CustomerController extends Controller
             $em->persist($customer);
             $em->flush($customer);
 
-            return $this->redirectToRoute('customer_show', array('id' => $customer->getId()));
+            return $this->redirectToRoute('customer_index', array('id' => $customer->getId()));
         }
 
         return $this->render('CustomerBundle::new.html.twig', array(
@@ -78,6 +78,10 @@ class CustomerController extends Controller
      *
      * @Route("/{id}/edit", name="customer_edit")
      * @Method({"GET", "POST"})
+     * @param Request  $request
+     * @param Customer $customer
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Customer $customer)
     {

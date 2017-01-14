@@ -9,12 +9,12 @@
             <table class="table table-bordered table-condensed datatable m-b-0">
                 <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>Booking ID</th>
                     <th>Vehicle rent</th>
                     <th>Equipment rent</th>
                     <th>Insurance cost</th>
                     <th>Service tax</th>
-                    <th>Vat</th>
+                    <th>Tax</th>
                     <th>Total amount paybale</th>
                     <th>Discount amount</th>
                     <th>Netamount payable</th>
@@ -24,12 +24,12 @@
                 <tbody>
                 {% for invoice in invoices %}
                     <tr>
-                        <td><a href="{{ path('invoices_show', { 'id': invoice.id }) }}">{{ invoice.id }}</a></td>
+                        <td>{{ invoice.booking.id }}</td>
                         <td>{{ invoice.vehicleRent }}</td>
                         <td>{{ invoice.equipmentRent }}</td>
                         <td>{{ invoice.insuranceCost }}</td>
                         <td>{{ invoice.serviceTax }}</td>
-                        <td>{{ invoice.vat }}</td>
+                        <td>{{ invoice.tax }}</td>
                         <td>{{ invoice.totalAmountPaybale }}</td>
                         <td>{{ invoice.discountAmount }}</td>
                         <td>{{ invoice.netAmountPayable }}</td>
