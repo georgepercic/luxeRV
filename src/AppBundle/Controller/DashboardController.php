@@ -122,6 +122,7 @@ class DashboardController extends Controller
 
         $response = new Response();
         $response->setStatusCode(500);
+
         return $response;
     }
 
@@ -164,6 +165,7 @@ class DashboardController extends Controller
 
         $response = new Response();
         $response->setStatusCode(500);
+
         return $response;
     }
 
@@ -196,6 +198,7 @@ class DashboardController extends Controller
 
         $response = new Response();
         $response->setStatusCode(500);
+
         return $response;
     }
 }

@@ -18,26 +18,28 @@ class CustomerType extends AbstractType
             ->add('name')
             ->add('email')
             ->add('phone')
-            ->add('aditionalPhone')
+            ->add('additionalPhone')
             ->add('whatsapp')
             ->add('skype')
-            ->add('billing')
-            ->add('deliveryAddress')
-            ->add('pickUpAddress')
+            ->add('billing', null, [
+                'label' => 'Billing Address',
+            ])
+            //->add('deliveryAddress')
+            //->add('pickUpAddress')
             ->add('driverLicense')
             ->add('drivingLicenceExpirationDate', TextType::class)
             ->add('passport')
             ->add('insurance')
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'CustomerBundle\Entity\Customer'
+            'data_class' => 'CustomerBundle\Entity\Customer',
         ));
     }
 
@@ -48,6 +50,4 @@ class CustomerType extends AbstractType
     {
         return 'customerbundle_customer';
     }
-
-
 }

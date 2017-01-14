@@ -13,16 +13,16 @@ class SettingsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dailyMiles')->add('defaultPickUpTime')->add('defaultDropOffTime')->add('defaultMinRentDays')->add('taxRate')->add('depositAmountRate')        ;
+        $builder->add('dailyMiles')->add('defaultPickUpTime')->add('defaultDropOffTime')->add('defaultMinRentDays')->add('taxRate')->add('depositAmountRate');
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BookingsBundle\Entity\Settings'
+            'data_class' => 'BookingsBundle\Entity\Settings',
         ));
     }
 
@@ -33,6 +33,4 @@ class SettingsType extends AbstractType
     {
         return 'bookingsbundle_settings';
     }
-
-
 }

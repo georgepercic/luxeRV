@@ -12,10 +12,14 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Aditional phone</th>
+                    <th>Additional phone</th>
                     <th>Whatsapp</th>
                     <th>Skype</th>
-                    <th>Billing</th>
+                    <th>Billing Address</th>
+                    <th>DL</th>
+                    <th>DL Exp.</th>
+                    <th>Insurance</th>
+                    <th>IP Address</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -25,10 +29,14 @@
                         <td>{{ customer.name }}</td>
                         <td>{{ customer.email }}</td>
                         <td>{{ customer.phone }}</td>
-                        <td>{{ customer.aditionalPhone }}</td>
+                        <td>{{ customer.additionalPhone }}</td>
                         <td>{{ customer.whatsapp }}</td>
                         <td>{{ customer.skype }}</td>
                         <td>{{ customer.billing }}</td>
+                        <td>{{ customer.driverLicense }}</td>
+                        <td>{% if customer.drivingLicenceExpirationDate %}{{ customer.drivingLicenceExpirationDate|date('m/d/Y H:i:s') }}{% endif %}</td>
+                        <td>{{ customer.insurance }}</td>
+                        <td>{{ customer.ipAddress }}</td>
                         <td>
                             <a href="{{ path('customer_edit', { 'id': customer.id }) }}"><span class="fa fa-pencil"></span></a>
                         </td>

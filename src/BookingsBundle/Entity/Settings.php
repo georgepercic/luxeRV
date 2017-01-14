@@ -5,7 +5,7 @@ namespace BookingsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Settings
+ * Settings.
  *
  * @ORM\Table(name="settings")
  * @ORM\Entity(repositoryClass="BookingsBundle\Repository\SettingsRepository")
@@ -68,9 +68,8 @@ class Settings
      */
     private $depositAmountRate = self::DEFAULT_DEPOSIT_RATE;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -80,9 +79,9 @@ class Settings
     }
 
     /**
-     * Set dailyMiles
+     * Set dailyMiles.
      *
-     * @param integer $dailyMiles
+     * @param int $dailyMiles
      *
      * @return Settings
      */
@@ -94,7 +93,7 @@ class Settings
     }
 
     /**
-     * Get dailyMiles
+     * Get dailyMiles.
      *
      * @return int
      */
@@ -104,7 +103,7 @@ class Settings
     }
 
     /**
-     * Set defaultPickUpTime
+     * Set defaultPickUpTime.
      *
      * @param int $defaultPickUpTime
      *
@@ -118,7 +117,7 @@ class Settings
     }
 
     /**
-     * Get defaultPickUpTime
+     * Get defaultPickUpTime.
      *
      * @return int
      */
@@ -128,7 +127,7 @@ class Settings
     }
 
     /**
-     * Set defaultDropOffTime
+     * Set defaultDropOffTime.
      *
      * @param int $defaultDropOffTime
      *
@@ -142,7 +141,7 @@ class Settings
     }
 
     /**
-     * Get defaultDropOffTime
+     * Get defaultDropOffTime.
      *
      * @return int
      */
@@ -152,9 +151,9 @@ class Settings
     }
 
     /**
-     * Set defaultMinRentDays
+     * Set defaultMinRentDays.
      *
-     * @param integer $defaultMinRentDays
+     * @param int $defaultMinRentDays
      *
      * @return Settings
      */
@@ -166,7 +165,7 @@ class Settings
     }
 
     /**
-     * Get defaultMinRentDays
+     * Get defaultMinRentDays.
      *
      * @return int
      */
@@ -176,9 +175,9 @@ class Settings
     }
 
     /**
-     * Set taxRate
+     * Set taxRate.
      *
-     * @param integer $taxRate
+     * @param int $taxRate
      *
      * @return Settings
      */
@@ -190,7 +189,7 @@ class Settings
     }
 
     /**
-     * Get taxRate
+     * Get taxRate.
      *
      * @return int
      */
@@ -200,9 +199,9 @@ class Settings
     }
 
     /**
-     * Set depositAmountRate
+     * Set depositAmountRate.
      *
-     * @param integer $depositAmountRate
+     * @param int $depositAmountRate
      *
      * @return Settings
      */
@@ -214,7 +213,7 @@ class Settings
     }
 
     /**
-     * Get depositAmountRate
+     * Get depositAmountRate.
      *
      * @return int
      */
@@ -222,5 +221,18 @@ class Settings
     {
         return $this->depositAmountRate;
     }
-}
 
+    /**
+     * Set defaultDropOffTime.
+     *
+     * @param int $defaultDropOffTime
+     *
+     * @return Settings
+     */
+    public function setDefaultDropOffTime($defaultDropOffTime)
+    {
+        $this->defaultDropOffTime = $defaultDropOffTime;
+
+        return $this;
+    }
+}

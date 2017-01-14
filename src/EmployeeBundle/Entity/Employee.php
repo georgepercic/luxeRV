@@ -5,7 +5,7 @@ namespace EmployeeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Employee
+ * Employee.
  *
  * @ORM\Table(name="employee")
  * @ORM\Entity(repositoryClass="EmployeeBundle\Repository\EmployeeRepository")
@@ -91,9 +91,8 @@ class Employee
      */
     private $addressCountry;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -103,7 +102,7 @@ class Employee
     }
 
     /**
-     * Set firstName
+     * Set firstName.
      *
      * @param string $firstName
      *
@@ -117,7 +116,7 @@ class Employee
     }
 
     /**
-     * Get firstName
+     * Get firstName.
      *
      * @return string
      */
@@ -127,7 +126,7 @@ class Employee
     }
 
     /**
-     * Set lastName
+     * Set lastName.
      *
      * @param string $lastName
      *
@@ -141,7 +140,7 @@ class Employee
     }
 
     /**
-     * Get lastName
+     * Get lastName.
      *
      * @return string
      */
@@ -151,7 +150,7 @@ class Employee
     }
 
     /**
-     * Set dob
+     * Set dob.
      *
      * @param \DateTime $dob
      *
@@ -165,7 +164,7 @@ class Employee
     }
 
     /**
-     * Get dob
+     * Get dob.
      *
      * @return \DateTime
      */
@@ -175,7 +174,7 @@ class Employee
     }
 
     /**
-     * Set ssn
+     * Set ssn.
      *
      * @param string $ssn
      *
@@ -189,7 +188,7 @@ class Employee
     }
 
     /**
-     * Get ssn
+     * Get ssn.
      *
      * @return string
      */
@@ -199,7 +198,7 @@ class Employee
     }
 
     /**
-     * Set addressCity
+     * Set addressCity.
      *
      * @param string $addressCity
      *
@@ -213,7 +212,7 @@ class Employee
     }
 
     /**
-     * Get addressCity
+     * Get addressCity.
      *
      * @return string
      */
@@ -223,7 +222,7 @@ class Employee
     }
 
     /**
-     * Set addressState
+     * Set addressState.
      *
      * @param string $addressState
      *
@@ -237,7 +236,7 @@ class Employee
     }
 
     /**
-     * Get addressState
+     * Get addressState.
      *
      * @return string
      */
@@ -247,7 +246,7 @@ class Employee
     }
 
     /**
-     * Set addressZip
+     * Set addressZip.
      *
      * @param string $addressZip
      *
@@ -261,7 +260,7 @@ class Employee
     }
 
     /**
-     * Get addressZip
+     * Get addressZip.
      *
      * @return string
      */
@@ -271,7 +270,7 @@ class Employee
     }
 
     /**
-     * Set addressStreet
+     * Set addressStreet.
      *
      * @param string $addressStreet
      *
@@ -285,7 +284,7 @@ class Employee
     }
 
     /**
-     * Get addressStreet
+     * Get addressStreet.
      *
      * @return string
      */
@@ -295,9 +294,9 @@ class Employee
     }
 
     /**
-     * Set addressSuiteNo
+     * Set addressSuiteNo.
      *
-     * @param integer $addressSuiteNo
+     * @param int $addressSuiteNo
      *
      * @return Employee
      */
@@ -309,7 +308,7 @@ class Employee
     }
 
     /**
-     * Get addressSuiteNo
+     * Get addressSuiteNo.
      *
      * @return int
      */
@@ -319,7 +318,7 @@ class Employee
     }
 
     /**
-     * Set addressCountry
+     * Set addressCountry.
      *
      * @param string $addressCountry
      *
@@ -333,7 +332,7 @@ class Employee
     }
 
     /**
-     * Get addressCountry
+     * Get addressCountry.
      *
      * @return string
      */
@@ -342,4 +341,3 @@ class Employee
         return $this->addressCountry;
     }
 }
-
