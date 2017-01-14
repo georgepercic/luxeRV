@@ -3,6 +3,7 @@
 namespace CustomerBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,6 +25,7 @@ class CustomerType extends AbstractType
             ->add('deliveryAddress')
             ->add('pickUpAddress')
             ->add('driverLicense')
+            ->add('drivingLicenceExpirationDate', TextType::class)
             ->add('passport')
             ->add('insurance')
         ;

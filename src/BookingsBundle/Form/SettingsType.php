@@ -1,28 +1,19 @@
 <?php
 
-namespace VehicleBundle\Form;
+namespace BookingsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class VehicleType extends AbstractType
+class SettingsType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('vin')
-            ->add('brand')
-            ->add('model')
-            ->add('productionYear')
-            ->add('mileage')
-            ->add('weekDayPrice')
-            ->add('weekEndPrice')
-            ->add('color')
-        ;
+        $builder->add('dailyMiles')->add('defaultPickUpTime')->add('defaultDropOffTime')->add('defaultMinRentDays')->add('taxRate')->add('depositAmountRate')        ;
     }
     
     /**
@@ -31,7 +22,7 @@ class VehicleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'VehicleBundle\Entity\Vehicle'
+            'data_class' => 'BookingsBundle\Entity\Settings'
         ));
     }
 
@@ -40,7 +31,7 @@ class VehicleType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'vehiclebundle_vehicle';
+        return 'bookingsbundle_settings';
     }
 
 

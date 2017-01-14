@@ -78,6 +78,10 @@ class CustomerController extends Controller
      *
      * @Route("/{id}/edit", name="customer_edit")
      * @Method({"GET", "POST"})
+     * @param Request  $request
+     * @param Customer $customer
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Customer $customer)
     {
