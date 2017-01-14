@@ -112,8 +112,12 @@ class BookingController extends Controller
         $editForm = $this->createForm('BookingsBundle\Form\BookingType', $booking);
         $editForm->handleRequest($request);
 
+        $vars = $request->request->get('bookingsbundle_booking', []);
+
         $pickUpLocationString = !empty($vars['pickUpLocation']) ? $vars['pickUpLocation'] : '';
         $dropOffLocationString = !empty($vars['dropOffLocation']) ? $vars['dropOffLocation'] : '';
+
+        $bookingStatus = !empty($vars['bookingStatus']) ? $vars['bookingStatus'] : Booking::STATUS_RESERVED;
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             if (!empty($pickUpLocationString)) {
@@ -132,9 +136,11 @@ class BookingController extends Controller
 
                 if (false !== $dropOffLocation && isset($dropOffLocation->lat)) {
                     $booking->setDropOffLocationLatitude($dropOffLocation->lat);
-                    $booking->setDropOffLocationLongitute($dropOffLocation->lng);
+                    $booking->setDropOffLocationLongitude($dropOffLocation->lng);
                 }
             }
+
+            $booking->setBookingStatus($bookingStatus);
 
             $this->getDoctrine()->getManager()->flush();
 

@@ -18,6 +18,7 @@ class Booking
     const STATUS_ACCEPTED = 'accepted';
     const STATUS_COMPLETED = 'completed';
     const STATUS_CLOSED = 'closed';
+    const STATUS_DISPUTE = 'dispute';
 
     /**
      * @var int
@@ -118,6 +119,13 @@ class Booking
      * @ORM\Column(name="unit_number", type="string", nullable=true)
      */
     private $unitNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="booking_status", type="string", nullable=true)
+     */
+    private $bookingStatus;
 
     /**
      * @ORM\ManyToOne(targetEntity="CustomerBundle\Entity\Customer", inversedBy="bookings")
@@ -499,5 +507,29 @@ class Booking
     public function getUnitNumber()
     {
         return $this->unitNumber;
+    }
+
+    /**
+     * Set bookingStatus.
+     *
+     * @param string $bookingStatus
+     *
+     * @return Booking
+     */
+    public function setBookingStatus($bookingStatus)
+    {
+        $this->bookingStatus = $bookingStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get bookingStatus.
+     *
+     * @return string
+     */
+    public function getBookingStatus()
+    {
+        return $this->bookingStatus;
     }
 }
