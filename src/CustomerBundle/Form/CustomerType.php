@@ -18,12 +18,14 @@ class CustomerType extends AbstractType
             ->add('name')
             ->add('email')
             ->add('phone')
-            ->add('aditionalPhone')
+            ->add('additionalPhone')
             ->add('whatsapp')
             ->add('skype')
-            ->add('billing')
-            ->add('deliveryAddress')
-            ->add('pickUpAddress')
+            ->add('billing', null, [
+                'label' => 'Billing Address',
+            ])
+            //->add('deliveryAddress')
+            //->add('pickUpAddress')
             ->add('driverLicense')
             ->add('drivingLicenceExpirationDate', TextType::class)
             ->add('passport')

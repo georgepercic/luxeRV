@@ -2,7 +2,6 @@
 
 namespace CustomerBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,23 +31,23 @@ class Customer
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=100, unique=true)
+     * @ORM\Column(name="email", type="string", length=100, unique=true, nullable=true)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=20)
+     * @ORM\Column(name="phone", type="string", length=20, nullable=true)
      */
     private $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="aditional_phone", type="string", length=20, nullable=true)
+     * @ORM\Column(name="additional_phone", type="string", length=20, nullable=true)
      */
-    private $aditionalPhone;
+    private $additionalPhone;
 
     /**
      * @var string
@@ -67,44 +66,51 @@ class Customer
     /**
      * @var string
      *
-     * @ORM\Column(name="billing", type="text")
+     * @ORM\Column(name="billing", type="text", nullable=true)
      */
     private $billing;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="delivery_address", type="string", length=255)
+     * @ORM\Column(name="delivery_address", type="string", length=255, nullable=true)
      */
     private $deliveryAddress;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pick_up_address", type="string", length=255)
+     * @ORM\Column(name="pick_up_address", type="string", length=255, nullable=true)
      */
     private $pickUpAddress;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="driver_license", type="string", length=100)
+     * @ORM\Column(name="driver_license", type="string", length=100, nullable=true)
      */
     private $driverLicense;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="driving_licence_expiration_date", type="datetime")
+     * @ORM\Column(name="driving_licence_expiration_date", type="datetime", nullable=true)
      */
     private $drivingLicenceExpirationDate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="passport", type="string", length=100)
+     * @ORM\Column(name="passport", type="string", length=100, nullable=true)
      */
     private $passport;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ip_address", type="string", length=100, nullable=true)
+     */
+    private $ipAddress;
 
     /**
      * @var string
@@ -119,11 +125,11 @@ class Customer
     private $bookings;
 
     /**
-     * Customer constructor.
+     * Constructor.
      */
     public function __construct()
     {
-        $this->bookings = new ArrayCollection();
+        $this->bookings = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -209,27 +215,27 @@ class Customer
     }
 
     /**
-     * Set aditionalPhone.
+     * Set additionalPhone.
      *
-     * @param string $aditionalPhone
+     * @param string $additionalPhone
      *
      * @return Customer
      */
-    public function setAditionalPhone($aditionalPhone)
+    public function setAdditionalPhone($additionalPhone)
     {
-        $this->aditionalPhone = $aditionalPhone;
+        $this->additionalPhone = $additionalPhone;
 
         return $this;
     }
 
     /**
-     * Get aditionalPhone.
+     * Get additionalPhone.
      *
      * @return string
      */
-    public function getAditionalPhone()
+    public function getAdditionalPhone()
     {
-        return $this->aditionalPhone;
+        return $this->additionalPhone;
     }
 
     /**
@@ -377,6 +383,30 @@ class Customer
     }
 
     /**
+     * Set drivingLicenceExpirationDate.
+     *
+     * @param \DateTime $drivingLicenceExpirationDate
+     *
+     * @return Customer
+     */
+    public function setDrivingLicenceExpirationDate($drivingLicenceExpirationDate)
+    {
+        $this->drivingLicenceExpirationDate = $drivingLicenceExpirationDate;
+
+        return $this;
+    }
+
+    /**
+     * Get drivingLicenceExpirationDate.
+     *
+     * @return \DateTime
+     */
+    public function getDrivingLicenceExpirationDate()
+    {
+        return $this->drivingLicenceExpirationDate;
+    }
+
+    /**
      * Set passport.
      *
      * @param string $passport
@@ -398,6 +428,30 @@ class Customer
     public function getPassport()
     {
         return $this->passport;
+    }
+
+    /**
+     * Set ipAddress.
+     *
+     * @param string $ipAddress
+     *
+     * @return Customer
+     */
+    public function setIpAddress($ipAddress)
+    {
+        $this->ipAddress = $ipAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get ipAddress.
+     *
+     * @return string
+     */
+    public function getIpAddress()
+    {
+        return $this->ipAddress;
     }
 
     /**
@@ -425,22 +479,36 @@ class Customer
     }
 
     /**
-     * @param \DateTime $drivingLicenceExpirationDate
+     * Add booking.
+     *
+     * @param \BookingsBundle\Entity\Booking $booking
      *
      * @return Customer
      */
-    public function setDrivingLicenceExpirationDate($drivingLicenceExpirationDate)
+    public function addBooking(\BookingsBundle\Entity\Booking $booking)
     {
-        $this->drivingLicenceExpirationDate = new \DateTime($drivingLicenceExpirationDate);
+        $this->bookings[] = $booking;
 
         return $this;
     }
 
     /**
-     * @return \DateTime
+     * Remove booking.
+     *
+     * @param \BookingsBundle\Entity\Booking $booking
      */
-    public function getDrivingLicenceExpirationDate()
+    public function removeBooking(\BookingsBundle\Entity\Booking $booking)
     {
-        return !empty($this->drivingLicenceExpirationDate) ? $this->drivingLicenceExpirationDate->format('Y-m-d H:i') : $this->drivingLicenceExpirationDate;
+        $this->bookings->removeElement($booking);
+    }
+
+    /**
+     * Get bookings.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBookings()
+    {
+        return $this->bookings;
     }
 }
