@@ -3,6 +3,7 @@
 namespace BookingsBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,8 +17,14 @@ class BookingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pickUpDate', TextType::class)
-            ->add('dropOffDate', TextType::class)
+            ->add('pickUpDate', DateTimeType::class, [
+                'widget' => 'single_text',
+                'date_format' => 'yyyy-MM-dd  HH:i',
+            ])
+            ->add('dropOffDate', DateTimeType::class, [
+                'widget' => 'single_text',
+                'date_format' => 'yyyy-MM-dd  HH:i',
+            ])
             ->add('pickUpLocation', TextType::class)
             ->add('dropOffLocation', TextType::class)
             ->add('customer', EntityType::class, [
@@ -27,7 +34,11 @@ class BookingType extends AbstractType
             ->add('vehicle', EntityType::class, [
                 'class' => 'VehicleBundle\Entity\Vehicle',
                 'choice_label' => 'vinBrandModel',
-            ]);
+            ])
+            ->add('servicesRequested')
+            ->add('specialRequirements')
+            ->add('unitNumber')
+        ;
     }
 
     /**

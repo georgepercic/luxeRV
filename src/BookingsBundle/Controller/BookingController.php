@@ -76,7 +76,7 @@ class BookingController extends Controller
 
                 if (false !== $dropOffLocation && isset($dropOffLocation->lat)) {
                     $booking->setDropOffLocationLatitude($dropOffLocation->lat);
-                    $booking->setDropOffLocationLongitute($dropOffLocation->lng);
+                    $booking->setDropOffLocationLongitude($dropOffLocation->lng);
                 }
             }
 

@@ -2,9 +2,7 @@
 
 namespace BookingsBundle\Entity;
 
-use CustomerBundle\Entity\Customer;
 use Doctrine\ORM\Mapping as ORM;
-use VehicleBundle\Entity\Vehicle;
 use VehicleBundle\VehicleBundle;
 
 /**
@@ -91,7 +89,35 @@ class Booking
      *
      * @ORM\Column(name="drop_off_location_longitude", type="float", nullable=true)
      */
-    private $dropOffLocationLongitute;
+    private $dropOffLocationLongitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="services_requested", type="string", nullable=true)
+     */
+    private $servicesRequested;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="special_requirements", type="string", nullable=true)
+     */
+    private $specialRequirements;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="customer_ip_address", type="string", nullable=true)
+     */
+    private $customerIpAddress;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="unit_number", type="string", nullable=true)
+     */
+    private $unitNumber;
 
     /**
      * @ORM\ManyToOne(targetEntity="CustomerBundle\Entity\Customer", inversedBy="bookings")
@@ -106,26 +132,6 @@ class Booking
     private $vehicle;
 
     /**
-     * @return Vehicle
-     */
-    public function getVehicle()
-    {
-        return $this->vehicle;
-    }
-
-    /**
-     * @param $vehicle
-     *
-     * @return Booking
-     */
-    public function setVehicle($vehicle)
-    {
-        $this->vehicle = $vehicle;
-
-        return $this;
-    }
-
-    /**
      * Get id.
      *
      * @return int
@@ -136,118 +142,8 @@ class Booking
     }
 
     /**
-     * Set pickUpDate.
+     * Set status.
      *
-     * @param \DateTime $pickUpDate
-     *
-     * @return Booking
-     */
-    public function setPickUpDate($pickUpDate)
-    {
-        $this->pickUpDate = new \DateTime($pickUpDate);
-
-        return $this;
-    }
-
-    /**
-     * Get pickUpDate.
-     *
-     * @return \DateTime
-     */
-    public function getPickUpDate()
-    {
-        return !empty($this->pickUpDate) ? $this->pickUpDate->format('Y-m-d H:i') : $this->pickUpDate;
-    }
-
-    /**
-     * Set dropOffDate.
-     *
-     * @param \DateTime $dropOffDate
-     *
-     * @return Booking
-     */
-    public function setDropOffDate($dropOffDate)
-    {
-        $this->dropOffDate = new \DateTime($dropOffDate);
-
-        return $this;
-    }
-
-    /**
-     * Get dropOffDate.
-     *
-     * @return \DateTime
-     */
-    public function getDropOffDate()
-    {
-        return !empty($this->dropOffDate) ? $this->dropOffDate->format('Y-m-d H:i') : $this->dropOffDate;
-    }
-
-    /**
-     * Set customerId.
-     *
-     * @param $customer
-     *
-     * @return Booking
-     */
-    public function setCustomer($customer)
-    {
-        $this->customer = $customer;
-
-        return $this;
-    }
-
-    /**
-     * Get customerId.
-     *
-     * @return Customer
-     */
-    public function getCustomer()
-    {
-        return $this->customer;
-    }
-
-    /**
-     * @param string $pickUpLocation
-     *
-     * @return Booking
-     */
-    public function setPickUpLocation($pickUpLocation)
-    {
-        $this->pickUpLocation = $pickUpLocation;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPickUpLocation()
-    {
-        return $this->pickUpLocation;
-    }
-
-    /**
-     * @param string $dropOffLocation
-     *
-     * @return Booking
-     */
-    public function setDropOffLocation($dropOffLocation)
-    {
-        $this->dropOffLocation = $dropOffLocation;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDropOffLocation()
-    {
-        return $this->dropOffLocation;
-    }
-
-    /**
      * @param string $status
      *
      * @return Booking
@@ -260,11 +156,109 @@ class Booking
     }
 
     /**
+     * Get status.
+     *
      * @return string
      */
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set pickUpDate.
+     *
+     * @param \DateTime $pickUpDate
+     *
+     * @return Booking
+     */
+    public function setPickUpDate($pickUpDate)
+    {
+        $this->pickUpDate = $pickUpDate;
+
+        return $this;
+    }
+
+    /**
+     * Get pickUpDate.
+     *
+     * @return \DateTime
+     */
+    public function getPickUpDate()
+    {
+        return $this->pickUpDate;
+    }
+
+    /**
+     * Set dropOffDate.
+     *
+     * @param \DateTime $dropOffDate
+     *
+     * @return Booking
+     */
+    public function setDropOffDate($dropOffDate)
+    {
+        $this->dropOffDate = $dropOffDate;
+
+        return $this;
+    }
+
+    /**
+     * Get dropOffDate.
+     *
+     * @return \DateTime
+     */
+    public function getDropOffDate()
+    {
+        return $this->dropOffDate;
+    }
+
+    /**
+     * Set pickUpLocation.
+     *
+     * @param string $pickUpLocation
+     *
+     * @return Booking
+     */
+    public function setPickUpLocation($pickUpLocation)
+    {
+        $this->pickUpLocation = $pickUpLocation;
+
+        return $this;
+    }
+
+    /**
+     * Get pickUpLocation.
+     *
+     * @return string
+     */
+    public function getPickUpLocation()
+    {
+        return $this->pickUpLocation;
+    }
+
+    /**
+     * Set dropOffLocation.
+     *
+     * @param string $dropOffLocation
+     *
+     * @return Booking
+     */
+    public function setDropOffLocation($dropOffLocation)
+    {
+        $this->dropOffLocation = $dropOffLocation;
+
+        return $this;
+    }
+
+    /**
+     * Get dropOffLocation.
+     *
+     * @return string
+     */
+    public function getDropOffLocation()
+    {
+        return $this->dropOffLocation;
     }
 
     /**
@@ -340,26 +334,170 @@ class Booking
     }
 
     /**
-     * Set dropOffLocationLongitute.
+     * Set dropOffLocationLongitude.
      *
-     * @param float $dropOffLocationLongitute
+     * @param float $dropOffLocationLongitude
      *
      * @return Booking
      */
-    public function setDropOffLocationLongitute($dropOffLocationLongitute)
+    public function setDropOffLocationLongitude($dropOffLocationLongitude)
     {
-        $this->dropOffLocationLongitute = $dropOffLocationLongitute;
+        $this->dropOffLocationLongitude = $dropOffLocationLongitude;
 
         return $this;
     }
 
     /**
-     * Get dropOffLocationLongitute.
+     * Get dropOffLocationLongitude.
      *
      * @return float
      */
-    public function getDropOffLocationLongitute()
+    public function getDropOffLocationLongitude()
     {
-        return $this->dropOffLocationLongitute;
+        return $this->dropOffLocationLongitude;
+    }
+
+    /**
+     * Set servicesRequested.
+     *
+     * @param string $servicesRequested
+     *
+     * @return Booking
+     */
+    public function setServicesRequested($servicesRequested)
+    {
+        $this->servicesRequested = $servicesRequested;
+
+        return $this;
+    }
+
+    /**
+     * Get servicesRequested.
+     *
+     * @return string
+     */
+    public function getServicesRequested()
+    {
+        return $this->servicesRequested;
+    }
+
+    /**
+     * Set specialRequirements.
+     *
+     * @param string $specialRequirements
+     *
+     * @return Booking
+     */
+    public function setSpecialRequirements($specialRequirements)
+    {
+        $this->specialRequirements = $specialRequirements;
+
+        return $this;
+    }
+
+    /**
+     * Get specialRequirements.
+     *
+     * @return string
+     */
+    public function getSpecialRequirements()
+    {
+        return $this->specialRequirements;
+    }
+
+    /**
+     * Set customerIpAddress.
+     *
+     * @param string $customerIpAddress
+     *
+     * @return Booking
+     */
+    public function setCustomerIpAddress($customerIpAddress)
+    {
+        $this->customerIpAddress = $customerIpAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get customerIpAddress.
+     *
+     * @return string
+     */
+    public function getCustomerIpAddress()
+    {
+        return $this->customerIpAddress;
+    }
+
+    /**
+     * Set customer.
+     *
+     * @param \CustomerBundle\Entity\Customer $customer
+     *
+     * @return Booking
+     */
+    public function setCustomer(\CustomerBundle\Entity\Customer $customer = null)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer.
+     *
+     * @return \CustomerBundle\Entity\Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * Set vehicle.
+     *
+     * @param \VehicleBundle\Entity\Vehicle $vehicle
+     *
+     * @return Booking
+     */
+    public function setVehicle(\VehicleBundle\Entity\Vehicle $vehicle = null)
+    {
+        $this->vehicle = $vehicle;
+
+        return $this;
+    }
+
+    /**
+     * Get vehicle.
+     *
+     * @return \VehicleBundle\Entity\Vehicle
+     */
+    public function getVehicle()
+    {
+        return $this->vehicle;
+    }
+
+    /**
+     * Set unitNumber.
+     *
+     * @param string $unitNumber
+     *
+     * @return Booking
+     */
+    public function setUnitNumber($unitNumber)
+    {
+        $this->unitNumber = $unitNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get unitNumber.
+     *
+     * @return string
+     */
+    public function getUnitNumber()
+    {
+        return $this->unitNumber;
     }
 }

@@ -16,6 +16,10 @@
                     <th>Customer</th>
                     <th>Vehicle</th>
                     <th>Invoice</th>
+                    <th>Unit #</th>
+                    <th>Special Req.</th>
+                    <th>Services Req.</th>
+                    <th>Customer IP</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -29,6 +33,10 @@
                         <td>{{ booking.customer.getName }}</td>
                         <td>{{ booking.vehicle.getVinBrandModel }}</td>
                         <td>-</td>
+                        <td>{{ booking.unitNumber }}</td>
+                        <td>{{ booking.specialRequirements }}</td>
+                        <td>{{ booking.servicesRequested }}</td>
+                        <td>{{ booking.customerIpAddress }}</td>
                         <td>
                             <a href="{{ path('bookings_edit', { 'id': booking.id }) }}"><span class="fa fa-pencil"></span></a>
                         </td>
