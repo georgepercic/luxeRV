@@ -5,7 +5,8 @@ namespace CustomerBundle\Controller;
 use CustomerBundle\Entity\Customer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Customer controller.
@@ -78,6 +79,7 @@ class CustomerController extends Controller
      *
      * @Route("/{id}/edit", name="customer_edit")
      * @Method({"GET", "POST"})
+     *
      * @param Request  $request
      * @param Customer $customer
      *

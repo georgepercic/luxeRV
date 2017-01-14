@@ -19,7 +19,7 @@ class NotificationType extends AbstractType
             ->add('email', TextType::class)
             ->add('phone', TextType::class)
             ->add('events', ChoiceType::class, array(
-                'choices'  => array(
+                'choices' => array(
                     '' => '',
                     'Booking Opened' => 'opened',
                     'Booking Completed' => 'completed',

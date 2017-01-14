@@ -5,7 +5,8 @@ namespace VehicleBundle\Controller;
 use VehicleBundle\Entity\Vehicle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Vehicle controller.
@@ -36,6 +37,7 @@ class VehicleController extends Controller
      *
      * @Route("/new", name="vehicles_new")
      * @Method({"GET", "POST"})
+     *
      * @param Request $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -65,6 +67,7 @@ class VehicleController extends Controller
      *
      * @Route("/{id}", name="vehicles_show")
      * @Method("GET")
+     *
      * @param Vehicle $vehicle
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -84,6 +87,7 @@ class VehicleController extends Controller
      *
      * @Route("/{id}/edit", name="vehicles_edit")
      * @Method({"GET", "POST"})
+     *
      * @param Request $request
      * @param Vehicle $vehicle
      *
@@ -113,6 +117,7 @@ class VehicleController extends Controller
      *
      * @Route("/{id}", name="vehicles_delete")
      * @Method("DELETE")
+     *
      * @param Request $request
      * @param Vehicle $vehicle
      *

@@ -54,16 +54,44 @@ class Booking
     /**
      * @var string
      *
-     * @ORM\Column(name="pick_up_location", type="string")
+     * @ORM\Column(name="pick_up_location", type="string", nullable=true)
      */
     private $pickUpLocation;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="drop_off_location", type="string")
+     * @ORM\Column(name="drop_off_location", type="string", nullable=true)
      */
     private $dropOffLocation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pickup_location_latitude", type="float", nullable=true)
+     */
+    private $pickupLocationLatitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pickup_location_longitude", type="float", nullable=true)
+     */
+    private $pickupLocationLongitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="drop_off_location_latitude", type="float", nullable=true)
+     */
+    private $dropOffLocationLatitude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="drop_off_location_longitude", type="float", nullable=true)
+     */
+    private $dropOffLocationLongitute;
 
     /**
      * @ORM\ManyToOne(targetEntity="CustomerBundle\Entity\Customer", inversedBy="bookings")
@@ -237,5 +265,101 @@ class Booking
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set pickupLocationLatitude.
+     *
+     * @param float $pickupLocationLatitude
+     *
+     * @return Booking
+     */
+    public function setPickupLocationLatitude($pickupLocationLatitude)
+    {
+        $this->pickupLocationLatitude = $pickupLocationLatitude;
+
+        return $this;
+    }
+
+    /**
+     * Get pickupLocationLatitude.
+     *
+     * @return float
+     */
+    public function getPickupLocationLatitude()
+    {
+        return $this->pickupLocationLatitude;
+    }
+
+    /**
+     * Set pickupLocationLongitude.
+     *
+     * @param float $pickupLocationLongitude
+     *
+     * @return Booking
+     */
+    public function setPickupLocationLongitude($pickupLocationLongitude)
+    {
+        $this->pickupLocationLongitude = $pickupLocationLongitude;
+
+        return $this;
+    }
+
+    /**
+     * Get pickupLocationLongitude.
+     *
+     * @return float
+     */
+    public function getPickupLocationLongitude()
+    {
+        return $this->pickupLocationLongitude;
+    }
+
+    /**
+     * Set dropOffLocationLatitude.
+     *
+     * @param float $dropOffLocationLatitude
+     *
+     * @return Booking
+     */
+    public function setDropOffLocationLatitude($dropOffLocationLatitude)
+    {
+        $this->dropOffLocationLatitude = $dropOffLocationLatitude;
+
+        return $this;
+    }
+
+    /**
+     * Get dropOffLocationLatitude.
+     *
+     * @return float
+     */
+    public function getDropOffLocationLatitude()
+    {
+        return $this->dropOffLocationLatitude;
+    }
+
+    /**
+     * Set dropOffLocationLongitute.
+     *
+     * @param float $dropOffLocationLongitute
+     *
+     * @return Booking
+     */
+    public function setDropOffLocationLongitute($dropOffLocationLongitute)
+    {
+        $this->dropOffLocationLongitute = $dropOffLocationLongitute;
+
+        return $this;
+    }
+
+    /**
+     * Get dropOffLocationLongitute.
+     *
+     * @return float
+     */
+    public function getDropOffLocationLongitute()
+    {
+        return $this->dropOffLocationLongitute;
     }
 }

@@ -5,7 +5,7 @@ namespace NotificationsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Notification
+ * Notification.
  *
  * @ORM\Table(name="notification")
  * @ORM\Entity(repositoryClass="NotificationsBundle\Repository\NotificationRepository")
@@ -42,9 +42,8 @@ class Notification
      */
     private $events;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -54,7 +53,7 @@ class Notification
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
      *
@@ -68,7 +67,7 @@ class Notification
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */
@@ -78,7 +77,7 @@ class Notification
     }
 
     /**
-     * Set phone
+     * Set phone.
      *
      * @param string $phone
      *
@@ -92,7 +91,7 @@ class Notification
     }
 
     /**
-     * Get phone
+     * Get phone.
      *
      * @return string
      */
@@ -102,7 +101,7 @@ class Notification
     }
 
     /**
-     * Set events
+     * Set events.
      *
      * @param string $events
      *
@@ -116,7 +115,7 @@ class Notification
     }
 
     /**
-     * Get events
+     * Get events.
      *
      * @return string
      */
@@ -125,4 +124,3 @@ class Notification
         return $this->events;
     }
 }
-

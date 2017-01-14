@@ -6,16 +6,16 @@ use BookingsBundle\Entity\Booking;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Invoice
+ * Invoice.
  *
  * @ORM\Table(name="invoice")
  * @ORM\Entity(repositoryClass="InvoiceBundle\Repository\InvoiceRepository")
  */
 class Invoice
 {
-    const STATUS_NEW = "new";
-    const STATUS_PAID = "paid";
-    const STATUS_PARTIALLY_PAID = "partially paid";
+    const STATUS_NEW = 'new';
+    const STATUS_PAID = 'paid';
+    const STATUS_PARTIALLY_PAID = 'partially paid';
 
     /**
      * @var int
@@ -103,7 +103,7 @@ class Invoice
     private $security_deposit;
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -113,7 +113,7 @@ class Invoice
     }
 
     /**
-     * Set booking
+     * Set booking.
      *
      * @param Booking
      *
@@ -127,7 +127,7 @@ class Invoice
     }
 
     /**
-     * Get booking
+     * Get booking.
      *
      * @return Booking
      */
@@ -137,7 +137,7 @@ class Invoice
     }
 
     /**
-     * Set vehicleRent
+     * Set vehicleRent.
      *
      * @param float $vehicleRent
      *
@@ -151,7 +151,7 @@ class Invoice
     }
 
     /**
-     * Get vehicleRent
+     * Get vehicleRent.
      *
      * @return float
      */
@@ -161,7 +161,7 @@ class Invoice
     }
 
     /**
-     * Set equipmentRent
+     * Set equipmentRent.
      *
      * @param float $equipmentRent
      *
@@ -175,7 +175,7 @@ class Invoice
     }
 
     /**
-     * Get equipmentRent
+     * Get equipmentRent.
      *
      * @return float
      */
@@ -185,7 +185,7 @@ class Invoice
     }
 
     /**
-     * Set insuranceCost
+     * Set insuranceCost.
      *
      * @param float $insuranceCost
      *
@@ -199,7 +199,7 @@ class Invoice
     }
 
     /**
-     * Get insuranceCost
+     * Get insuranceCost.
      *
      * @return float
      */
@@ -209,7 +209,7 @@ class Invoice
     }
 
     /**
-     * Set serviceTax
+     * Set serviceTax.
      *
      * @param float $serviceTax
      *
@@ -223,7 +223,7 @@ class Invoice
     }
 
     /**
-     * Get serviceTax
+     * Get serviceTax.
      *
      * @return float
      */
@@ -233,7 +233,7 @@ class Invoice
     }
 
     /**
-     * Set tax
+     * Set tax.
      *
      * @param float $tax
      *
@@ -247,7 +247,7 @@ class Invoice
     }
 
     /**
-     * Get tax
+     * Get tax.
      *
      * @return float
      */
@@ -257,7 +257,7 @@ class Invoice
     }
 
     /**
-     * Set totalAmountPaybale
+     * Set totalAmountPaybale.
      *
      * @param float $totalAmountPaybale
      *
@@ -271,7 +271,7 @@ class Invoice
     }
 
     /**
-     * Get totalAmountPaybale
+     * Get totalAmountPaybale.
      *
      * @return float
      */
@@ -281,7 +281,7 @@ class Invoice
     }
 
     /**
-     * Set discountAmount
+     * Set discountAmount.
      *
      * @param float $discountAmount
      *
@@ -295,7 +295,7 @@ class Invoice
     }
 
     /**
-     * Get discountAmount
+     * Get discountAmount.
      *
      * @return float
      */
@@ -305,7 +305,7 @@ class Invoice
     }
 
     /**
-     * Set netAmountPayable
+     * Set netAmountPayable.
      *
      * @param float $netAmountPayable
      *
@@ -319,7 +319,7 @@ class Invoice
     }
 
     /**
-     * Get netAmountPayable
+     * Get netAmountPayable.
      *
      * @return float
      */
@@ -336,6 +336,7 @@ class Invoice
     public function setStatus($status)
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -355,6 +356,7 @@ class Invoice
     public function setSecurityDeposit($security_deposit)
     {
         $this->security_deposit = $security_deposit;
+
         return $this;
     }
 
@@ -366,4 +368,3 @@ class Invoice
         return $this->security_deposit;
     }
 }
-

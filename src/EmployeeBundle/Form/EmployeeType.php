@@ -27,14 +27,14 @@ class EmployeeType extends AbstractType
             ->add('addressCountry')
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'EmployeeBundle\Entity\Employee'
+            'data_class' => 'EmployeeBundle\Entity\Employee',
         ));
     }
 
@@ -45,6 +45,4 @@ class EmployeeType extends AbstractType
     {
         return 'employeebundle_employee';
     }
-
-
 }

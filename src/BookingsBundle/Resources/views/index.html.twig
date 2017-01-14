@@ -9,10 +9,13 @@
             <table class="table table-bordered table-condensed datatable m-b-0">
                 <thead>
                 <tr>
-                    <th>Pickup date</th>
-                    <th>Dropoff date</th>
+                    <th>PickUp DateTime</th>
+                    <th>DropOff DateTime</th>
+                    <th>PickUp Location</th>
+                    <th>DropOff Location</th>
                     <th>Customer</th>
                     <th>Vehicle</th>
+                    <th>Invoice</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -21,8 +24,11 @@
                     <tr>
                         <td>{% if booking.pickUpDate %}{{ booking.pickUpDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>{% if booking.dropOffDate %}{{ booking.dropOffDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{{ booking.pickUpLocation }}</td>
+                        <td>{{ booking.dropOffLocation }}</td>
                         <td>{{ booking.customer.getName }}</td>
                         <td>{{ booking.vehicle.getVinBrandModel }}</td>
+                        <td>-</td>
                         <td>
                             <a href="{{ path('bookings_edit', { 'id': booking.id }) }}"><span class="fa fa-pencil"></span></a>
                         </td>

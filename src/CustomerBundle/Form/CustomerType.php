@@ -30,14 +30,14 @@ class CustomerType extends AbstractType
             ->add('insurance')
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'CustomerBundle\Entity\Customer'
+            'data_class' => 'CustomerBundle\Entity\Customer',
         ));
     }
 
@@ -48,6 +48,4 @@ class CustomerType extends AbstractType
     {
         return 'customerbundle_customer';
     }
-
-
 }

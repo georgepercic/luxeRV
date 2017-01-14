@@ -4,3 +4,6 @@ parameters:
 #    parameter_name: value
 
 services:
+    app.geo_service:
+        class: AppBundle\Service\GeoService
+        arguments: ["@service_container"]

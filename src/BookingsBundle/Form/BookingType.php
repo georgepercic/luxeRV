@@ -18,6 +18,8 @@ class BookingType extends AbstractType
         $builder
             ->add('pickUpDate', TextType::class)
             ->add('dropOffDate', TextType::class)
+            ->add('pickUpLocation', TextType::class)
+            ->add('dropOffLocation', TextType::class)
             ->add('customer', EntityType::class, [
                 'class' => 'CustomerBundle\Entity\Customer',
                 'choice_label' => 'name',
