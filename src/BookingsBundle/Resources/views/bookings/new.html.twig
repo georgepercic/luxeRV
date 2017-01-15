@@ -91,7 +91,7 @@
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
                         <div class="col-sm-10">
-                            {{ form_widget(form.unitNumber, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Unit Number", 'style': 'width: 100%;'} }) }}
+                            {{ form_widget(form.unitNumber, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Unit #", 'style': 'width: 100%;'} }) }}
                         </div>
                     </div>
 
@@ -151,8 +151,43 @@
 
     <script>
         $(document).ready(function () {
-            $('#pick-up-datetimepicker, #drop-off-datetimepicker').datetimepicker({
-                format: 'YYYY-MM-DD HH:mm'
+
+            var timeVars = {{ timeVars|json_encode|raw }};
+
+            var timeFormatDelivery = "YYYY-MM-DD HH:mm";
+            var timeFormatReturn = "YYYY-MM-DD HH:mm";
+
+            if (timeVars.delivery) {
+                timeFormatDelivery = "YYYY-MM-DD " + timeVars.delivery;
+            }
+
+            if (timeVars.return) {
+                timeFormatReturn = "YYYY-MM-DD " + timeVars.return;
+            }
+
+            $('#pick-up-datetimepicker').datetimepicker({
+                format: timeFormatDelivery
+            }).on('dp.change', function(e) {
+                //$('#drop-off-datetimepicker').datetimepicker('setDate', e.date);
+
+                var endDate = e.date;
+
+                if (timeVars.minDays && timeVars.minDays > 0) {
+                    endDate = e.date.add(timeVars.minDays, 'days');
+                }
+
+                if (timeVars.return) {
+
+                    console.log(timeFormatReturn);
+                    console.log(endDate.format(timeFormatReturn));
+                }
+
+                $('#drop-off-datetimepicker').data('DateTimePicker').date(endDate);
+            });
+
+            $('#drop-off-datetimepicker').datetimepicker({
+                format: timeFormatReturn
+               // useCurrent: false
             });
 
             $('.select2').select2();

@@ -22,24 +22,38 @@ class BookingType extends AbstractType
             ->add('pickUpDate', DateTimeType::class, [
                 'widget' => 'single_text',
                 'date_format' => 'yyyy-MM-dd  HH:i',
+                'label' => 'Delivery Date',
             ])
             ->add('dropOffDate', DateTimeType::class, [
                 'widget' => 'single_text',
                 'date_format' => 'yyyy-MM-dd  HH:i',
+                'label' => 'Return Date',
             ])
-            ->add('pickUpLocation', TextType::class)
-            ->add('dropOffLocation', TextType::class)
+            ->add('pickUpLocation', TextType::class, [
+                'label' => 'Delivery Location',
+            ])
+            ->add('dropOffLocation', TextType::class, [
+                'label' => 'Return Location',
+            ])
             ->add('customer', EntityType::class, [
                 'class' => 'CustomerBundle\Entity\Customer',
                 'choice_label' => 'name',
+                'label' => 'Services Requested',
             ])
             ->add('vehicle', EntityType::class, [
                 'class' => 'VehicleBundle\Entity\Vehicle',
                 'choice_label' => 'vinBrandModel',
+                'label' => 'Vehicle',
             ])
-            ->add('servicesRequested')
-            ->add('specialRequirements')
-            ->add('unitNumber')
+            ->add('servicesRequested', null, [
+                'label' => 'Services Requested',
+            ])
+            ->add('specialRequirements', null, [
+                'label' => 'Special Requirements',
+            ])
+            ->add('unitNumber', null, [
+                'label' => 'Unit #',
+            ])
             ->add('bookingStatus', ChoiceType::class, [
                 'choices' => [
                     Booking::STATUS_RESERVED => Booking::STATUS_RESERVED,
@@ -48,7 +62,7 @@ class BookingType extends AbstractType
                     Booking::STATUS_CLOSED => Booking::STATUS_CLOSED,
                     Booking::STATUS_DISPUTE => Booking::STATUS_DISPUTE,
                 ],
-               // 'empty_data'  => Booking::STATUS_RESERVED
+                'label' => 'Booking State',
             ])
         ;
     }

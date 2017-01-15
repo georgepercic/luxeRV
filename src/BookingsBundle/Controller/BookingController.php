@@ -3,7 +3,9 @@
 namespace BookingsBundle\Controller;
 
 use AppBundle\Service\GeoService;
+use AppBundle\Service\SettingsService;
 use BookingsBundle\Entity\Booking;
+use BookingsBundle\Entity\Settings;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -48,6 +50,9 @@ class BookingController extends Controller
         /** @var GeoService $geoService */
         $geoService = $this->get('app.geo_service');
 
+        /** @var SettingsService $settingsService */
+        $settingsService = $this->get('app.settings_service');
+
         $booking = new Booking();
         $form = $this->createForm('BookingsBundle\Form\BookingType', $booking);
         $form->handleRequest($request);
@@ -86,9 +91,21 @@ class BookingController extends Controller
             return $this->redirectToRoute('bookings_index', array('id' => $booking->getId()));
         }
 
+        /** @var Settings|false $settingVars */
+        $settingVars = $settingsService->getCurrentAppSettings();
+
+        $timeVars = [];
+
+        if (false !== $settingVars) {
+            $timeVars['delivery'] = $settingVars->getDefaultPickUpTime()->format('H:i');
+            $timeVars['return'] = $settingVars->getDefaultDropOffTime()->format('H:i');
+            $timeVars['minDays'] = $settingVars->getDefaultMinRentDays();
+        }
+
         return $this->render('BookingsBundle::bookings/new.html.twig', array(
             'booking' => $booking,
             'form' => $form->createView(),
+            'timeVars' => $timeVars,
         ));
     }
 

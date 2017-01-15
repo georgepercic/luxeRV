@@ -7,3 +7,7 @@ services:
     app.geo_service:
         class: AppBundle\Service\GeoService
         arguments: ["@service_container"]
+
+    app.settings_service:
+        class: AppBundle\Service\SettingsService
+        arguments: ["@service_container"]
