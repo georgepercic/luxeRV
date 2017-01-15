@@ -36,14 +36,14 @@ class Settings
     /**
      * @var int
      *
-     * @ORM\Column(name="default_pick_up_time", type="integer", nullable=true)
+     * @ORM\Column(name="default_pick_up_time", type="time", nullable=true)
      */
     private $defaultPickUpTime;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="default_drop_off_time", type="integer", nullable=true)
+     * @ORM\Column(name="default_drop_off_time", type="time", nullable=true)
      */
     private $defaultDropOffTime;
 
@@ -105,7 +105,7 @@ class Settings
     /**
      * Set defaultPickUpTime.
      *
-     * @param int $defaultPickUpTime
+     * @param \DateTime $defaultPickUpTime
      *
      * @return Settings
      */
@@ -119,7 +119,7 @@ class Settings
     /**
      * Get defaultPickUpTime.
      *
-     * @return int
+     * @return \DateTime
      */
     public function getDefaultPickUpTime()
     {
@@ -129,11 +129,11 @@ class Settings
     /**
      * Set defaultDropOffTime.
      *
-     * @param int $defaultDropOffTime
+     * @param \DateTime $defaultDropOffTime
      *
      * @return Settings
      */
-    public function setDefaultDropOffDate($defaultDropOffTime)
+    public function setDefaultDropOffTime($defaultDropOffTime)
     {
         $this->defaultDropOffTime = $defaultDropOffTime;
 
@@ -143,7 +143,7 @@ class Settings
     /**
      * Get defaultDropOffTime.
      *
-     * @return int
+     * @return \DateTime
      */
     public function getDefaultDropOffTime()
     {
@@ -220,19 +220,5 @@ class Settings
     public function getDepositAmountRate()
     {
         return $this->depositAmountRate;
-    }
-
-    /**
-     * Set defaultDropOffTime.
-     *
-     * @param int $defaultDropOffTime
-     *
-     * @return Settings
-     */
-    public function setDefaultDropOffTime($defaultDropOffTime)
-    {
-        $this->defaultDropOffTime = $defaultDropOffTime;
-
-        return $this;
     }
 }

@@ -1,11 +1,26 @@
 {% extends 'AppBundle::layout.html.twig' %}
-
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/multiselect/css/multi-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/ui-select/dist/select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/select2/dist/css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/selectize/dist/css/selectize.css') }}">
+    <style>
+        .datetimepicker {
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
 {% block body %}
     <div class="card bg-white">
         <div class="card-header">
-            Settings creation
+            Defaults
         </div>
         <div class="card-block">
+            <div class="row">
+                <div class="col-md-1"><a href="{{  path('booking_operations') }}" class="btn btn-primary">Dashboard</a></div>
+            </div>
             <div class="row m-a-0">
                 <div class="col-lg-12">
                     {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
@@ -22,7 +37,12 @@
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
                         <div class="col-sm-10">
-                            {{ form_widget(form.defaultPickUpTime, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Default Pickup Time"} }) }}
+                            <div class="input-group" id="pick-datetimepicker">
+                                {{ form_widget(form.defaultPickUpTime, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Delivery Time"} }) }}
+                                <span class="input-group-addon datetimepicker">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -30,7 +50,12 @@
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
                         <div class="col-sm-10">
-                            {{ form_widget(form.defaultDropOffTime, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Default Drop Off Time"} }) }}
+                            <div class="input-group" id="drop-datetimepicker">
+                                {{ form_widget(form.defaultDropOffTime, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Return Time"} }) }}
+                                <span class="input-group-addon datetimepicker">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -38,7 +63,7 @@
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
                         <div class="col-sm-10">
-                            {{ form_widget(form.defaultMinRentDays, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Default Minimum Rent Days"} }) }}
+                            {{ form_widget(form.defaultMinRentDays, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Min. Rental Days"} }) }}
                         </div>
                     </div>
                     <div class="form-group">
@@ -46,7 +71,7 @@
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
                         <div class="col-sm-10">
-                            {{ form_widget(form.taxRate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Tax Rate"} }) }}
+                            {{ form_widget(form.taxRate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Tax Rate(%)"} }) }}
                         </div>
                     </div>
                     <div class="form-group">
@@ -54,7 +79,7 @@
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
                         <div class="col-sm-10">
-                            {{ form_widget(form.depositAmountRate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Deposit Amount"} }) }}
+                            {{ form_widget(form.depositAmountRate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Deposit Amount(%)"} }) }}
                         </div>
                     </div>
                     <div class="form-group">
@@ -69,9 +94,29 @@
         </div>
     </div>
 
-    <ul>
+    {#<ul>
         <li>
             <a href="{{ path('settings_index') }}">Back to the list</a>
         </li>
-    </ul>
+    </ul>#}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/moment/moment.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/transition.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/collapse.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/select2/dist/js/select2.js') }}"></script>
+    <script src="{{ asset('assets/vendor/selectize/dist/js/standalone/selectize.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/multiselect/js/jquery.multi-select.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#pick-datetimepicker, #drop-datetimepicker').datetimepicker({
+                format: 'HH:mm'
+            });
+
+            $('.select2').select2();
+        });
+    </script>
 {% endblock %}

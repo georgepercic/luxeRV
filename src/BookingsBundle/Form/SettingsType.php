@@ -3,6 +3,7 @@
 namespace BookingsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,11 +16,23 @@ class SettingsType extends AbstractType
     {
         $builder
             ->add('dailyMiles')
-            ->add('defaultPickUpTime')
-            ->add('defaultDropOffTime')
-            ->add('defaultMinRentDays')
-            ->add('taxRate')
-            ->add('depositAmountRate')
+            ->add('defaultPickUpTime', TimeType::class, [
+                'label' => 'Delivery Time',
+                'widget' => 'single_text',
+            ])
+            ->add('defaultDropOffTime', TimeType::class, [
+                'label' => 'Return Time',
+                'widget' => 'single_text',
+            ])
+            ->add('defaultMinRentDays', null, [
+                'label' => 'Min. Rental Days',
+            ])
+            ->add('taxRate', null, [
+                'label' => 'Tax Rate (%)',
+            ])
+            ->add('depositAmountRate', null, [
+                'label' => 'Deposit Amount (%)',
+            ])
         ;
     }
 

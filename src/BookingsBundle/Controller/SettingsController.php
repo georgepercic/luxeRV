@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 class SettingsController extends Controller
 {
     /**
-     * Lists all setting entities.
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      *
      * @Route("/", name="settings_index")
      * @Method("GET")
@@ -27,9 +27,20 @@ class SettingsController extends Controller
 
         $settings = $em->getRepository('BookingsBundle:Settings')->findAll();
 
-        return $this->render('BookingsBundle::settings/index.html.twig', array(
+        if (count($settings) > 0) {
+            /** @var Settings $settingNamespace */
+            $settingNamespace = array_shift($settings);
+
+            return $this->redirectToRoute('settings_edit', [
+                'id' => $settingNamespace->getId(),
+            ]);
+        }
+
+        /*return $this->render('BookingsBundle::settings/index.html.twig', array(
             'settings' => $settings,
-        ));
+        ));*/
+
+        return $this->redirectToRoute('settings_new');
     }
 
     /**
@@ -79,7 +90,20 @@ class SettingsController extends Controller
         $editForm = $this->createForm('BookingsBundle\Form\SettingsType', $setting);
         $editForm->handleRequest($request);
 
+        $vars = $request->request->get('bookingsbundle_settings', []);
+
+        $startTime = !empty($vars['defaultPickUpTime']) ? $vars['defaultPickUpTime'] : null;
+        $endTime = !empty($vars['defaultDropOffTime']) ? $vars['defaultDropOffTime'] : null;
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            /*if (!empty($startTime) && !empty($endTime)) {
+                $setting->setDefaultPickUpTime(new \DateTime($startTime));
+                $setting->setDefaultDropOffTime(new \DateTime($endTime));
+            } else {
+                $setting->setDefaultPickUpTime(null);
+                $setting->setDefaultDropOffTime(null);
+            }*/
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('settings_edit', array('id' => $setting->getId()));
