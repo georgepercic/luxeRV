@@ -3,9 +3,15 @@
 {% block body %}
     <div class="card bg-white">
         <div class="card-header">
-            Invoices list
+            Invoices
         </div>
         <div class="card-block">
+
+            <div class="row">
+                <div class="col-md-1"><a href="{{  path('booking_operations') }}" class="btn btn-primary">Dashboard</a></div>
+                {#<div class="col-md-1"><a href="{{  path('employees_new') }}" class="btn btn-primary">New Employee</a></div>#}
+            </div><br />
+
             <table class="table table-bordered table-condensed datatable m-b-0">
                 <thead>
                 <tr>

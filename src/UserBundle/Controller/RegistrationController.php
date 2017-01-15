@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @inheritdoc
+ * {@inheritdoc}
  */
 class RegistrationController extends BaseController
 {
@@ -77,5 +77,4 @@ class RegistrationController extends BaseController
             'form' => $form->createView(),
         ));
     }
-
 }

@@ -2,6 +2,7 @@
 
 namespace BookingsBundle\Controller;
 
+use AppBundle\Service\GeoService;
 use BookingsBundle\Entity\Booking;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -37,18 +38,48 @@ class BookingController extends Controller
      *
      * @Route("/new", name="bookings_new")
      * @Method({"GET", "POST"})
+     *
      * @param Request $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
+        /** @var GeoService $geoService */
+        $geoService = $this->get('app.geo_service');
+
         $booking = new Booking();
         $form = $this->createForm('BookingsBundle\Form\BookingType', $booking);
         $form->handleRequest($request);
 
+        $vars = $request->request->get('bookingsbundle_booking', []);
+
+        $pickUpLocationString = !empty($vars['pickUpLocation']) ? $vars['pickUpLocation'] : '';
+        $dropOffLocationString = !empty($vars['dropOffLocation']) ? $vars['dropOffLocation'] : '';
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            if (!empty($pickUpLocationString)) {
+                /** @var \stdClass $pickUpLocation */
+                $pickUpLocation = $geoService->geoCodeAddress($pickUpLocationString);
+
+                if (false !== $pickUpLocation && isset($pickUpLocation->lat)) {
+                    $booking->setPickupLocationLatitude($pickUpLocation->lat);
+                    $booking->setPickupLocationLongitude($pickUpLocation->lng);
+                }
+            }
+
+            if (!empty($dropOffLocationString)) {
+                /** @var \stdClass $dropOffLocation */
+                $dropOffLocation = $geoService->geoCodeAddress($dropOffLocationString);
+
+                if (false !== $dropOffLocation && isset($dropOffLocation->lat)) {
+                    $booking->setDropOffLocationLatitude($dropOffLocation->lat);
+                    $booking->setDropOffLocationLongitude($dropOffLocation->lng);
+                }
+            }
+
             $em->persist($booking);
             $em->flush();
 
@@ -66,6 +97,7 @@ class BookingController extends Controller
      *
      * @Route("/{id}/edit", name="bookings_edit")
      * @Method({"GET", "POST"})
+     *
      * @param Request $request
      * @param Booking $booking
      *
@@ -73,11 +105,43 @@ class BookingController extends Controller
      */
     public function editAction(Request $request, Booking $booking)
     {
+        /** @var GeoService $geoService */
+        $geoService = $this->get('app.geo_service');
+
         $deleteForm = $this->createDeleteForm($booking);
         $editForm = $this->createForm('BookingsBundle\Form\BookingType', $booking);
         $editForm->handleRequest($request);
 
+        $vars = $request->request->get('bookingsbundle_booking', []);
+
+        $pickUpLocationString = !empty($vars['pickUpLocation']) ? $vars['pickUpLocation'] : '';
+        $dropOffLocationString = !empty($vars['dropOffLocation']) ? $vars['dropOffLocation'] : '';
+
+        $bookingStatus = !empty($vars['bookingStatus']) ? $vars['bookingStatus'] : Booking::STATUS_RESERVED;
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            if (!empty($pickUpLocationString)) {
+                /** @var \stdClass $pickUpLocation */
+                $pickUpLocation = $geoService->geoCodeAddress($pickUpLocationString);
+
+                if (false !== $pickUpLocation && isset($pickUpLocation->lat)) {
+                    $booking->setPickupLocationLatitude($pickUpLocation->lat);
+                    $booking->setPickupLocationLongitude($pickUpLocation->lng);
+                }
+            }
+
+            if (!empty($dropOffLocationString)) {
+                /** @var \stdClass $dropOffLocation */
+                $dropOffLocation = $geoService->geoCodeAddress($dropOffLocationString);
+
+                if (false !== $dropOffLocation && isset($dropOffLocation->lat)) {
+                    $booking->setDropOffLocationLatitude($dropOffLocation->lat);
+                    $booking->setDropOffLocationLongitude($dropOffLocation->lng);
+                }
+            }
+
+            $booking->setBookingStatus($bookingStatus);
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('bookings_edit', array('id' => $booking->getId()));
@@ -95,6 +159,7 @@ class BookingController extends Controller
      *
      * @Route("/{id}", name="bookings_delete")
      * @Method("DELETE")
+     *
      * @param Request $request
      * @param Booking $booking
      *

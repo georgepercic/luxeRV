@@ -22,14 +22,14 @@ class SettingsType extends AbstractType
             ->add('depositAmountRate')
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BookingsBundle\Entity\Settings'
+            'data_class' => 'BookingsBundle\Entity\Settings',
         ));
     }
 
@@ -40,6 +40,4 @@ class SettingsType extends AbstractType
     {
         return 'bookingsbundle_settings';
     }
-
-
 }

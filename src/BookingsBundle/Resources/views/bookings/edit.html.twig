@@ -27,24 +27,82 @@
                         {{ form_label(edit_form.pickUpDate, null, {
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
-                        <div class="input-group" id="pick-up-datetimepicker">
-                            {{ form_widget(edit_form.pickUpDate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Pick Up Date"} }) }}
-                            <span class="input-group-addon datetimepicker">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                        <div class="col-sm-10">
+                            <div class="input-group" id="pick-up-datetimepicker">
+                                {{ form_widget(edit_form.pickUpDate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Delivery Date"} }) }}
+                                <span class="input-group-addon datetimepicker">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
                         {{ form_label(edit_form.dropOffDate, null, {
                             'label_attr': {'class': 'col-sm-2 control-label'}
                         }) }}
-                        <div class="input-group" id="drop-off-datetimepicker">
-                            {{ form_widget(edit_form.dropOffDate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Drop Off Date"} }) }}
-                            <span class="input-group-addon datetimepicker">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                        <div class="col-sm-10">
+                            <div class="input-group" id="drop-off-datetimepicker">
+                                {{ form_widget(edit_form.dropOffDate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Return Date"} }) }}
+                                <span class="input-group-addon datetimepicker">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        {{ form_label(edit_form.pickUpLocation, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.pickUpLocation, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Delivery Location"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.dropOffLocation, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.dropOffLocation, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Return Location"} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(edit_form.servicesRequested, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.servicesRequested, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Services Requested"} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(edit_form.specialRequirements, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.specialRequirements, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Special Requirements"} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(edit_form.unitNumber, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.unitNumber, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Unit Number"} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(edit_form.bookingStatus, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.bookingStatus, { 'attr': {'class': 'select2', 'style': 'width: 100%;'} }) }}
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         {{ form_label(edit_form.customer, null, {
                             'label_attr': {'class': 'col-sm-2 control-label'}

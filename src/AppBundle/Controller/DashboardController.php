@@ -3,11 +3,16 @@
 namespace AppBundle\Controller;
 
 use BookingsBundle\Entity\Booking;
+use CustomerBundle\Entity\Customer;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use VehicleBundle\Entity\Vehicle;
 
 class DashboardController extends Controller
 {
@@ -19,21 +24,29 @@ class DashboardController extends Controller
      */
     public function operations()
     {
+        /** @var EntityManager $em */
         $em = $this->getDoctrine()->getManager();
 
+        /** @var ArrayCollection $bookings */
         $bookings = $em->getRepository('BookingsBundle:Booking')->findAll();
+
+        /** @var ArrayCollection $cars */
         $cars = $em->getRepository('VehicleBundle:Vehicle')->findAll();
+
+        /** @var ArrayCollection $customers */
         $customers = $em->getRepository('CustomerBundle:Customer')->findAll();
+
         $sections = [];
         $selectCars = [];
         $selectCustomers = [];
         $data = [];
 
         if (!empty($cars)) {
+            /** @var Vehicle $car */
             foreach ($cars as $car) {
                 $sections[] = [
                     'key' => $car->getId(),
-                    'label' => sprintf('<img src="/luxeRV/web/assets/images/sedan-512.png" style="width: 30%%; height: auto;" /> <br /> %s', $car->getVinBrandModel()),
+                    'label' => sprintf($this->getImageTemplate(), $car->getBrand(), $car->getModel(), $car->getVin()),
                 ];
 
                 $selectCars[] = [
@@ -44,6 +57,7 @@ class DashboardController extends Controller
         }
 
         if (!empty($customers)) {
+            /** @var Customer $customer */
             foreach ($customers as $customer) {
                 $selectCustomers[] = [
                     'id' => $customer->getId(),
@@ -53,6 +67,7 @@ class DashboardController extends Controller
         }
 
         if (!empty($bookings)) {
+            /** @var Booking $booking */
             foreach ($bookings as $booking) {
                 $data[] = [
                     'start_date' => $booking->getPickUpDate(),
@@ -122,6 +137,7 @@ class DashboardController extends Controller
 
         $response = new Response();
         $response->setStatusCode(500);
+
         return $response;
     }
 
@@ -146,6 +162,7 @@ class DashboardController extends Controller
             $pickUpDate = date('Y-m-d H:i:s', strtotime($request->get('start_date')));
             $dropOffDate = date('Y-m-d H:i:s', strtotime($request->get('end_date')));
 
+            /** @var Booking $booking */
             $booking = $em->getRepository('BookingsBundle:Booking')->find($request->get('booking_id'));
             if (!empty($booking)) {
                 $booking->setCustomer($customer);
@@ -164,6 +181,7 @@ class DashboardController extends Controller
 
         $response = new Response();
         $response->setStatusCode(500);
+
         return $response;
     }
 
@@ -196,6 +214,27 @@ class DashboardController extends Controller
 
         $response = new Response();
         $response->setStatusCode(500);
+
         return $response;
+    }
+
+    /**
+     * @return string
+     */
+    private function getImageTemplate()
+    {
+        $html = <<<'HTML'
+        <div class="row">
+            <div class="col-md-3">
+                <i class="fa fa-bus fa-3x" style="color:#8a3c07;" aria-hidden="true"></i>
+            </div>
+            <div class="col-md-9" style="text-align: left;">
+                <span><strong>%s %s</strong></span><br/>
+                <span>%s</span>
+            </div>
+        </div>
+HTML;
+
+        return $html;
     }
 }

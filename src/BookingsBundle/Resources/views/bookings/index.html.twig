@@ -3,26 +3,47 @@
 {% block body %}
     <div class="card bg-white">
         <div class="card-header">
-            Bookings list
+            Bookings
         </div>
         <div class="card-block">
+            <div class="row">
+                <div class="col-md-1"><a href="{{  path('booking_operations') }}" class="btn btn-primary">Dashboard</a></div>
+                <div class="col-md-1"><a href="{{  path('bookings_new') }}" class="btn btn-primary">New Booking</a></div>
+            </div><br />
+
             <table class="table table-bordered table-condensed datatable m-b-0">
                 <thead>
                 <tr>
-                    <th>Pickup date</th>
-                    <th>Dropoff date</th>
+                    <th>Delivery DateTime</th>
+                    <th>Return Datetime</th>
+                    <th>Delivery Location</th>
+                    <th>Return Location</th>
                     <th>Customer</th>
                     <th>Vehicle</th>
+                    <th>Invoice</th>
+                    <th>Unit #</th>
+                    <th>Special Req.</th>
+                    <th>Services Req.</th>
+                    <th>Customer IP</th>
+                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for booking in bookings %}
                     <tr>
-                        <td>{% if booking.pickUpDate %}{{ booking.pickUpDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if booking.dropOffDate %}{{ booking.dropOffDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if booking.pickUpDate %}{{ booking.pickUpDate|date('m/d/Y H:i:s') }}{% endif %}</td>
+                        <td>{% if booking.dropOffDate %}{{ booking.dropOffDate|date('m/d/Y H:i:s') }}{% endif %}</td>
+                        <td>{{ booking.pickUpLocation }}</td>
+                        <td>{{ booking.dropOffLocation }}</td>
                         <td>{{ booking.customer.getName }}</td>
                         <td>{{ booking.vehicle.getVinBrandModel }}</td>
+                        <td>-</td>
+                        <td>{{ booking.unitNumber }}</td>
+                        <td>{{ booking.specialRequirements }}</td>
+                        <td>{{ booking.servicesRequested }}</td>
+                        <td>{{ booking.customerIpAddress }}</td>
+                        <td>{{ booking.status }}</td>
                         <td>
                             <a href="{{ path('bookings_edit', { 'id': booking.id }) }}"><span class="fa fa-pencil"></span></a>
                         </td>
@@ -32,12 +53,6 @@
             </table>
         </div>
     </div>
-
-    <ul>
-        <li>
-            <a href="{{ path('bookings_new') }}">Create a new booking</a>
-        </li>
-    </ul>
 {% endblock %}
 
 {% block javascripts %}

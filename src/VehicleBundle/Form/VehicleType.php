@@ -24,14 +24,14 @@ class VehicleType extends AbstractType
             ->add('color')
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'VehicleBundle\Entity\Vehicle'
+            'data_class' => 'VehicleBundle\Entity\Vehicle',
         ));
     }
 
@@ -42,6 +42,4 @@ class VehicleType extends AbstractType
     {
         return 'vehiclebundle_vehicle';
     }
-
-
 }

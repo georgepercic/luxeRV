@@ -37,6 +37,7 @@ class EmployeeController extends Controller
      *
      * @Route("/new", name="employees_new")
      * @Method({"GET", "POST"})
+     *
      * @param Request $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -66,6 +67,7 @@ class EmployeeController extends Controller
      *
      * @Route("/{id}", name="employees_show")
      * @Method("GET")
+     *
      * @param Employee $employee
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -85,6 +87,7 @@ class EmployeeController extends Controller
      *
      * @Route("/{id}/edit", name="employees_edit")
      * @Method({"GET", "POST"})
+     *
      * @param Request  $request
      * @param Employee $employee
      *
@@ -114,6 +117,7 @@ class EmployeeController extends Controller
      *
      * @Route("/{id}", name="employees_delete")
      * @Method("DELETE")
+     *
      * @param Request  $request
      * @param Employee $employee
      *

@@ -6,6 +6,12 @@
             Employees
         </div>
         <div class="card-block">
+
+            <div class="row">
+                <div class="col-md-1"><a href="{{  path('booking_operations') }}" class="btn btn-primary">Dashboard</a></div>
+                <div class="col-md-1"><a href="{{  path('employees_new') }}" class="btn btn-primary">New Employee</a></div>
+            </div><br />
+
             <table class="table table-bordered table-condensed datatable m-b-0">
                 <thead>
                 <tr>
@@ -44,12 +50,6 @@
             </table>
         </div>
     </div>
-
-    <ul>
-        <li>
-            <a href="{{ path('employees_new') }}">Create a new employee</a>
-        </li>
-    </ul>
 {% endblock %}
 
 {% block javascripts %}
