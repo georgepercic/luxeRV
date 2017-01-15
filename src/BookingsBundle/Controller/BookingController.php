@@ -27,7 +27,7 @@ class BookingController extends Controller
 
         $bookings = $em->getRepository('BookingsBundle:Booking')->findAll();
 
-        return $this->render('BookingsBundle::index.html.twig', array(
+        return $this->render('BookingsBundle::bookings/index.html.twig', array(
             'bookings' => $bookings,
         ));
     }
@@ -55,7 +55,7 @@ class BookingController extends Controller
             return $this->redirectToRoute('bookings_index', array('id' => $booking->getId()));
         }
 
-        return $this->render('BookingsBundle::new.html.twig', array(
+        return $this->render('BookingsBundle::bookings/new.html.twig', array(
             'booking' => $booking,
             'form' => $form->createView(),
         ));
@@ -83,7 +83,7 @@ class BookingController extends Controller
             return $this->redirectToRoute('bookings_edit', array('id' => $booking->getId()));
         }
 
-        return $this->render('BookingsBundle::edit.html.twig', array(
+        return $this->render('BookingsBundle::bookings/edit.html.twig', array(
             'booking' => $booking,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

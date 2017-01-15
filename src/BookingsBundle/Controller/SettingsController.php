@@ -26,7 +26,7 @@ class SettingsController extends Controller
 
         $settings = $em->getRepository('BookingsBundle:Settings')->findAll();
 
-        return $this->render('settings/index.html.twig', array(
+        return $this->render('BookingsBundle::settings/index.html.twig', array(
             'settings' => $settings,
         ));
     }
@@ -36,6 +36,9 @@ class SettingsController extends Controller
      *
      * @Route("/new", name="settings_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -48,28 +51,12 @@ class SettingsController extends Controller
             $em->persist($setting);
             $em->flush($setting);
 
-            return $this->redirectToRoute('settings_show', array('id' => $setting->getId()));
+            return $this->redirectToRoute('settings_index', array('id' => $setting->getId()));
         }
 
-        return $this->render('settings/new.html.twig', array(
+        return $this->render('BookingsBundle::settings/new.html.twig', array(
             'setting' => $setting,
             'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a setting entity.
-     *
-     * @Route("/{id}", name="settings_show")
-     * @Method("GET")
-     */
-    public function showAction(Settings $setting)
-    {
-        $deleteForm = $this->createDeleteForm($setting);
-
-        return $this->render('settings/show.html.twig', array(
-            'setting' => $setting,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -78,6 +65,10 @@ class SettingsController extends Controller
      *
      * @Route("/{id}/edit", name="settings_edit")
      * @Method({"GET", "POST"})
+     * @param Request  $request
+     * @param Settings $setting
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Settings $setting)
     {
@@ -91,7 +82,7 @@ class SettingsController extends Controller
             return $this->redirectToRoute('settings_edit', array('id' => $setting->getId()));
         }
 
-        return $this->render('settings/edit.html.twig', array(
+        return $this->render('BookingsBundle::settings/edit.html.twig', array(
             'setting' => $setting,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -103,6 +94,10 @@ class SettingsController extends Controller
      *
      * @Route("/{id}", name="settings_delete")
      * @Method("DELETE")
+     * @param Request  $request
+     * @param Settings $setting
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Settings $setting)
     {

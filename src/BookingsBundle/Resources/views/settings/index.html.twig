@@ -1,0 +1,61 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="card bg-white">
+        <div class="card-header">
+            Settings list
+        </div>
+        <div class="card-block">
+            <table class="table table-bordered table-condensed datatable m-b-0">
+                <thead>
+                <tr>
+                    <th>Daily miles</th>
+                    <th>Default pick up time</th>
+                    <th>Default drop off time</th>
+                    <th>Default min rent days</th>
+                    <th>Tax rate</th>
+                    <th>Deposit amount rate</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for setting in settings %}
+                    <tr>
+                        <td>{{ setting.dailyMiles }}</td>
+                        <td>{{ setting.defaultPickUpTime }}</td>
+                        <td>{{ setting.defaultDropOffTime }}</td>
+                        <td>{{ setting.defaultMinRentDays }}</td>
+                        <td>{{ setting.taxRate }}</td>
+                        <td>{{ setting.depositAmountRate }}</td>
+                        <td>
+                            <a href="{{ path('settings_edit', { 'id': setting.id }) }}"><span class="fa fa-pencil"></span></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <ul>
+        <li>
+            <a href="{{ path('settings_new') }}">Create a new setting</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <!-- page scripts -->
+    <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.js') }}"></script>
+    <!-- end page scripts -->
+    <!-- initialize page scripts -->
+    <script src="{{ asset('assets/vendor/datatables/media/js/dataTables.bootstrap.js') }}"></script>
+    <script type="text/javascript">
+        $('.datatable').dataTable();
+    </script>
+    <!-- end initialize page scripts -->
+
+{% endblock %}

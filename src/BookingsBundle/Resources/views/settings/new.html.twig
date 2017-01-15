@@ -1,0 +1,67 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="card bg-white">
+        <div class="card-header">
+            Settings creation
+        </div>
+        <div class="card-block">
+            <div class="row m-a-0">
+                <div class="col-lg-12">
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                    <div class="form-group">
+                        {{ form_label(form.dailyMiles, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="input-group" id="pick-up-datetimepicker">
+                            {{ form_widget(form.dailyMiles, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Pick Up Date"} }) }}
+                            <span class="input-group-addon datetimepicker">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.dropOffDate, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="input-group" id="drop-off-datetimepicker">
+                            {{ form_widget(form.dropOffDate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Drop Off Date"} }) }}
+                            <span class="input-group-addon datetimepicker">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.customer, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.customer, { 'attr': {'class': 'select2', 'data-placeholder': "Customer", 'style': 'width: 100%;'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.vehicle, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(form.vehicle, { 'attr': {'class': 'select2', 'data-placeholder': "Vehicle", 'style': 'width: 100%;'} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-10">
+                            <input type="submit" class="btn btn-primary" value="Create"/>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ul>
+        <li>
+            <a href="{{ path('settings_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

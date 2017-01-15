@@ -13,7 +13,14 @@ class SettingsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dailyMiles')->add('defaultPickUpTime')->add('defaultDropOffTime')->add('defaultMinRentDays')->add('taxRate')->add('depositAmountRate')        ;
+        $builder
+            ->add('dailyMiles')
+            ->add('defaultPickUpTime')
+            ->add('defaultDropOffTime')
+            ->add('defaultMinRentDays')
+            ->add('taxRate')
+            ->add('depositAmountRate')
+        ;
     }
     
     /**
