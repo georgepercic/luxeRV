@@ -43,14 +43,14 @@ class SettingsController extends Controller
      */
     public function newAction(Request $request)
     {
-        $setting = new Setting();
+        $setting = new Settings();
         $form = $this->createForm('BookingsBundle\Form\SettingsType', $setting);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($setting);
-            $em->flush($setting);
+            $em->flush();
 
             return $this->redirectToRoute('settings_index', array('id' => $setting->getId()));
         }
