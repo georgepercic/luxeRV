@@ -37,6 +37,7 @@ class SettingsController extends Controller
      *
      * @Route("/new", name="settings_new")
      * @Method({"GET", "POST"})
+     *
      * @param Request $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -66,6 +67,7 @@ class SettingsController extends Controller
      *
      * @Route("/{id}/edit", name="settings_edit")
      * @Method({"GET", "POST"})
+     *
      * @param Request  $request
      * @param Settings $setting
      *
@@ -95,6 +97,7 @@ class SettingsController extends Controller
      *
      * @Route("/{id}", name="settings_delete")
      * @Method("DELETE")
+     *
      * @param Request  $request
      * @param Settings $setting
      *
