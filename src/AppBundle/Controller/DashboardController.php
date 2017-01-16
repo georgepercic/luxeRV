@@ -50,7 +50,6 @@ class DashboardController extends Controller
                         $this->getImageTemplate(),
                         $car->getBrand(),
                         $car->getModel(),
-                        $car->getVin(),
                         !empty($car->getUnitNumber()) ? 'Unit # '.$car->getUnitNumber() : ''
                     ),
                 ];
@@ -236,7 +235,6 @@ class DashboardController extends Controller
             </div>
             <div class="col-md-9" style="text-align: left;">
                 <span><strong>%s %s</strong></span><br/>
-                <span>%s</span><br/>
                 <span>%s</span>
             </div>
         </div>
