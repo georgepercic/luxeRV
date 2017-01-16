@@ -76,8 +76,8 @@ class DashboardController extends Controller
             /** @var Booking $booking */
             foreach ($bookings as $booking) {
                 $data[] = [
-                    'start_date' => $booking->getPickUpDate(),
-                    'end_date' => $booking->getDropOffDate(),
+                    'start_date' => $booking->getPickUpDate()->format('Y-m-d, H:i'),
+                    'end_date' => $booking->getDropOffDate()->format('Y-m-d, H:i'),
                     'text' => $booking->getCustomer()->getName(),
                     'customer_id' => $booking->getCustomer()->getId(),
                     'section_id' => $booking->getVehicle()->getId(),
