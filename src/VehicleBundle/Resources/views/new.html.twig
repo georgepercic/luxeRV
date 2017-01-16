@@ -95,6 +95,16 @@
                             {{ form_widget(form.licencePlateNumber, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Licence Plate #"} }) }}
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        {{ form_label(edit_form.vehicleStatus, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.vehicleStatus, { 'attr': {'class': 'select2', 'style': 'width: 100%;'} }) }}
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">

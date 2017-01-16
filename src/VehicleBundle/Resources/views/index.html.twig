@@ -25,6 +25,7 @@
                     <th>Color</th>
                     <th>Week Day Price</th>
                     <th>Week End Price</th>
+                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -41,6 +42,21 @@
                         <td>{{ vehicle.color }}</td>
                         <td>{{ vehicle.weekDayPrice }}</td>
                         <td>{{ vehicle.weekEndPrice }}</td>
+                        <td>
+                            {% if vehicle.vehicleStatus == 'needs maintenance' %}
+                                <span class="label label-warning">{{ vehicle.vehicleStatus }}</span>
+                            {% elseif vehicle.vehicleStatus == 'at mechanic' %}
+                                <span class="label label-warning">{{ vehicle.vehicleStatus }}</span>
+                            {% elseif vehicle.vehicleStatus == 'available' %}
+                                <span class="label label-success">{{ vehicle.vehicleStatus }}</span>
+                            {% elseif vehicle.vehicleStatus == 'in use' %}
+                                <span class="label label-danger">{{ vehicle.vehicleStatus }}</span>
+                            {% elseif vehicle.vehicleStatus == 'at body shop' %}
+                                <span class="label label-warning">{{ vehicle.vehicleStatus }}</span>
+                            {% else %}
+                                <span class="label label-default">{{ vehicle.vehicleStatus }}</span>
+                            {% endif %}
+                        </td>
                         <td>
                             <a href="{{ path('vehicles_edit', { 'id': vehicle.id }) }}"><span class="fa fa-pencil"></span></a>
                         </td>

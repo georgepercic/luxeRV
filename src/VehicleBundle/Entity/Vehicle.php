@@ -12,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Vehicle
 {
+    const STATUS_AVAILABLE = 'available';
+    const STATUS_IN_USE = 'in use';
+    const STATUS_NEED_MAINTENANCE = 'needs maintenance';
+    const STATUS_AT_MECHANIC = 'at mechanic';
+    const STATUS_AT_BODY_SHOP = 'at body shop';
+    const STATUS_NOT_AVAILABLE = 'not available';
+
     /**
      * @var int
      *
@@ -97,6 +104,13 @@ class Vehicle
      * @ORM\Column(name="licence_number", type="string", nullable=true)
      */
     private $licencePlateNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="vehicle_status", type="string", nullable=true)
+     */
+    private $vehicleStatus = self::STATUS_AVAILABLE;
 
     /**
      * Get id.
@@ -363,5 +377,29 @@ class Vehicle
     public function getLicencePlateNumber()
     {
         return $this->licencePlateNumber;
+    }
+
+    /**
+     * Set vehicleStatus.
+     *
+     * @param string $vehicleStatus
+     *
+     * @return Vehicle
+     */
+    public function setVehicleStatus($vehicleStatus)
+    {
+        $this->vehicleStatus = $vehicleStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get vehicleStatus.
+     *
+     * @return string
+     */
+    public function getVehicleStatus()
+    {
+        return $this->vehicleStatus;
     }
 }
