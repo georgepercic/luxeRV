@@ -20,6 +20,17 @@
             Booking edit
         </div>
         <div class="card-block">
+
+            <div class="row">
+                <div class="col-md-1"><a href="{{  path('booking_operations') }}" class="btn btn-primary">Dashboard</a></div>
+                <div class="col-md-1"><a href="{{  path('bookings_index') }}" class="btn btn-primary">Bookings List</a></div>
+                <div class="col-md-1">
+                    {{ form_start(delete_form, {'attr' : {'class':'remove-booking-form'}}) }}
+                        <input type="submit" class="btn btn-danger" value="Remove Booking">
+                    {{ form_end(delete_form) }}
+                </div>
+            </div><br />
+
             <div class="row m-a-0">
                 <div class="col-lg-12">
                     {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
@@ -122,7 +133,7 @@
                     <div class="form-group">
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
-                            <input type="submit" class="btn btn-primary" value="Edit"/>
+                            <input type="submit" class="btn btn-primary" value="Save changes"/>
                         </div>
                     </div>
                     {{ form_end(edit_form) }}
@@ -130,17 +141,6 @@
             </div>
         </div>
     </div>
-
-    <ul>
-        <li>
-            <a href="{{ path('bookings_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}
 
 {% block javascripts %}
@@ -155,11 +155,46 @@
 
     <script>
         $(document).ready(function () {
-            $('#pick-up-datetimepicker, #drop-off-datetimepicker').datetimepicker({
-                format: 'YYYY-MM-DD HH:mm'
+            var timeVars = {{ timeVars|json_encode|raw }};
+
+            var timeFormatDelivery = "YYYY-MM-DD HH:mm";
+            var timeFormatReturn = "YYYY-MM-DD HH:mm";
+
+            if (timeVars.delivery) {
+                timeFormatDelivery = "YYYY-MM-DD " + timeVars.delivery;
+            }
+
+            if (timeVars.return) {
+                timeFormatReturn = "YYYY-MM-DD " + timeVars.return;
+            }
+
+            $('#pick-up-datetimepicker').datetimepicker({
+                format: timeFormatDelivery
+            }).on('dp.change', function(e) {
+                var endDate = e.date;
+                if (timeVars.minDays && timeVars.minDays > 0) {
+                    endDate = e.date.add(timeVars.minDays, 'days');
+                }
+                $('#drop-off-datetimepicker').data('DateTimePicker').date(endDate);
+            });
+
+            $('#drop-off-datetimepicker').datetimepicker({
+                format: timeFormatReturn
             });
 
             $('.select2').select2();
+
+            $('.remove-booking-form').on('submit', function() {
+                var href = $(this).attr('href');
+
+                var confirmRemove = confirm('Are you sure you want to completely remove this booking and other dependencies?');
+
+                if (confirmRemove) {
+                    return window.location = href;
+                }
+
+                return false;
+            });
         });
     </script>
 {% endblock %}

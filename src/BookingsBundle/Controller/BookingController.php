@@ -125,6 +125,9 @@ class BookingController extends Controller
         /** @var GeoService $geoService */
         $geoService = $this->get('app.geo_service');
 
+        /** @var SettingsService $settingsService */
+        $settingsService = $this->get('app.settings_service');
+
         $deleteForm = $this->createDeleteForm($booking);
         $editForm = $this->createForm('BookingsBundle\Form\BookingType', $booking);
         $editForm->handleRequest($request);
@@ -164,10 +167,22 @@ class BookingController extends Controller
             return $this->redirectToRoute('bookings_edit', array('id' => $booking->getId()));
         }
 
+        /** @var Settings|false $settingVars */
+        $settingVars = $settingsService->getCurrentAppSettings();
+
+        $timeVars = [];
+
+        if (false !== $settingVars) {
+            $timeVars['delivery'] = $settingVars->getDefaultPickUpTime()->format('H:i');
+            $timeVars['return'] = $settingVars->getDefaultDropOffTime()->format('H:i');
+            $timeVars['minDays'] = $settingVars->getDefaultMinRentDays();
+        }
+
         return $this->render('BookingsBundle::bookings/edit.html.twig', array(
             'booking' => $booking,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'timeVars' => $timeVars,
         ));
     }
 
