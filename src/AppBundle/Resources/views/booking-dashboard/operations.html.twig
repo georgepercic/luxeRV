@@ -70,8 +70,8 @@
                 <div class="dhx_cal_prev_button">&nbsp;</div>
                 <div class="dhx_cal_next_button">&nbsp;</div>
                 <div class="dhx_cal_today_button"></div>
-                <div class="custom_dhx_cal_tab active" id="day_tab" name="custom_day_tab">Day</div>
-                <div class="custom_dhx_cal_tab" id="week_tab" name="custom_week_tab">Week</div>
+                <div class="custom_dhx_cal_tab" id="day_tab" name="custom_day_tab">Day</div>
+                <div class="custom_dhx_cal_tab active" id="week_tab" name="custom_week_tab">Week</div>
                 <div class="custom_dhx_cal_tab" id="month_tab" name="custom_month_tab">Month</div>
                 <div class="dhx_cal_date"></div>
             </div>
@@ -166,16 +166,17 @@
             scheduler.config.collision_limit = 1; //allows creating 1 events per time slot
             scheduler.config.xml_date="%Y-%m-%d %H:%i";
 
+            //wheek config
             scheduler.createTimelineView({
-                name:	"timeline",
-                x_unit:	"minute",
-                x_date:	"%H:%i",
-                x_step:	60,
-                x_size: 24,
+                name: "timeline",
+                x_unit: "day",
+                x_date: "%d.%m",
+                x_step: 1,
+                x_size: 7,
                 x_start: 0,
-                x_length: 24,
-                y_unit:	sections,
-                y_property:	"section_id",
+                x_length: 7,
+                y_unit: sections,
+                y_property: "section_id",
                 render:"bar"
             });
 

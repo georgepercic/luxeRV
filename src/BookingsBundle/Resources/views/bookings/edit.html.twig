@@ -148,15 +148,15 @@
         $(document).ready(function () {
             var timeVars = {{ timeVars|json_encode|raw }};
 
-            var timeFormatDelivery = "YYYY-MM-DD HH:mm";
-            var timeFormatReturn = "YYYY-MM-DD HH:mm";
+            var timeFormatDelivery = "MM/DD/YYYY HH:mm";
+            var timeFormatReturn = "MM/DD/YYYY HH:mm";
 
             if (timeVars.delivery) {
-                timeFormatDelivery = "YYYY-MM-DD " + timeVars.delivery;
+                timeFormatDelivery = "MM/DD/YYYY " + timeVars.delivery;
             }
 
             if (timeVars.return) {
-                timeFormatReturn = "YYYY-MM-DD " + timeVars.return;
+                timeFormatReturn = "MM/DD/YYYY " + timeVars.return;
             }
 
             $('#pick-up-datetimepicker').datetimepicker({
