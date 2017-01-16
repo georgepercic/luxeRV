@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Employee
 {
+
+    const ROLE_DRIVER = 'driver';
+    const ROLE_ADMINISTRATOR = 'admin';
+    const ROLE_MANAGER = 'manager';
+
     /**
      * @var int
      *
@@ -90,6 +95,13 @@ class Employee
      * @ORM\Column(name="address_country", type="string", length=255)
      */
     private $addressCountry;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", nullable=true)
+     */
+    private $role = self::ROLE_DRIVER;
 
     /**
      * Get id.
@@ -339,5 +351,29 @@ class Employee
     public function getAddressCountry()
     {
         return $this->addressCountry;
+    }
+
+    /**
+     * Set role
+     *
+     * @param string $role
+     *
+     * @return Employee
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
     }
 }

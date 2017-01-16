@@ -35,7 +35,7 @@ class VehicleType extends AbstractType
                     Vehicle::STATUS_AT_BODY_SHOP => Vehicle::STATUS_AT_BODY_SHOP,
                     Vehicle::STATUS_NOT_AVAILABLE => Vehicle::STATUS_NOT_AVAILABLE,
                 ],
-                'label' => 'Booking State',
+                'label' => 'State',
             ])
         ;
     }
