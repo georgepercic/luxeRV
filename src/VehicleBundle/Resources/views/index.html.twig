@@ -15,10 +15,10 @@
             <table class="table table-bordered table-condensed datatable m-b-0">
                 <thead>
                 <tr>
+                    <th>Unit #</th>
                     <th>Brand</th>
                     <th>Model</th>
                     <th>Vin</th>
-                    <th>Unit #</th>
                     <th>Licence Plate #</th>
                     <th>Production Year</th>
                     <th>Mileage</th>
@@ -31,10 +31,10 @@
                 <tbody>
                 {% for vehicle in vehicles %}
                     <tr>
+                        <td>{{ vehicle.unitNumber }}</td>
                         <td>{{ vehicle.brand }}</td>
                         <td>{{ vehicle.model }}</td>
                         <td>{{ vehicle.vin }}</td>
-                        <td>{{ vehicle.unitNumber }}</td>
                         <td>{{ vehicle.licencePlateNumber }}</td>
                         <td>{{ vehicle.productionYear }}</td>
                         <td>{{ vehicle.mileage }}</td>

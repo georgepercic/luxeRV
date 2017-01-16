@@ -6,40 +6,45 @@
             Bookings
         </div>
         <div class="card-block">
+            
             <div class="row">
-                <div class="col-md-1"><a href="{{  path('booking_operations') }}" class="btn btn-primary">Dashboard</a></div>
-                <div class="col-md-1"><a href="{{  path('bookings_new') }}" class="btn btn-primary">New Booking</a></div>
-            </div><br />
+                <div class="col-md-1">
+                    <a href="{{  path('booking_operations') }}" class="btn btn-primary">Dashboard</a>
+                </div>
+                <div class="col-md-1">
+                    <a href="{{  path('bookings_new') }}" class="btn btn-primary">New Booking</a>
+                </div>
+            </div>
 
             <table class="table table-bordered table-condensed datatable m-b-0">
                 <thead>
-                <tr>
-                    <th>Delivery DateTime</th>
-                    <th>Return DateTime</th>
-                    <th>Delivery Location</th>
-                    <th>Return Location</th>
-                    <th>Customer</th>
-                    <th>Vehicle</th>
-                    <th>Invoice</th>
-                    <th>Unit #</th>
-                    <th>Special Req.</th>
-                    <th>Services Req.</th>
-                    <th>Customer IP</th>
-                    <th>Status</th>
-                    <th></th>
-                </tr>
+                    <tr>
+                        <th>Booking Id (#)</th>
+                        <th>Delivery DateTime</th>
+                        <th>Return DateTime</th>
+                        <th>Delivery Location</th>
+                        <th>Return Location</th>
+                        <th>Customer</th>
+                        <th>Vehicle</th>
+                        <th>Invoice</th>
+                        <th>Special Req.</th>
+                        <th>Services Req.</th>
+                        <th>Customer IP</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
                 {% for booking in bookings %}
                     <tr>
+                        <td>{{ booking.id }}</td>
                         <td>{% if booking.pickUpDate %}{{ booking.pickUpDate|date('m/d/Y H:i:s') }}{% endif %}</td>
                         <td>{% if booking.dropOffDate %}{{ booking.dropOffDate|date('m/d/Y H:i:s') }}{% endif %}</td>
                         <td>{{ booking.pickUpLocation }}</td>
                         <td>{{ booking.dropOffLocation }}</td>
                         <td>{{ booking.customer.getName }}</td>
                         <td>{{ booking.vehicle.getVinBrandModel }}</td>
-                        <td>-</td>
-                        <td>{{ booking.unitNumber }}</td>
+                        <td></td>
                         <td>{{ booking.specialRequirements }}</td>
                         <td>{{ booking.servicesRequested }}</td>
                         <td>{{ booking.customerIpAddress }}</td>

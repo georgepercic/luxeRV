@@ -46,7 +46,13 @@ class DashboardController extends Controller
             foreach ($cars as $car) {
                 $sections[] = [
                     'key' => $car->getId(),
-                    'label' => sprintf($this->getImageTemplate(), $car->getBrand(), $car->getModel(), $car->getVin()),
+                    'label' => sprintf(
+                        $this->getImageTemplate(),
+                        $car->getBrand(),
+                        $car->getModel(),
+                        $car->getVin(),
+                        !empty($car->getUnitNumber()) ? 'Unit # '.$car->getUnitNumber() : ''
+                    ),
                 ];
 
                 $selectCars[] = [
@@ -230,6 +236,7 @@ class DashboardController extends Controller
             </div>
             <div class="col-md-9" style="text-align: left;">
                 <span><strong>%s %s</strong></span><br/>
+                <span>%s</span><br/>
                 <span>%s</span>
             </div>
         </div>

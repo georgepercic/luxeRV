@@ -51,9 +51,6 @@ class BookingType extends AbstractType
             ->add('specialRequirements', null, [
                 'label' => 'Special Requirements',
             ])
-            ->add('unitNumber', null, [
-                'label' => 'Unit #',
-            ])
             ->add('bookingStatus', ChoiceType::class, [
                 'choices' => [
                     Booking::STATUS_RESERVED => Booking::STATUS_RESERVED,
