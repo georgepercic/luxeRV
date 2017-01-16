@@ -26,7 +26,7 @@
                     <th>Services Req.</th>
                     <th>Customer IP</th>
                     <th>Status</th>
-                    <th>Actions</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,7 +43,21 @@
                         <td>{{ booking.specialRequirements }}</td>
                         <td>{{ booking.servicesRequested }}</td>
                         <td>{{ booking.customerIpAddress }}</td>
-                        <td>{{ booking.status }}</td>
+                        <td>
+                            {% if booking.bookingStatus == 'reserved' %}
+                                <span class="label label-warning">{{ booking.bookingStatus }}</span>
+                            {% elseif booking.bookingStatus == 'pending' %}
+                                <span class="label label-warning">{{ booking.bookingStatus }}</span>
+                            {% elseif booking.bookingStatus == 'accepted' %}
+                                <span class="label label-success">{{ booking.bookingStatus }}</span>
+                            {% elseif booking.bookingStatus == 'dispute' %}
+                                <span class="label label-danger">{{ booking.bookingStatus }}</span>
+                            {% elseif booking.bookingStatus == 'completed' %}
+                                <span class="label label-primary">{{ booking.bookingStatus }}</span>
+                            {% else %}
+                                <span class="label label-default">{{ booking.bookingStatus }}</span>
+                            {% endif %}
+                        </td>
                         <td>
                             <a href="{{ path('bookings_edit', { 'id': booking.id }) }}"><span class="fa fa-pencil"></span></a>
                         </td>

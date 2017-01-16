@@ -30,13 +30,6 @@ class Booking
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="status", type="string")
-     */
-    private $status = self::STATUS_RESERVED;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="pick_up_date", type="datetime")
@@ -125,7 +118,7 @@ class Booking
      *
      * @ORM\Column(name="booking_status", type="string", nullable=true)
      */
-    private $bookingStatus;
+    private $bookingStatus = self::STATUS_RESERVED;
 
     /**
      * @ORM\ManyToOne(targetEntity="CustomerBundle\Entity\Customer", inversedBy="bookings")
@@ -147,30 +140,6 @@ class Booking
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set status.
-     *
-     * @param string $status
-     *
-     * @return Booking
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status.
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 
     /**

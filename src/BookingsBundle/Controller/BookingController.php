@@ -6,6 +6,7 @@ use AppBundle\Service\GeoService;
 use AppBundle\Service\SettingsService;
 use BookingsBundle\Entity\Booking;
 use BookingsBundle\Entity\Settings;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -122,6 +123,9 @@ class BookingController extends Controller
      */
     public function editAction(Request $request, Booking $booking)
     {
+        /** @var EntityManager $entityManager */
+        $entityManager = $this->getDoctrine()->getManager();
+
         /** @var GeoService $geoService */
         $geoService = $this->get('app.geo_service');
 
@@ -162,7 +166,8 @@ class BookingController extends Controller
 
             $booking->setBookingStatus($bookingStatus);
 
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager->persist($booking);
+            $entityManager->flush($booking);
 
             return $this->redirectToRoute('bookings_edit', array('id' => $booking->getId()));
         }
