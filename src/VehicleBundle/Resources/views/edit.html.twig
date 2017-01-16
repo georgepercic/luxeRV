@@ -3,9 +3,20 @@
 {% block body %}
     <div class="card bg-white">
         <div class="card-header">
-            Vehicle creation
+            Vehicle Edit
         </div>
         <div class="card-block">
+
+            <div class="row">
+                <div class="col-md-1"><a href="{{  path('booking_operations') }}" class="btn btn-primary">Dashboard</a></div>
+                <div class="col-md-1"><a href="{{  path('vehicles_index') }}" class="btn btn-primary">Vehicles List</a></div>
+                <div class="col-md-1">
+                    {{ form_start(delete_form, {'attr' : {'class':'remove-vehicle-form'}}) }}
+                        <input type="submit" class="btn btn-danger" value="Remove Vehicle">
+                    {{ form_end(delete_form) }}
+                </div>
+            </div><br />
+
             <div class="row m-a-0">
                 <div class="col-lg-12">
                     {{ form_start(edit_form, {'attr': {'class': 'form-horizontal'}}) }}
@@ -74,9 +85,25 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        {{ form_label(edit_form.unitNumber, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.unitNumber, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Unit #"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.licencePlateNumber, null, {
+                            'label_attr': {'class': 'col-sm-2 control-label'}
+                        }) }}
+                        <div class="col-sm-10">
+                            {{ form_widget(edit_form.licencePlateNumber, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Licence Plate #"} }) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
-                            <input type="submit" class="btn btn-primary" value="Edit" />
+                            <input type="submit" class="btn btn-primary" value="Save" />
                         </div>
                     </div>
                     {{ form_end(edit_form) }}
@@ -84,15 +111,30 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/moment/moment.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/transition.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/collapse.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/select2/dist/js/select2.js') }}"></script>
+    <script src="{{ asset('assets/vendor/selectize/dist/js/standalone/selectize.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/multiselect/js/jquery.multi-select.js') }}"></script>
 
-    <ul>
-        <li>
-            <a href="{{ path('vehicles_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <script>
+        $(document).ready(function () {
+            $('.remove-vehicle-form').on('submit', function() {
+                var href = $(this).attr('href');
+
+                var confirmRemove = confirm('Are you sure you want to completely remove this vehicle and other dependencies?');
+
+                if (confirmRemove) {
+                    return window.location = href;
+                }
+
+                return false;
+            });
+        });
+    </script>
 {% endblock %}

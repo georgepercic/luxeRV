@@ -85,6 +85,20 @@ class Vehicle
     private $photo;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="unit_number", type="string", nullable=true)
+     */
+    private $unitNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="licence_number", type="string", nullable=true)
+     */
+    private $licencePlateNumber;
+
+    /**
      * Get id.
      *
      * @return int
@@ -301,5 +315,53 @@ class Vehicle
     public function getPhoto()
     {
         return $this->photo;
+    }
+
+    /**
+     * Set unitNumber.
+     *
+     * @param string $unitNumber
+     *
+     * @return Vehicle
+     */
+    public function setUnitNumber($unitNumber)
+    {
+        $this->unitNumber = $unitNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get unitNumber.
+     *
+     * @return string
+     */
+    public function getUnitNumber()
+    {
+        return $this->unitNumber;
+    }
+
+    /**
+     * Set licencePlateNumber.
+     *
+     * @param string $licencePlateNumber
+     *
+     * @return Vehicle
+     */
+    public function setLicencePlateNumber($licencePlateNumber)
+    {
+        $this->licencePlateNumber = $licencePlateNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get licencePlateNumber.
+     *
+     * @return string
+     */
+    public function getLicencePlateNumber()
+    {
+        return $this->licencePlateNumber;
     }
 }

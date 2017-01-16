@@ -22,6 +22,8 @@ class VehicleType extends AbstractType
             ->add('weekDayPrice')
             ->add('weekEndPrice')
             ->add('color')
+            ->add('unitNumber')
+            ->add('licencePlateNumber')
         ;
     }
 

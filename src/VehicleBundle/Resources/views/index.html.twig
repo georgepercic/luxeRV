@@ -18,6 +18,8 @@
                     <th>Brand</th>
                     <th>Model</th>
                     <th>Vin</th>
+                    <th>Unit #</th>
+                    <th>Licence Plate #</th>
                     <th>Production Year</th>
                     <th>Mileage</th>
                     <th>Color</th>
@@ -32,6 +34,8 @@
                         <td>{{ vehicle.brand }}</td>
                         <td>{{ vehicle.model }}</td>
                         <td>{{ vehicle.vin }}</td>
+                        <td>{{ vehicle.unitNumber }}</td>
+                        <td>{{ vehicle.licencePlateNumber }}</td>
                         <td>{{ vehicle.productionYear }}</td>
                         <td>{{ vehicle.mileage }}</td>
                         <td>{{ vehicle.color }}</td>
@@ -46,18 +50,9 @@
             </table>
         </div>
     </div>
-
-    <ul>
-        <li>
-            <a href="{{ path('vehicles_new') }}">Create a new vehicle</a>
-        </li>
-    </ul>
 {% endblock %}
-
 {% block javascripts %}
-
     {{ parent() }}
-
     <!-- page scripts -->
     <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.js') }}"></script>
     <!-- end page scripts -->
@@ -67,5 +62,4 @@
         $('.datatable').dataTable();
     </script>
     <!-- end initialize page scripts -->
-
 {% endblock %}
