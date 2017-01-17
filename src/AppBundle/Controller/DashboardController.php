@@ -44,13 +44,32 @@ class DashboardController extends Controller
         if (!empty($cars)) {
             /** @var Vehicle $car */
             foreach ($cars as $car) {
+                $color = 'label label-default';
+
+                switch ($car->getVehicleStatus()) {
+                    case Vehicle::STATUS_AVAILABLE:
+                        $color = 'label label-success';
+                    break;
+
+                    case Vehicle::STATUS_NEED_MAINTENANCE:
+                    case Vehicle::STATUS_AT_MECHANIC:
+                    case Vehicle::STATUS_AT_BODY_SHOP:
+                        $color = 'label label-warning';
+                    break;
+
+                    case Vehicle::STATUS_IN_USE:
+                        $color = 'label label-danger';
+                    break;
+                }
+
                 $sections[] = [
                     'key' => $car->getId(),
                     'label' => sprintf(
                         $this->getImageTemplate(),
+                        $color,
                         $car->getBrand(),
                         $car->getModel(),
-                        !empty($car->getUnitNumber()) ? 'Unit # '.$car->getUnitNumber() : ''
+                        !empty($car->getUnitNumber()) ? '#'.$car->getUnitNumber() : ''
                     ),
                 ];
 
@@ -230,12 +249,8 @@ class DashboardController extends Controller
     {
         $html = <<<'HTML'
         <div class="row">
-            <div class="col-md-3">
-                <i class="fa fa-bus fa-3x" style="color:#8a3c07;" aria-hidden="true"></i>
-            </div>
-            <div class="col-md-9" style="text-align: left;">
-                <span><strong>%s %s</strong></span><br/>
-                <span>%s</span>
+            <div class="col-md-9" style="text-align: left; margin-left:10px; font-size:12px;">
+                <span class="%s"><strong>%s %s</strong></span> <br />%s
             </div>
         </div>
 HTML;

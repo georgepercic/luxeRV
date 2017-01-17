@@ -133,6 +133,13 @@ class Booking
     private $vehicle;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="counter", type="integer", nullable=true)
+     */
+    private $counter;
+
+    /**
      * Get id.
      *
      * @return int
@@ -500,5 +507,29 @@ class Booking
     public function getBookingStatus()
     {
         return $this->bookingStatus;
+    }
+
+    /**
+     * Set counter.
+     *
+     * @param int $counter
+     *
+     * @return Booking
+     */
+    public function setCounter($counter)
+    {
+        $this->counter = $counter;
+
+        return $this;
+    }
+
+    /**
+     * Get counter.
+     *
+     * @return int
+     */
+    public function getCounter()
+    {
+        return $this->counter;
     }
 }

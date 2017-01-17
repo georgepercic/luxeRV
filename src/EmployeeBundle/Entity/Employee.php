@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Employee
 {
-
     const ROLE_DRIVER = 'driver';
     const ROLE_ADMINISTRATOR = 'admin';
     const ROLE_MANAGER = 'manager';
@@ -354,7 +353,7 @@ class Employee
     }
 
     /**
-     * Set role
+     * Set role.
      *
      * @param string $role
      *
@@ -368,7 +367,7 @@ class Employee
     }
 
     /**
-     * Get role
+     * Get role.
      *
      * @return string
      */
