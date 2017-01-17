@@ -42,11 +42,7 @@
                         <td>{{ invoice.discountAmount }}</td>
                         <td>{{ invoice.netAmountPayable }}</td>
                         <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('invoices_show', { 'id': invoice.id }) }}">show</a>
-                                </li>
-                            </ul>
+                            <a href="{{ path('invoices_show', { 'id': invoice.id }) }}"><span class="fa fa-download"></span></a>
                         </td>
                     </tr>
                 {% endfor %}
