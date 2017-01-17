@@ -23,7 +23,6 @@
                     <th>Tax Amount</th>
                     <th>Deposit Amount</th>
                     <th>Total amount paybale</th>
-                    <th>Discount amount</th>
                     <th>Net amount payable</th>
                     <th>Actions</th>
                 </tr>
@@ -39,7 +38,6 @@
                         <td>{{ invoice.taxAmount }}</td>
                         <td>{{ invoice.securityDeposit }}</td>
                         <td>{{ invoice.totalAmountPaybale }}</td>
-                        <td>{{ invoice.discountAmount }}</td>
                         <td>{{ invoice.netAmountPayable }}</td>
                         <td>
                             <a href="{{ path('invoices_show', { 'id': invoice.id }) }}"><span class="fa fa-download"></span></a>
