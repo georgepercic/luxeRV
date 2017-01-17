@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Emailtemplates list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Eventname</th>
+                <th>Emailcontent</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for emailTemplate in emailTemplates %}
+            <tr>
+                <td><a href="{{ path('email-templates_show', { 'id': emailTemplate.id }) }}">{{ emailTemplate.id }}</a></td>
+                <td>{{ emailTemplate.eventName }}</td>
+                <td>{{ emailTemplate.emailContent }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('email-templates_show', { 'id': emailTemplate.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('email-templates_edit', { 'id': emailTemplate.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('email-templates_new') }}">Create a new emailTemplate</a>
+        </li>
+    </ul>
+{% endblock %}
