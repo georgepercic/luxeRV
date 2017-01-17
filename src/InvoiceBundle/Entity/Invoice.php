@@ -44,7 +44,7 @@ class Invoice
      *
      * @ORM\Column(name="equipment_rent", type="float", nullable=true)
      */
-    private $equipmentRent;
+    private $equipmentRent = 0;
 
     /**
      * @var float
@@ -63,9 +63,16 @@ class Invoice
     /**
      * @var float
      *
-     * @ORM\Column(name="tax", type="float", nullable=true)
+     * @ORM\Column(name="tax_rate", type="float", nullable=true)
      */
-    private $tax;
+    private $taxRate;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="tax_amount", type="float", nullable=true)
+     */
+    private $taxAmount;
 
     /**
      * @var float
@@ -233,27 +240,27 @@ class Invoice
     }
 
     /**
-     * Set tax.
+     * Set taxRate.
      *
-     * @param float $tax
+     * @param float $taxRate
      *
      * @return Invoice
      */
-    public function setTax($tax)
+    public function setTaxRate($taxRate)
     {
-        $this->tax = $tax;
+        $this->taxRate = $taxRate;
 
         return $this;
     }
 
     /**
-     * Get tax.
+     * Get taxRate.
      *
      * @return float
      */
-    public function getTax()
+    public function getTaxRate()
     {
-        return $this->tax;
+        return $this->taxRate;
     }
 
     /**
@@ -366,5 +373,25 @@ class Invoice
     public function getSecurityDeposit()
     {
         return $this->security_deposit;
+    }
+
+    /**
+     * @param float $taxAmount
+     *
+     * @return Invoice
+     */
+    public function setTaxAmount($taxAmount)
+    {
+        $this->taxAmount = $taxAmount;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getTaxAmount()
+    {
+        return $this->taxAmount;
     }
 }

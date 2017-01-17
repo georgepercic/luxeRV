@@ -16,14 +16,15 @@
                 <thead>
                 <tr>
                     <th>Booking ID</th>
+                    <th>Customer name</th>
                     <th>Vehicle rent</th>
-                    <th>Equipment rent</th>
-                    <th>Insurance cost</th>
                     <th>Service tax</th>
-                    <th>Tax</th>
+                    <th>Tax Rate</th>
+                    <th>Tax Amount</th>
+                    <th>Deposit Amount</th>
                     <th>Total amount paybale</th>
                     <th>Discount amount</th>
-                    <th>Netamount payable</th>
+                    <th>Net amount payable</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -31,11 +32,12 @@
                 {% for invoice in invoices %}
                     <tr>
                         <td>{{ invoice.booking.id }}</td>
+                        <td>{{ invoice.booking.customer.name }}</td>
                         <td>{{ invoice.vehicleRent }}</td>
-                        <td>{{ invoice.equipmentRent }}</td>
-                        <td>{{ invoice.insuranceCost }}</td>
                         <td>{{ invoice.serviceTax }}</td>
-                        <td>{{ invoice.tax }}</td>
+                        <td>{{ invoice.taxRate }}</td>
+                        <td>{{ invoice.taxAmount }}</td>
+                        <td>{{ invoice.securityDeposit }}</td>
                         <td>{{ invoice.totalAmountPaybale }}</td>
                         <td>{{ invoice.discountAmount }}</td>
                         <td>{{ invoice.netAmountPayable }}</td>
