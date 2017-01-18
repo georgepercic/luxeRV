@@ -21,8 +21,8 @@
                     <th>Tax Rate</th>
                     <th>Tax Amount</th>
                     <th>Deposit Amount</th>
-                    <th>Total amount paybale</th>
                     <th>Net amount payable</th>
+                    <th>Total amount paybale</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -35,8 +35,8 @@
                         <td>{{ invoice.taxRate }}</td>
                         <td>{{ invoice.taxAmount }}</td>
                         <td>{{ invoice.securityDeposit }}</td>
-                        <td>{{ invoice.totalAmountPaybale }}</td>
                         <td>{{ invoice.netAmountPayable }}</td>
+                        <td>{{ invoice.totalAmountPaybale }}</td>
                         <td>
                             <a href="{{ path('invoices_show', { 'id': invoice.id }) }}"><span class="fa fa-download"></span></a>
                         </td>
