@@ -129,6 +129,12 @@
                 <td>Credit Card</td>
                 <td>0</td>
             </tr>#}
+
+            <tr class="details">
+                <td>Booking # {{ invoice.booking.id }}</td>
+                <td>Rental Period: {{ invoice.booking.pickUpDate }} - {{ invoice.booking.dropOffDate }}</td>
+            </tr>
+
             <tr class="item">
                 <td>Vehicle Rent</td>
                 <td>{{ invoice.vehicleRent }}</td>
