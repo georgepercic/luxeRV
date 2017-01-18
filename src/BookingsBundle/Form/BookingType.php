@@ -21,12 +21,12 @@ class BookingType extends AbstractType
         $builder
             ->add('pickUpDate', DateTimeType::class, [
                 'widget' => 'single_text',
-                'date_format' => 'yyyy-MM-dd  HH:i',
+                'format' => 'MM/DD/YYYY HH:mm',
                 'label' => 'Delivery Date',
             ])
             ->add('dropOffDate', DateTimeType::class, [
                 'widget' => 'single_text',
-                'date_format' => 'yyyy-MM-dd  HH:i',
+                'format' => 'MM/DD/YYYY HH:mm',
                 'label' => 'Return Date',
             ])
             ->add('pickUpLocation', TextType::class, [

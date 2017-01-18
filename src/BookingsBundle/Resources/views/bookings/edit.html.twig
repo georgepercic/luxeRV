@@ -55,8 +55,8 @@
                             <div class="input-group" id="drop-off-datetimepicker">
                                 {{ form_widget(edit_form.dropOffDate, { 'attr': {'class': 'form-control input-lg', 'placeholder': "Return Date"} }) }}
                                 <span class="input-group-addon datetimepicker">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                     <div class="form-group">
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
-                            <input type="submit" class="btn btn-primary" value="Save changes"/>
+                            <input type="submit" class="btn btn-primary" value="Save Edit"/>
                         </div>
                     </div>
                     {{ form_end(edit_form) }}
@@ -146,31 +146,13 @@
 
     <script>
         $(document).ready(function () {
-            var timeVars = {{ timeVars|json_encode|raw }};
-
-            var timeFormatDelivery = "MM/DD/YYYY HH:mm";
-            var timeFormatReturn = "MM/DD/YYYY HH:mm";
-
-            if (timeVars.delivery) {
-                timeFormatDelivery = "MM/DD/YYYY " + timeVars.delivery;
-            }
-
-            if (timeVars.return) {
-                timeFormatReturn = "MM/DD/YYYY " + timeVars.return;
-            }
 
             $('#pick-up-datetimepicker').datetimepicker({
-                format: timeFormatDelivery
-            }).on('dp.change', function(e) {
-                var endDate = e.date;
-                if (timeVars.minDays && timeVars.minDays > 0) {
-                    endDate = e.date.add(timeVars.minDays, 'days');
-                }
-                $('#drop-off-datetimepicker').data('DateTimePicker').date(endDate);
+                format: "MM/DD/YYYY HH:mm"
             });
 
             $('#drop-off-datetimepicker').datetimepicker({
-                format: timeFormatReturn
+                format: "MM/DD/YYYY HH:mm"
             });
 
             $('.select2').select2();
