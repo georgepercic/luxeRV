@@ -126,15 +126,19 @@
 
             <tr class="heading">
                 <td>Payments</td>
-                <td>-</td>
+                <td></td>
             </tr>
             <tr class="details">
                 <td>Credit Card</td>
                 <td>0</td>
             </tr>
-            <tr class="heading">
-                <td>Vehicle Rent</td>
+            <tr class="item">
+                <td>Vehicle Rent (before tax)</td>
                 <td>{{ invoice.vehicleRent }}</td>
+            </tr>
+            <tr class="item">
+                <td>Tax Amount ({{ invoice.taxRate }}%)</td>
+                <td>{{ invoice.taxAmount }}</td>
             </tr>
             <tr class="item last">
                 <td>Security Deposit</td>
