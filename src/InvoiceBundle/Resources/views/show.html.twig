@@ -132,25 +132,25 @@
 
             <tr class="details">
                 <td>Booking # {{ invoice.booking.id }}</td>
-                <td>Rental Period: {{ invoice.booking.pickUpDate|date('m/d/Y H:i') }} - {{ invoice.booking.dropOffDate|date('m/d/Y H:i') }}</td>
+                <td>{{ invoice.booking.pickUpDate|date('m/d/Y H:i') }} - {{ invoice.booking.dropOffDate|date('m/d/Y H:i') }}</td>
             </tr>
 
             <tr class="item">
                 <td>Vehicle Rent</td>
-                <td>{{ invoice.vehicleRent }}</td>
+                <td>${{ invoice.vehicleRent }}</td>
             </tr>
             <tr class="item">
                 <td>Tax ({{ invoice.taxRate }}%)</td>
-                <td>$ {{ invoice.taxAmount }}</td>
+                <td>${{ invoice.taxAmount }}</td>
             </tr>
             <tr class="item last">
                 <td>Security Deposit</td>
-                <td>$ {{ invoice.securityDeposit }}</td>
+                <td>${{ invoice.securityDeposit }}</td>
             </tr>
             <tr class="total">
                 <td></td>
                 <td>
-                    Total: $ {{ invoice.totalAmountPaybale }}
+                    Total: ${{ invoice.totalAmountPaybale }}
                 </td>
             </tr>
         </table>
