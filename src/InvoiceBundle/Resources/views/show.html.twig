@@ -81,7 +81,6 @@
             }
         }
     </style>
-
     <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">
             <tr class="top">
@@ -101,7 +100,6 @@
                     </table>
                 </td>
             </tr>
-
             <tr class="information">
                 <td colspan="2">
                     <table>
@@ -123,28 +121,26 @@
                     </table>
                 </td>
             </tr>
-
-            <tr class="heading">
+            {#<tr class="heading">
                 <td>Payments</td>
                 <td></td>
             </tr>
             <tr class="details">
                 <td>Credit Card</td>
                 <td>0</td>
-            </tr>
+            </tr>#}
             <tr class="item">
-                <td>Vehicle Rent (before tax)</td>
+                <td>Vehicle Rent</td>
                 <td>{{ invoice.vehicleRent }}</td>
             </tr>
             <tr class="item">
-                <td>Tax Amount ({{ invoice.taxRate }}%)</td>
-                <td>{{ invoice.taxAmount }}</td>
+                <td>Tax ({{ invoice.taxRate }}%)</td>
+                <td>$ {{ invoice.taxAmount }}</td>
             </tr>
             <tr class="item last">
                 <td>Security Deposit</td>
-                <td>{{ invoice.securityDeposit }}</td>
+                <td>$ {{ invoice.securityDeposit }}</td>
             </tr>
-
             <tr class="total">
                 <td></td>
                 <td>
