@@ -18,12 +18,11 @@
                     <th>Booking ID</th>
                     <th>Customer name</th>
                     <th>Vehicle rent</th>
-                    <th>Service tax</th>
                     <th>Tax Rate</th>
                     <th>Tax Amount</th>
                     <th>Deposit Amount</th>
-                    <th>Total amount paybale</th>
                     <th>Net amount payable</th>
+                    <th>Total amount paybale</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -33,12 +32,11 @@
                         <td>{{ invoice.booking.id }}</td>
                         <td>{{ invoice.booking.customer.name }}</td>
                         <td>{{ invoice.vehicleRent }}</td>
-                        <td>{{ invoice.serviceTax }}</td>
                         <td>{{ invoice.taxRate }}</td>
                         <td>{{ invoice.taxAmount }}</td>
                         <td>{{ invoice.securityDeposit }}</td>
-                        <td>{{ invoice.totalAmountPaybale }}</td>
                         <td>{{ invoice.netAmountPayable }}</td>
+                        <td>{{ invoice.totalAmountPaybale }}</td>
                         <td>
                             <a href="{{ path('invoices_show', { 'id': invoice.id }) }}"><span class="fa fa-download"></span></a>
                         </td>
