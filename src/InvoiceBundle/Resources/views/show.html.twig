@@ -132,7 +132,7 @@
 
             <tr class="details">
                 <td>Booking # {{ invoice.booking.id }}</td>
-                <td>Rental Period: {{ invoice.booking.pickUpDate }} - {{ invoice.booking.dropOffDate }}</td>
+                <td>Rental Period: {{ invoice.booking.pickUpDate|date('m/d/Y H:i') }} - {{ invoice.booking.dropOffDate|date('m/d/Y H:i') }}</td>
             </tr>
 
             <tr class="item">
